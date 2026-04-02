@@ -1,522 +1,1295 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Deploy Agents Inc — Your First AI Employee</title>
-  <meta name="description" content="Deploy Agents Inc gives small businesses their first AI employee. No app to download, no software to learn. Your MA works inside the chat app you already use." />
-  <meta name="theme-color" content="#0a0a0a" />
-  <meta property="og:title" content="Deploy Agents Inc — Your First AI Employee" />
-  <meta property="og:description" content="An AI managing agent that handles customers, coordinates staff, manages inventory, and gives you a daily briefing — all on autopilot." />
-  <meta property="og:type" content="website" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deploy Agents Inc — AI Managing Agents for Small Business</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --concrete: #2a2825;
+    --concrete-light: #3d3a36;
+    --concrete-mid: #4f4b45;
+    --steel: #8a8a8a;
+    --steel-light: #b0aca6;
+    --wood: #6b4c2a;
+    --wood-light: #8b6340;
+    --gold: #c9a84c;
+    --gold-light: #e2c97e;
+    --gold-dark: #a07830;
+    --cream: #f5f0e8;
+    --cream-dark: #ede5d6;
+    --off-white: #faf8f4;
+  }
 
-    :root {
-      --bg: #0a0a0a;
-      --surface: #141414;
-      --border: #222;
-      --text: #eee;
-      --muted: #888;
-      --accent: #4f8cff;
-      --accent-glow: rgba(79, 140, 255, 0.15);
-      --green: #34d399;
-    }
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-    html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; }
 
-    body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-    }
+  body {
+    background-color: var(--concrete);
+    color: var(--cream);
+    font-family: 'Cormorant Garamond', serif;
+    overflow-x: hidden;
+    cursor: none;
+  }
 
-    /* ── Nav ── */
-    nav {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      z-index: 100;
-      background: rgba(10, 10, 10, 0.85);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-    }
-    .nav-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 24px;
-      height: 64px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .logo {
-      font-weight: 800;
-      font-size: 1.15rem;
-      color: var(--text);
-      text-decoration: none;
-      letter-spacing: -0.02em;
-    }
-    .logo span { color: var(--accent); }
-    .nav-links { display: flex; gap: 32px; align-items: center; }
-    .nav-links a {
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 0.9rem;
-      font-weight: 500;
-      transition: color 0.2s;
-    }
-    .nav-links a:hover { color: var(--text); }
-    .nav-cta {
-      background: var(--accent) !important;
-      color: #fff !important;
-      padding: 8px 20px;
-      border-radius: 8px;
-      font-weight: 600;
-      transition: opacity 0.2s;
-    }
-    .nav-cta:hover { opacity: 0.85; }
+  /* Custom cursor */
+  .cursor {
+    width: 8px;
+    height: 8px;
+    background: var(--gold);
+    border-radius: 50%;
+    position: fixed;
+    top: 0; left: 0;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.1s ease;
+    mix-blend-mode: screen;
+  }
 
-    /* ── Sections ── */
-    section { padding: 120px 24px; }
-    .container { max-width: 1100px; margin: 0 auto; }
+  .cursor-ring {
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    position: fixed;
+    top: 0; left: 0;
+    pointer-events: none;
+    z-index: 9998;
+    transition: transform 0.15s ease, width 0.2s, height 0.2s;
+    mix-blend-mode: screen;
+    opacity: 0.6;
+  }
 
-    /* ── Hero ── */
-    .hero {
-      padding-top: 180px;
-      padding-bottom: 120px;
-      text-align: center;
-    }
-    .hero-badge {
-      display: inline-block;
-      background: var(--accent-glow);
-      border: 1px solid rgba(79, 140, 255, 0.3);
-      color: var(--accent);
-      font-size: 0.8rem;
-      font-weight: 600;
-      padding: 6px 16px;
-      border-radius: 100px;
-      margin-bottom: 32px;
-      letter-spacing: 0.03em;
-    }
-    .hero h1 {
-      font-size: clamp(2.5rem, 6vw, 4.2rem);
-      font-weight: 800;
-      line-height: 1.1;
-      letter-spacing: -0.03em;
-      margin-bottom: 24px;
-    }
-    .hero h1 .highlight { color: var(--accent); }
-    .hero p {
-      font-size: 1.2rem;
-      color: var(--muted);
-      max-width: 620px;
-      margin: 0 auto 48px;
-      line-height: 1.7;
-    }
-    .hero-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 14px 32px;
-      border-radius: 10px;
-      font-size: 1rem;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all 0.2s;
-      border: none;
-      cursor: pointer;
-    }
-    .btn-primary {
-      background: var(--accent);
-      color: #fff;
-      box-shadow: 0 0 24px rgba(79, 140, 255, 0.25);
-    }
-    .btn-primary:hover { box-shadow: 0 0 40px rgba(79, 140, 255, 0.4); transform: translateY(-1px); }
-    .btn-secondary {
-      background: var(--surface);
-      color: var(--text);
-      border: 1px solid var(--border);
-    }
-    .btn-secondary:hover { border-color: #444; }
+  /* Noise texture overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.4;
+  }
 
-    /* ── How it works ── */
-    .steps-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 32px;
-      margin-top: 64px;
-    }
-    .step-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 40px 32px;
-      text-align: center;
-      transition: border-color 0.3s;
-    }
-    .step-card:hover { border-color: #333; }
-    .step-number {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 48px;
-      height: 48px;
-      border-radius: 12px;
-      background: var(--accent-glow);
-      color: var(--accent);
-      font-weight: 700;
-      font-size: 1.2rem;
-      margin-bottom: 24px;
-    }
-    .step-card h3 {
-      font-size: 1.15rem;
-      font-weight: 700;
-      margin-bottom: 12px;
-    }
-    .step-card p { color: var(--muted); font-size: 0.95rem; }
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 24px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+    background: rgba(42,40,37,0.92);
+    backdrop-filter: blur(12px);
+  }
 
-    /* ── Features ── */
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 24px;
-      margin-top: 64px;
-    }
-    .feature {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 36px 32px;
-      transition: border-color 0.3s;
-    }
-    .feature:hover { border-color: #333; }
-    .feature-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: 10px;
-      background: var(--accent-glow);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 20px;
-      font-size: 1.3rem;
-    }
-    .feature h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
-    .feature p { color: var(--muted); font-size: 0.93rem; line-height: 1.6; }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    text-decoration: none;
+  }
 
-    /* ── Industries ── */
-    .industries-wrap {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      justify-content: center;
-      margin-top: 48px;
-    }
-    .industry-tag {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      padding: 10px 20px;
-      border-radius: 100px;
-      font-size: 0.9rem;
-      color: var(--muted);
-      transition: all 0.2s;
-    }
-    .industry-tag:hover { border-color: var(--accent); color: var(--text); }
+  .nav-links {
+    display: flex;
+    gap: 40px;
+    list-style: none;
+  }
 
-    /* ── Pricing ── */
-    .pricing-card {
-      max-width: 520px;
-      margin: 64px auto 0;
-      background: var(--surface);
-      border: 2px solid var(--accent);
-      border-radius: 20px;
-      padding: 48px 40px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .pricing-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--accent), var(--green));
-    }
-    .pricing-label {
-      color: var(--accent);
-      font-weight: 700;
-      font-size: 0.85rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-bottom: 16px;
-    }
-    .pricing-amount {
-      font-size: 3.5rem;
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      margin-bottom: 8px;
-    }
-    .pricing-period { color: var(--muted); margin-bottom: 32px; }
-    .pricing-features {
-      list-style: none;
-      text-align: left;
-      margin-bottom: 36px;
-    }
-    .pricing-features li {
-      padding: 10px 0;
-      border-bottom: 1px solid var(--border);
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
-    .pricing-features li::before {
-      content: '\2713';
-      color: var(--green);
-      font-weight: 700;
-      margin-right: 12px;
-    }
+  .nav-links a {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--steel-light);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
 
-    /* ── CTA ── */
-    .cta-section {
-      text-align: center;
-      background: linear-gradient(180deg, var(--bg) 0%, #0d1220 100%);
-    }
-    .cta-section h2 {
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      margin-bottom: 16px;
-    }
-    .cta-section p {
-      color: var(--muted);
-      font-size: 1.1rem;
-      margin-bottom: 40px;
-    }
+  .nav-links a:hover { color: var(--gold); }
 
-    /* ── Section headers ── */
-    .section-label {
-      color: var(--accent);
-      font-weight: 700;
-      font-size: 0.8rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 16px;
-      text-align: center;
-    }
-    .section-title {
-      font-size: clamp(1.8rem, 4vw, 2.8rem);
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      text-align: center;
-      margin-bottom: 16px;
-    }
-    .section-sub {
-      color: var(--muted);
-      font-size: 1.05rem;
-      text-align: center;
-      max-width: 600px;
-      margin: 0 auto;
-    }
+  .nav-cta {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--concrete);
+    background: var(--gold);
+    padding: 10px 24px;
+    text-decoration: none;
+    transition: background 0.3s, transform 0.2s;
+  }
 
-    /* ── Footer ── */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 48px 24px;
-      text-align: center;
-      color: var(--muted);
-      font-size: 0.85rem;
-    }
-    footer a { color: var(--muted); text-decoration: none; }
-    footer a:hover { color: var(--text); }
+  .nav-cta:hover {
+    background: var(--gold-light);
+    transform: translateY(-1px);
+  }
 
-    /* ── Responsive ── */
-    @media (max-width: 768px) {
-      .steps-grid { grid-template-columns: 1fr; }
-      .features-grid { grid-template-columns: 1fr; }
-      .nav-links a:not(.nav-cta) { display: none; }
-      section { padding: 80px 20px; }
-      .hero { padding-top: 140px; padding-bottom: 80px; }
-      .pricing-card { padding: 36px 24px; }
-    }
-  </style>
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 160px 64px 80px 80px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.2s;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .hero-headline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(72px, 8vw, 120px);
+    line-height: 0.92;
+    letter-spacing: 0.02em;
+    color: var(--cream);
+    margin-bottom: 40px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.4s;
+  }
+
+  .hero-headline .gold { color: var(--gold); }
+  .hero-headline .indent { padding-left: 48px; display: block; }
+
+  .hero-sub {
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 1.7;
+    color: var(--steel-light);
+    max-width: 440px;
+    margin-bottom: 56px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.6s;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.8s;
+  }
+
+  .btn-primary {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--concrete);
+    background: var(--gold);
+    padding: 16px 40px;
+    text-decoration: none;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-primary::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--gold-light);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+
+  .btn-primary:hover::after { transform: translateX(0); }
+  .btn-primary span { position: relative; z-index: 1; }
+
+  .btn-secondary {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--steel-light);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: color 0.3s;
+  }
+
+  .btn-secondary::after {
+    content: '\2192';
+    transition: transform 0.3s;
+  }
+
+  .btn-secondary:hover { color: var(--gold); }
+  .btn-secondary:hover::after { transform: translateX(6px); }
+
+  .hero-right {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-right::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 60px,
+        rgba(201,168,76,0.04) 60px,
+        rgba(201,168,76,0.04) 61px
+      ),
+      repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 60px,
+        rgba(201,168,76,0.04) 60px,
+        rgba(201,168,76,0.04) 61px
+      );
+    z-index: 1;
+  }
+
+  .hero-visual {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+  }
+
+  .ma-card {
+    width: 320px;
+    background: var(--concrete-light);
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 32px;
+    position: relative;
+    opacity: 0;
+    animation: fadeIn 1s ease forwards 1s;
+  }
+
+  .ma-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--wood), var(--gold));
+  }
+
+  .ma-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 24px;
+  }
+
+  .chat-bubble {
+    margin-bottom: 16px;
+    padding: 14px 18px;
+    font-size: 14px;
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  .chat-bubble.ma {
+    background: rgba(201,168,76,0.08);
+    border-left: 2px solid var(--gold);
+    color: var(--cream-dark);
+    animation: slideIn 0.5s ease forwards;
+    animation-fill-mode: both;
+  }
+
+  .chat-bubble.user {
+    background: rgba(107,76,42,0.2);
+    border-left: 2px solid var(--wood-light);
+    color: var(--steel-light);
+    margin-left: 16px;
+  }
+
+  .chat-bubble:nth-child(2) { animation-delay: 1.4s; opacity: 0; }
+  .chat-bubble:nth-child(3) { animation-delay: 2s; opacity: 0; }
+  .chat-bubble:nth-child(4) { animation-delay: 2.6s; opacity: 0; }
+  .chat-bubble:nth-child(5) { animation-delay: 3.2s; opacity: 0; }
+
+  .typing-indicator {
+    display: flex;
+    gap: 4px;
+    padding: 14px 18px;
+    width: fit-content;
+    animation: slideIn 0.5s ease forwards 3.8s;
+    opacity: 0;
+  }
+
+  .typing-indicator span {
+    width: 6px;
+    height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+    animation: bounce 1.2s infinite;
+  }
+
+  .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+  .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+
+  /* Wood texture strip */
+  .wood-strip {
+    height: 6px;
+    background: linear-gradient(90deg, var(--wood-light), #a0724a, var(--wood), #8b6340, var(--wood-light));
+    background-size: 200% 100%;
+    animation: woodShift 8s linear infinite;
+  }
+
+  /* STAT BAR */
+  .stat-bar {
+    background: var(--concrete-light);
+    border-top: 1px solid rgba(201,168,76,0.1);
+    border-bottom: 1px solid rgba(201,168,76,0.1);
+    padding: 32px 80px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+  }
+
+  .stat-item {
+    padding: 24px 40px;
+    border-right: 1px solid rgba(201,168,76,0.1);
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards;
+  }
+
+  .stat-item:last-child { border-right: none; }
+  .stat-item:nth-child(1) { animation-delay: 0.1s; }
+  .stat-item:nth-child(2) { animation-delay: 0.2s; }
+  .stat-item:nth-child(3) { animation-delay: 0.3s; }
+  .stat-item:nth-child(4) { animation-delay: 0.4s; }
+
+  .stat-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 52px;
+    letter-spacing: 0.02em;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .stat-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--steel);
+  }
+
+  /* SECTION */
+  section {
+    padding: 120px 80px;
+    position: relative;
+  }
+
+  .section-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .section-tag::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(48px, 6vw, 80px);
+    letter-spacing: 0.03em;
+    color: var(--cream);
+    line-height: 1;
+    margin-bottom: 32px;
+  }
+
+  .section-title .gold { color: var(--gold); }
+
+  /* HOW IT WORKS */
+  .how-it-works {
+    background: var(--concrete);
+  }
+
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 80px;
+    background: rgba(201,168,76,0.08);
+  }
+
+  .step {
+    background: var(--concrete);
+    padding: 48px 40px;
+    position: relative;
+    transition: background 0.3s;
+  }
+
+  .step:hover { background: var(--concrete-light); }
+
+  .step-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 80px;
+    color: rgba(201,168,76,0.12);
+    line-height: 1;
+    margin-bottom: 24px;
+    transition: color 0.3s;
+  }
+
+  .step:hover .step-number { color: rgba(201,168,76,0.25); }
+
+  .step-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--cream);
+    margin-bottom: 16px;
+    letter-spacing: 0.02em;
+  }
+
+  .step-desc {
+    font-size: 17px;
+    font-weight: 300;
+    line-height: 1.7;
+    color: var(--steel-light);
+  }
+
+  .step::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+  }
+
+  .step:hover::after { transform: scaleX(1); }
+
+  /* INDUSTRIES */
+  .industries {
+    background: var(--concrete-light);
+  }
+
+  .industries-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1px;
+    margin-top: 64px;
+    background: rgba(201,168,76,0.08);
+  }
+
+  .industry-card {
+    background: var(--concrete-light);
+    padding: 32px 24px;
+    text-align: center;
+    transition: background 0.3s, transform 0.2s;
+    cursor: default;
+  }
+
+  .industry-card:hover {
+    background: var(--concrete-mid);
+    transform: translateY(-4px);
+  }
+
+  .industry-icon {
+    font-size: 32px;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .industry-name {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--steel-light);
+    transition: color 0.3s;
+  }
+
+  .industry-card:hover .industry-name { color: var(--gold); }
+
+  /* PRICING */
+  .pricing {
+    background: var(--concrete);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .pricing::before {
+    content: 'PRICING';
+    position: absolute;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 300px;
+    color: rgba(201,168,76,0.03);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+    pointer-events: none;
+  }
+
+  .pricing-cards {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr 1fr;
+    gap: 2px;
+    margin-top: 80px;
+    background: rgba(201,168,76,0.08);
+    position: relative;
+    z-index: 1;
+  }
+
+  .price-card {
+    background: var(--concrete);
+    padding: 48px 40px;
+    position: relative;
+    transition: background 0.3s;
+  }
+
+  .price-card.featured {
+    background: var(--concrete-light);
+  }
+
+  .price-card.featured::before {
+    content: 'FLAGSHIP';
+    position: absolute;
+    top: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    background: var(--gold);
+    color: var(--concrete);
+    padding: 6px 20px;
+  }
+
+  .price-tier {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 24px;
+  }
+
+  .price-amount {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 72px;
+    color: var(--cream);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .price-period {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--steel);
+    letter-spacing: 0.15em;
+    margin-bottom: 40px;
+  }
+
+  .price-features {
+    list-style: none;
+    margin-bottom: 40px;
+  }
+
+  .price-features li {
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--steel-light);
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(201,168,76,0.08);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .price-features li::before {
+    content: '\2014';
+    color: var(--gold);
+    font-size: 12px;
+  }
+
+  .price-cta {
+    display: block;
+    text-align: center;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 14px;
+    transition: all 0.3s;
+  }
+
+  .price-cta.outline {
+    border: 1px solid rgba(201,168,76,0.3);
+    color: var(--gold);
+  }
+
+  .price-cta.outline:hover {
+    background: rgba(201,168,76,0.1);
+  }
+
+  .price-cta.filled {
+    background: var(--gold);
+    color: var(--concrete);
+  }
+
+  .price-cta.filled:hover {
+    background: var(--gold-light);
+  }
+
+  /* CHANNELS */
+  .channels {
+    background: var(--concrete-light);
+  }
+
+  .channels-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .channel-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-top: 48px;
+  }
+
+  .channel-item {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 24px 32px;
+    background: var(--concrete);
+    border-left: 3px solid transparent;
+    transition: all 0.3s;
+    cursor: default;
+  }
+
+  .channel-item:hover {
+    border-left-color: var(--gold);
+    background: var(--concrete-mid);
+    transform: translateX(6px);
+  }
+
+  .channel-icon { font-size: 28px; }
+
+  .channel-info h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--cream);
+    margin-bottom: 4px;
+  }
+
+  .channel-info p {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--steel);
+    text-transform: uppercase;
+  }
+
+  /* CTA SECTION */
+  .cta-section {
+    background: var(--concrete);
+    text-align: center;
+    padding: 160px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .cta-headline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(64px, 8vw, 120px);
+    letter-spacing: 0.02em;
+    color: var(--cream);
+    line-height: 0.92;
+    margin-bottom: 32px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cta-sub {
+    font-size: 22px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--steel-light);
+    margin-bottom: 64px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--concrete-light);
+    padding: 64px 80px 40px;
+    border-top: 1px solid rgba(201,168,76,0.15);
+  }
+
+  .footer-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 64px;
+    margin-bottom: 64px;
+    padding-bottom: 64px;
+    border-bottom: 1px solid rgba(201,168,76,0.1);
+  }
+
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 20px;
+  }
+
+  .footer-tagline {
+    font-size: 16px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--steel);
+    line-height: 1.6;
+  }
+
+  .footer-col h4 {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 24px;
+  }
+
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 12px; }
+  .footer-col ul li a {
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--steel);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .footer-col ul li a:hover { color: var(--cream); }
+
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-copy {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--steel);
+    text-transform: uppercase;
+  }
+
+  .footer-tagline-bottom {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+
+  /* Divider */
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    opacity: 0.2;
+    margin: 0 80px;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateX(-12px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  @keyframes bounce {
+    0%, 60%, 100% { transform: translateY(0); }
+    30% { transform: translateY(-6px); }
+  }
+
+  @keyframes woodShift {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 200% 0%; }
+  }
+
+  /* Scroll reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Mobile */
+  @media (max-width: 768px) {
+    nav { padding: 20px 24px; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .hero-left { padding: 120px 24px 80px; }
+    section { padding: 80px 24px; }
+    .stat-bar { padding: 24px; grid-template-columns: repeat(2, 1fr); }
+    .steps-grid { grid-template-columns: 1fr; }
+    .industries-grid { grid-template-columns: repeat(3, 1fr); }
+    .pricing-cards { grid-template-columns: 1fr; }
+    .channels-inner { grid-template-columns: 1fr; }
+    footer { padding: 48px 24px 32px; }
+    .footer-top { grid-template-columns: 1fr; gap: 32px; }
+    .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+  }
+</style>
 </head>
 <body>
 
-  <!-- Nav -->
-  <nav>
-    <div class="nav-inner">
-      <a href="#" class="logo">Deploy Agents <span>Inc</span></a>
-      <div class="nav-links">
-        <a href="#how">How it works</a>
-        <a href="#features">Features</a>
-        <a href="#industries">Industries</a>
-        <a href="#pricing">Pricing</a>
-        <a href="#start" class="nav-cta">Get started</a>
-      </div>
-    </div>
-  </nav>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursor-ring"></div>
 
-  <!-- Hero -->
-  <section class="hero">
-    <div class="container">
-      <div class="hero-badge">First 100 clients — free for one year</div>
-      <h1>Your first <span class="highlight">AI employee</span> is ready to start</h1>
-      <p>No app to download. No software to learn. Your MA works inside the chat app you already use every day — handling customers, coordinating staff, managing inventory, and briefing you each morning.</p>
-      <div class="hero-buttons">
-        <a href="#start" class="btn btn-primary">Start in 20 minutes</a>
-        <a href="#how" class="btn btn-secondary">See how it works</a>
-      </div>
-    </div>
-  </section>
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Deploy Agents Inc</a>
+  <ul class="nav-links">
+    <li><a href="#how-it-works">How It Works</a></li>
+    <li><a href="#industries">Industries</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+  </ul>
+  <a href="#pricing" class="nav-cta">Hire Your MA</a>
+</nav>
 
-  <!-- How it works -->
-  <section id="how">
-    <div class="container">
-      <div class="section-label">How it works</div>
-      <h2 class="section-title">Three steps. Twenty minutes. Done.</h2>
-      <p class="section-sub">No technical setup. No forms to fill. Just a conversation.</p>
-      <div class="steps-grid">
-        <div class="step-card">
-          <div class="step-number">1</div>
-          <h3>Tell us about your business</h3>
-          <p>Message us on LINE, WhatsApp, or Telegram. We ask about your business, your staff, your pain points. That is the entire setup.</p>
-        </div>
-        <div class="step-card">
-          <div class="step-number">2</div>
-          <h3>Your MA learns your operation</h3>
-          <p>In 20 minutes your MA knows your menu, your hours, your team, your suppliers, and your biggest headache. It is trained on your business — not a generic template.</p>
-        </div>
-        <div class="step-card">
-          <div class="step-number">3</div>
-          <h3>It starts working immediately</h3>
-          <p>Customers get replies. Staff get coordinated. Inventory gets tracked. You get a morning briefing. All from the same chat thread.</p>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">AI Managing Agents for Small Business</div>
+    <h1 class="hero-headline">
+      Your business<br>
+      needs an<br>
+      <span class="gold">employee</span><br>
+      <span class="indent">like this.</span>
+    </h1>
+    <p class="hero-sub">
+      A Managing Agent that works 24 hours a day through WhatsApp, Line, or Telegram.
+      No app. No training. No dashboard. Just results.
+    </p>
+    <div class="hero-actions">
+      <a href="#pricing" class="btn-primary"><span>Hire Your MA &mdash; Free Year One</span></a>
+      <a href="#how-it-works" class="btn-secondary">See how it works</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-visual">
+      <div class="ma-card">
+        <div class="ma-label">// Live conversation</div>
+        <div class="chat-bubble user">We're running low on olive oil and the lunch rush starts in 2 hours</div>
+        <div class="chat-bubble ma">Understood. I've messaged your supplier &mdash; order confirmed for express delivery by 11:30. I've also notified Maria to prep with the reserve stock until then.</div>
+        <div class="chat-bubble user">Also can you check who's on shift today</div>
+        <div class="chat-bubble ma">Tom and Maria are on until 4pm. James starts at 3. You have full coverage. I'll send the briefing at 8am tomorrow as usual.</div>
+        <div class="typing-indicator">
+          <span></span><span></span><span></span>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Features -->
-  <section id="features">
-    <div class="container">
-      <div class="section-label">Features</div>
-      <h2 class="section-title">Everything a first employee should do</h2>
-      <p class="section-sub">Your MA handles the work that eats your day so you can focus on the work that grows your business.</p>
-      <div class="features-grid">
-        <div class="feature">
-          <div class="feature-icon">&#128172;</div>
-          <h3>Customer replies on autopilot</h3>
-          <p>Answers questions, takes bookings, handles complaints — in your customer's language, in your brand's tone, 24 hours a day.</p>
+<div class="wood-strip"></div>
+
+<!-- STATS -->
+<div class="stat-bar">
+  <div class="stat-item">
+    <div class="stat-number">17</div>
+    <div class="stat-label">Industries Supported</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-number">24/7</div>
+    <div class="stat-label">Always On</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-number">$0</div>
+    <div class="stat-label">Year One Cost</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-number">20+</div>
+    <div class="stat-label">Tasks Automated</div>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<section class="how-it-works" id="how-it-works">
+  <div class="section-tag">Process</div>
+  <h2 class="section-title reveal">How Your <span class="gold">MA</span> Works</h2>
+  <p class="section-sub reveal" style="font-size:19px;font-weight:300;color:var(--steel-light);max-width:560px;line-height:1.7;">
+    Train once. Then step back. Your MA handles the rest &mdash; customers, staff, suppliers, inventory, and your daily briefing.
+  </p>
+
+  <div class="steps-grid">
+    <div class="step reveal">
+      <div class="step-number">01</div>
+      <h3 class="step-title">You Hire</h3>
+      <p class="step-desc">Reply to the email. Your MA messages you within 24 hours to begin a 20-minute onboarding conversation through WhatsApp, Line, or Telegram.</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-number">02</div>
+      <h3 class="step-title">MA Learns</h3>
+      <p class="step-desc">In one conversation your MA learns your business &mdash; your team, your suppliers, your customers, your schedule. It remembers everything permanently.</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-number">03</div>
+      <h3 class="step-title">You Lead</h3>
+      <p class="step-desc">From that moment forward your MA runs the engine. Daily briefing at your chosen time. You focus on the work only you can do.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- INDUSTRIES -->
+<section class="industries" id="industries">
+  <div class="section-tag">Coverage</div>
+  <h2 class="section-title reveal">Built for <span class="gold">Your</span> Industry</h2>
+
+  <div class="industries-grid reveal">
+    <div class="industry-card">
+      <span class="industry-icon">&#127861;</span>
+      <div class="industry-name">Restaurant</div>
+    </div>
+    <div class="industry-card">
+      <span class="industry-icon">&#127976;</span>
+      <div class="industry-name">Hotel</div>
+    </div>
+    <div class="industry-card">
+      <span class="industry-icon">&#9749;</span>
+      <div class="industry-name">Caf&eacute;</div>
+    </div>
+    <div class="industry-card">
+      <span class="industry-icon">&#127973;</span>
+      <div class="industry-name">Clinic</div>
+    </div>
+    <div class="industry-card">
+      <span class="industry-icon">&#129463;</span>
+      <div class="industry-name">Dental</div>
+    </div>
+    <div class="industry-card">
+      <span class="industry-icon">&#128136;</span>
+      <div class="industry-name">Salon</div>
+    </div>
+    <div class="industry-card">
+      <span class="industry-icon">&#127947;</span>
+      <div class="industry-name">Gym</div>
+    </div>
+    <div class="industry-card">
+      <span class="industry-icon">&#128717;</span>
+      <div class="industry-name">Retail</div>
+    </div>
+    <div class="industry-card">
+      <span class="industry-icon">&#127968;</span>
+      <div class="industry-name">Real Estate</div>
+    </div>
+    <div class="industry-card">
+      <span class="industry-icon">&#9878;</span>
+      <div class="industry-name">Law</div>
+    </div>
+    <div class="industry-card">
+      <span class="industry-icon">&#128295;</span>
+      <div class="industry-name">Auto Repair</div>
+    </div>
+    <div class="industry-card">
+      <span class="industry-icon">&#127959;</span>
+      <div class="industry-name">Construction</div>
+    </div>
+  </div>
+</section>
+
+<div class="wood-strip"></div>
+
+<!-- CHANNELS -->
+<section class="channels">
+  <div class="channels-inner">
+    <div>
+      <div class="section-tag">Platforms</div>
+      <h2 class="section-title reveal">Works Where<br><span class="gold">You Already</span><br>Are</h2>
+      <p class="reveal" style="font-size:18px;font-weight:300;color:var(--steel-light);line-height:1.7;margin-top:24px;">
+        No new app. No new login. No new habit to build. Your MA lives in the messaging apps your entire team already uses every day.
+      </p>
+    </div>
+    <div>
+      <div class="channel-list reveal">
+        <div class="channel-item">
+          <span class="channel-icon">&#128172;</span>
+          <div class="channel-info">
+            <h3>WhatsApp</h3>
+            <p>Business &amp; Personal</p>
+          </div>
         </div>
-        <div class="feature">
-          <div class="feature-icon">&#128203;</div>
-          <h3>Staff coordination</h3>
-          <p>Manages shifts, assigns tasks, sends reminders, and handles sick calls. Your team gets clear instructions without you playing middleman.</p>
+        <div class="channel-item">
+          <span class="channel-icon">&#128994;</span>
+          <div class="channel-info">
+            <h3>Line</h3>
+            <p>Southeast Asia</p>
+          </div>
         </div>
-        <div class="feature">
-          <div class="feature-icon">&#128230;</div>
-          <h3>Inventory management</h3>
-          <p>Tracks stock levels, flags low items, suggests reorders, and coordinates with suppliers. No spreadsheet needed.</p>
-        </div>
-        <div class="feature">
-          <div class="feature-icon">&#128200;</div>
-          <h3>Daily briefing</h3>
-          <p>Every morning you get a summary: yesterday's sales, overnight messages, open tasks, inventory alerts, and what needs your attention today.</p>
-        </div>
-        <div class="feature">
-          <div class="feature-icon">&#127760;</div>
-          <h3>Multilingual</h3>
-          <p>English, Thai, Japanese, Mandarin, Spanish, Arabic, Russian, and more. Your MA replies in whatever language your customer uses.</p>
-        </div>
-        <div class="feature">
-          <div class="feature-icon">&#128274;</div>
-          <h3>After-hours coverage</h3>
-          <p>Triages overnight messages by urgency. Emergencies wake you up. Everything else is handled quietly and waiting in your morning briefing.</p>
+        <div class="channel-item">
+          <span class="channel-icon">&#9992;</span>
+          <div class="channel-info">
+            <h3>Telegram</h3>
+            <p>Global</p>
+          </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Industries -->
-  <section id="industries">
-    <div class="container">
-      <div class="section-label">Industries</div>
-      <h2 class="section-title">Built for the businesses that need it most</h2>
-      <p class="section-sub">Small and medium businesses across every industry. If you have customers, staff, or inventory — your MA can help.</p>
-      <div class="industries-wrap">
-        <div class="industry-tag">Restaurants</div>
-        <div class="industry-tag">Hotels</div>
-        <div class="industry-tag">Clinics</div>
-        <div class="industry-tag">Dental offices</div>
-        <div class="industry-tag">Salons &amp; spas</div>
-        <div class="industry-tag">Gyms &amp; fitness</div>
-        <div class="industry-tag">Retail stores</div>
-        <div class="industry-tag">Real estate</div>
-        <div class="industry-tag">Law firms</div>
-        <div class="industry-tag">Tutoring centres</div>
-        <div class="industry-tag">Auto repair</div>
-        <div class="industry-tag">Event venues</div>
-        <div class="industry-tag">Construction</div>
-        <div class="industry-tag">Property management</div>
-        <div class="industry-tag">Logistics</div>
-        <div class="industry-tag">Cafes &amp; bakeries</div>
-        <div class="industry-tag">Tattoo shops</div>
-        <div class="industry-tag">Jewelry stores</div>
-        <div class="industry-tag">Dispensaries</div>
-        <div class="industry-tag">Excavation</div>
-        <div class="industry-tag">Fiber optic installation</div>
-      </div>
+<div class="divider"></div>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="section-tag">Investment</div>
+  <h2 class="section-title reveal">One Employee.<br><span class="gold">One Price.</span><br>Locked Forever.</h2>
+
+  <div class="pricing-cards reveal">
+    <div class="price-card">
+      <div class="price-tier">Early Adopter</div>
+      <div class="price-amount">$20</div>
+      <div class="price-period">/ month &middot; after year one</div>
+      <ul class="price-features">
+        <li>Full MA access</li>
+        <li>All industry tools</li>
+        <li>Rate locked forever</li>
+        <li>Referral commissions</li>
+      </ul>
+      <a href="https://buy.stripe.com/fZu7sKfVHdce0T53RKe7m00" class="price-cta outline">Get Started</a>
     </div>
-  </section>
 
-  <!-- Pricing -->
-  <section id="pricing">
-    <div class="container">
-      <div class="section-label">Pricing</div>
-      <h2 class="section-title">Simple. No hidden fees.</h2>
-      <p class="section-sub">We are looking for our first 100 clients. You get the first year completely free. After that, you lock in at our founding rate for life.</p>
-      <div class="pricing-card">
-        <div class="pricing-label">Founding client</div>
-        <div class="pricing-amount">$0</div>
-        <div class="pricing-period">for your entire first year</div>
-        <ul class="pricing-features">
-          <li>Full MA — customers, staff, inventory, briefings</li>
-          <li>Unlimited messages and interactions</li>
-          <li>All channels — LINE, WhatsApp, Telegram</li>
-          <li>Multilingual support included</li>
-          <li>After-hours coverage and emergency triage</li>
-          <li>Daily morning briefing</li>
-          <li>Founding rate locked for life after year one</li>
-        </ul>
-        <a href="#start" class="btn btn-primary" style="width: 100%; justify-content: center;">Claim your spot</a>
-      </div>
+    <div class="price-card featured">
+      <div class="price-tier">Flagship &mdash; First 100</div>
+      <div class="price-amount">Free</div>
+      <div class="price-period">Year one completely free</div>
+      <ul class="price-features">
+        <li>Everything included</li>
+        <li>Full MA onboarding</li>
+        <li>Founding rate $20/mo locked</li>
+        <li>Priority industry spot</li>
+        <li>20% referral commission</li>
+      </ul>
+      <a href="https://buy.stripe.com/fZu7sKfVHdce0T53RKe7m00" class="price-cta filled">Claim Flagship Spot</a>
     </div>
-  </section>
 
-  <!-- CTA -->
-  <section id="start" class="cta-section">
-    <div class="container">
-      <h2>Ready to meet your MA?</h2>
-      <p>Message us on your preferred channel. Setup takes 20 minutes — just a conversation.</p>
-      <div class="hero-buttons">
-        <a href="https://line.me/R/" class="btn btn-primary">Message us on LINE</a>
-        <a href="https://wa.me/" class="btn btn-secondary">WhatsApp</a>
-        <a href="https://t.me/" class="btn btn-secondary">Telegram</a>
-      </div>
+    <div class="price-card">
+      <div class="price-tier">Standard</div>
+      <div class="price-amount">$35+</div>
+      <div class="price-period">/ month &middot; rate locks at signup</div>
+      <ul class="price-features">
+        <li>Full MA access</li>
+        <li>All industry tools</li>
+        <li>Rate locked at signup</li>
+        <li>Referral commissions</li>
+      </ul>
+      <a href="https://buy.stripe.com/fZu7sKfVHdce0T53RKe7m00" class="price-cta outline">Get Started</a>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Footer -->
-  <footer>
-    <div class="container">
-      <p>&copy; 2026 Deploy Agents Inc. All rights reserved.</p>
+<!-- CTA -->
+<section class="cta-section">
+  <h2 class="cta-headline reveal">
+    Are you tired of being<br>
+    the only one <span style="color:var(--gold)">invested</span><br>
+    in your business?
+  </h2>
+  <p class="cta-sub reveal">Your MA is looking for work. First year is free.</p>
+  <div class="cta-buttons reveal">
+    <a href="https://buy.stripe.com/fZu7sKfVHdce0T53RKe7m00" class="btn-primary"><span>Hire Your MA Today</span></a>
+  </div>
+</section>
+
+<div class="wood-strip"></div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <span class="footer-logo">Deploy Agents Inc</span>
+      <p class="footer-tagline">AI Managing Agents for small businesses.<br>WhatsApp. Line. Telegram.<br>No app. No training. Just results.</p>
     </div>
-  </footer>
+    <div class="footer-col">
+      <h4>Product</h4>
+      <ul>
+        <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="#industries">Industries</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="https://wa.me/message/yournumber">WhatsApp</a></li>
+        <li><a href="https://line.me/R/ti/p/@963ieadj">Line</a></li>
+        <li><a href="mailto:hello@deployagentsinc.com">Email</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Privacy</a></li>
+        <li><a href="#">Terms</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">&copy; 2026 Deploy Agents Inc. All rights reserved.</span>
+    <span class="footer-tagline-bottom">deployagentsinc.agency</span>
+  </div>
+</footer>
 
+<script>
+  // Custom cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursor-ring');
+  let mouseX = 0, mouseY = 0;
+  let ringX = 0, ringY = 0;
+
+  document.addEventListener('mousemove', e => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    cursor.style.transform = `translate(${mouseX - 4}px, ${mouseY - 4}px)`;
+  });
+
+  function animateRing() {
+    ringX += (mouseX - ringX - 16) * 0.12;
+    ringY += (mouseY - ringY - 16) * 0.12;
+    ring.style.transform = `translate(${ringX}px, ${ringY}px)`;
+    requestAnimationFrame(animateRing);
+  }
+  animateRing();
+
+  document.querySelectorAll('a, button').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      ring.style.width = '48px';
+      ring.style.height = '48px';
+      ring.style.opacity = '1';
+    });
+    el.addEventListener('mouseleave', () => {
+      ring.style.width = '32px';
+      ring.style.height = '32px';
+      ring.style.opacity = '0.6';
+    });
+  });
+
+  // Scroll reveal
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Nav scroll effect
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    nav.style.borderBottomColor = window.scrollY > 50
+      ? 'rgba(201,168,76,0.25)'
+      : 'rgba(201,168,76,0.15)';
+  });
+</script>
 </body>
 </html>
