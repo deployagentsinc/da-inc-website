@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Deploy Agents Inc — Your First AI Employee</title>
+  <meta name="description" content="Deploy Agents Inc gives small businesses their first AI employee. No app to download, no software to learn. Your MA works inside the chat app you already use." />
+  <meta name="theme-color" content="#0a0a0a" />
+  <meta property="og:title" content="Deploy Agents Inc — Your First AI Employee" />
+  <meta property="og:description" content="An AI managing agent that handles customers, coordinates staff, manages inventory, and gives you a daily briefing — all on autopilot." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #0a0a0a;
+      --surface: #141414;
+      --border: #222;
+      --text: #eee;
+      --muted: #888;
+      --accent: #4f8cff;
+      --accent-glow: rgba(79, 140, 255, 0.15);
+      --green: #34d399;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+      background: rgba(10, 10, 10, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      font-weight: 800;
+      font-size: 1.15rem;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+    .logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 32px; align-items: center; }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta {
+      background: var(--accent) !important;
+      color: #fff !important;
+      padding: 8px 20px;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: opacity 0.2s;
+    }
+    .nav-cta:hover { opacity: 0.85; }
+
+    /* ── Sections ── */
+    section { padding: 120px 24px; }
+    .container { max-width: 1100px; margin: 0 auto; }
+
+    /* ── Hero ── */
+    .hero {
+      padding-top: 180px;
+      padding-bottom: 120px;
+      text-align: center;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: var(--accent-glow);
+      border: 1px solid rgba(79, 140, 255, 0.3);
+      color: var(--accent);
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 6px 16px;
+      border-radius: 100px;
+      margin-bottom: 32px;
+      letter-spacing: 0.03em;
+    }
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4.2rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 24px;
+    }
+    .hero h1 .highlight { color: var(--accent); }
+    .hero p {
+      font-size: 1.2rem;
+      color: var(--muted);
+      max-width: 620px;
+      margin: 0 auto 48px;
+      line-height: 1.7;
+    }
+    .hero-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 32px;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 0 24px rgba(79, 140, 255, 0.25);
+    }
+    .btn-primary:hover { box-shadow: 0 0 40px rgba(79, 140, 255, 0.4); transform: translateY(-1px); }
+    .btn-secondary {
+      background: var(--surface);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-secondary:hover { border-color: #444; }
+
+    /* ── How it works ── */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      margin-top: 64px;
+    }
+    .step-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 40px 32px;
+      text-align: center;
+      transition: border-color 0.3s;
+    }
+    .step-card:hover { border-color: #333; }
+    .step-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: var(--accent-glow);
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 1.2rem;
+      margin-bottom: 24px;
+    }
+    .step-card h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .step-card p { color: var(--muted); font-size: 0.95rem; }
+
+    /* ── Features ── */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-top: 64px;
+    }
+    .feature {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 36px 32px;
+      transition: border-color 0.3s;
+    }
+    .feature:hover { border-color: #333; }
+    .feature-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: var(--accent-glow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      font-size: 1.3rem;
+    }
+    .feature h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
+    .feature p { color: var(--muted); font-size: 0.93rem; line-height: 1.6; }
+
+    /* ── Industries ── */
+    .industries-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 48px;
+    }
+    .industry-tag {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 10px 20px;
+      border-radius: 100px;
+      font-size: 0.9rem;
+      color: var(--muted);
+      transition: all 0.2s;
+    }
+    .industry-tag:hover { border-color: var(--accent); color: var(--text); }
+
+    /* ── Pricing ── */
+    .pricing-card {
+      max-width: 520px;
+      margin: 64px auto 0;
+      background: var(--surface);
+      border: 2px solid var(--accent);
+      border-radius: 20px;
+      padding: 48px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .pricing-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--green));
+    }
+    .pricing-label {
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .pricing-amount {
+      font-size: 3.5rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 8px;
+    }
+    .pricing-period { color: var(--muted); margin-bottom: 32px; }
+    .pricing-features {
+      list-style: none;
+      text-align: left;
+      margin-bottom: 36px;
+    }
+    .pricing-features li {
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+    .pricing-features li::before {
+      content: '\2713';
+      color: var(--green);
+      font-weight: 700;
+      margin-right: 12px;
+    }
+
+    /* ── CTA ── */
+    .cta-section {
+      text-align: center;
+      background: linear-gradient(180deg, var(--bg) 0%, #0d1220 100%);
+    }
+    .cta-section h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 16px;
+    }
+    .cta-section p {
+      color: var(--muted);
+      font-size: 1.1rem;
+      margin-bottom: 40px;
+    }
+
+    /* ── Section headers ── */
+    .section-label {
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+    .section-title {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      text-align: center;
+      margin-bottom: 16px;
+    }
+    .section-sub {
+      color: var(--muted);
+      font-size: 1.05rem;
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 48px 24px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+    footer a { color: var(--muted); text-decoration: none; }
+    footer a:hover { color: var(--text); }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .steps-grid { grid-template-columns: 1fr; }
+      .features-grid { grid-template-columns: 1fr; }
+      .nav-links a:not(.nav-cta) { display: none; }
+      section { padding: 80px 20px; }
+      .hero { padding-top: 140px; padding-bottom: 80px; }
+      .pricing-card { padding: 36px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav>
+    <div class="nav-inner">
+      <a href="#" class="logo">Deploy Agents <span>Inc</span></a>
+      <div class="nav-links">
+        <a href="#how">How it works</a>
+        <a href="#features">Features</a>
+        <a href="#industries">Industries</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#start" class="nav-cta">Get started</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-badge">First 100 clients — free for one year</div>
+      <h1>Your first <span class="highlight">AI employee</span> is ready to start</h1>
+      <p>No app to download. No software to learn. Your MA works inside the chat app you already use every day — handling customers, coordinating staff, managing inventory, and briefing you each morning.</p>
+      <div class="hero-buttons">
+        <a href="#start" class="btn btn-primary">Start in 20 minutes</a>
+        <a href="#how" class="btn btn-secondary">See how it works</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section id="how">
+    <div class="container">
+      <div class="section-label">How it works</div>
+      <h2 class="section-title">Three steps. Twenty minutes. Done.</h2>
+      <p class="section-sub">No technical setup. No forms to fill. Just a conversation.</p>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <h3>Tell us about your business</h3>
+          <p>Message us on LINE, WhatsApp, or Telegram. We ask about your business, your staff, your pain points. That is the entire setup.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <h3>Your MA learns your operation</h3>
+          <p>In 20 minutes your MA knows your menu, your hours, your team, your suppliers, and your biggest headache. It is trained on your business — not a generic template.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <h3>It starts working immediately</h3>
+          <p>Customers get replies. Staff get coordinated. Inventory gets tracked. You get a morning briefing. All from the same chat thread.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section id="features">
+    <div class="container">
+      <div class="section-label">Features</div>
+      <h2 class="section-title">Everything a first employee should do</h2>
+      <p class="section-sub">Your MA handles the work that eats your day so you can focus on the work that grows your business.</p>
+      <div class="features-grid">
+        <div class="feature">
+          <div class="feature-icon">&#128172;</div>
+          <h3>Customer replies on autopilot</h3>
+          <p>Answers questions, takes bookings, handles complaints — in your customer's language, in your brand's tone, 24 hours a day.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">&#128203;</div>
+          <h3>Staff coordination</h3>
+          <p>Manages shifts, assigns tasks, sends reminders, and handles sick calls. Your team gets clear instructions without you playing middleman.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">&#128230;</div>
+          <h3>Inventory management</h3>
+          <p>Tracks stock levels, flags low items, suggests reorders, and coordinates with suppliers. No spreadsheet needed.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">&#128200;</div>
+          <h3>Daily briefing</h3>
+          <p>Every morning you get a summary: yesterday's sales, overnight messages, open tasks, inventory alerts, and what needs your attention today.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">&#127760;</div>
+          <h3>Multilingual</h3>
+          <p>English, Thai, Japanese, Mandarin, Spanish, Arabic, Russian, and more. Your MA replies in whatever language your customer uses.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">&#128274;</div>
+          <h3>After-hours coverage</h3>
+          <p>Triages overnight messages by urgency. Emergencies wake you up. Everything else is handled quietly and waiting in your morning briefing.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Industries -->
+  <section id="industries">
+    <div class="container">
+      <div class="section-label">Industries</div>
+      <h2 class="section-title">Built for the businesses that need it most</h2>
+      <p class="section-sub">Small and medium businesses across every industry. If you have customers, staff, or inventory — your MA can help.</p>
+      <div class="industries-wrap">
+        <div class="industry-tag">Restaurants</div>
+        <div class="industry-tag">Hotels</div>
+        <div class="industry-tag">Clinics</div>
+        <div class="industry-tag">Dental offices</div>
+        <div class="industry-tag">Salons &amp; spas</div>
+        <div class="industry-tag">Gyms &amp; fitness</div>
+        <div class="industry-tag">Retail stores</div>
+        <div class="industry-tag">Real estate</div>
+        <div class="industry-tag">Law firms</div>
+        <div class="industry-tag">Tutoring centres</div>
+        <div class="industry-tag">Auto repair</div>
+        <div class="industry-tag">Event venues</div>
+        <div class="industry-tag">Construction</div>
+        <div class="industry-tag">Property management</div>
+        <div class="industry-tag">Logistics</div>
+        <div class="industry-tag">Cafes &amp; bakeries</div>
+        <div class="industry-tag">Tattoo shops</div>
+        <div class="industry-tag">Jewelry stores</div>
+        <div class="industry-tag">Dispensaries</div>
+        <div class="industry-tag">Excavation</div>
+        <div class="industry-tag">Fiber optic installation</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section id="pricing">
+    <div class="container">
+      <div class="section-label">Pricing</div>
+      <h2 class="section-title">Simple. No hidden fees.</h2>
+      <p class="section-sub">We are looking for our first 100 clients. You get the first year completely free. After that, you lock in at our founding rate for life.</p>
+      <div class="pricing-card">
+        <div class="pricing-label">Founding client</div>
+        <div class="pricing-amount">$0</div>
+        <div class="pricing-period">for your entire first year</div>
+        <ul class="pricing-features">
+          <li>Full MA — customers, staff, inventory, briefings</li>
+          <li>Unlimited messages and interactions</li>
+          <li>All channels — LINE, WhatsApp, Telegram</li>
+          <li>Multilingual support included</li>
+          <li>After-hours coverage and emergency triage</li>
+          <li>Daily morning briefing</li>
+          <li>Founding rate locked for life after year one</li>
+        </ul>
+        <a href="#start" class="btn btn-primary" style="width: 100%; justify-content: center;">Claim your spot</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="start" class="cta-section">
+    <div class="container">
+      <h2>Ready to meet your MA?</h2>
+      <p>Message us on your preferred channel. Setup takes 20 minutes — just a conversation.</p>
+      <div class="hero-buttons">
+        <a href="https://line.me/R/" class="btn btn-primary">Message us on LINE</a>
+        <a href="https://wa.me/" class="btn btn-secondary">WhatsApp</a>
+        <a href="https://t.me/" class="btn btn-secondary">Telegram</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 Deploy Agents Inc. All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
