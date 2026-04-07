@@ -929,9 +929,227 @@
     .industries-grid { grid-template-columns: repeat(3, 1fr); }
     .pricing-cards { grid-template-columns: 1fr; }
     .channels-inner { grid-template-columns: 1fr; }
+    .agents-grid { grid-template-columns: 1fr; }
     footer { padding: 48px 24px 32px; }
     .footer-top { grid-template-columns: 1fr; gap: 32px; }
     .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+  }
+
+  /* AGENTS PAMPHLET */
+  .agents-section {
+    padding: 120px 80px;
+    background: var(--concrete);
+  }
+
+  .agents-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+    margin-top: 64px;
+    background: rgba(201,168,76,0.08);
+  }
+
+  .agent-card {
+    background: var(--concrete);
+    padding: 32px;
+    transition: background 0.3s;
+    cursor: pointer;
+  }
+
+  .agent-card:hover { background: var(--concrete-light); }
+
+  .agent-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .agent-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px;
+    letter-spacing: 0.05em;
+    color: var(--cream);
+    transition: color 0.3s;
+  }
+
+  .agent-card:hover .agent-name { color: var(--gold); }
+
+  .agent-toggle {
+    font-family: 'DM Mono', monospace;
+    font-size: 18px;
+    color: var(--gold);
+    transition: transform 0.3s;
+    flex-shrink: 0;
+  }
+
+  .agent-card.open .agent-toggle { transform: rotate(45deg); }
+
+  .agent-role {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold-dark);
+    margin-top: 4px;
+  }
+
+  .agent-desc {
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--steel-light);
+    line-height: 1.6;
+    margin-top: 12px;
+  }
+
+  .agent-details {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+
+  .agent-card.open .agent-details { max-height: 600px; }
+
+  .agent-details-inner {
+    padding-top: 20px;
+    border-top: 1px solid rgba(201,168,76,0.12);
+    margin-top: 20px;
+  }
+
+  .sub-agents {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  .sub-agent-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border: 1px solid rgba(201,168,76,0.25);
+    color: var(--gold-light);
+    background: rgba(201,168,76,0.06);
+  }
+
+  .agent-capabilities {
+    list-style: none;
+    margin-top: 12px;
+  }
+
+  .agent-capabilities li {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--steel-light);
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(201,168,76,0.06);
+    padding-left: 16px;
+    position: relative;
+  }
+
+  .agent-capabilities li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 13px;
+    width: 6px;
+    height: 1px;
+    background: var(--gold-dark);
+  }
+
+  .agents-industries {
+    margin-top: 64px;
+  }
+
+  .agents-industries h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    letter-spacing: 0.05em;
+    color: var(--cream);
+    margin-bottom: 24px;
+  }
+
+  .agents-industry-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .ind-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    border: 1px solid rgba(201,168,76,0.2);
+    color: var(--steel-light);
+    transition: all 0.3s;
+  }
+
+  .ind-tag:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+    background: rgba(201,168,76,0.08);
+  }
+
+  .agents-channels {
+    margin-top: 48px;
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .agent-channel-btn {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 12px 28px;
+    background: rgba(201,168,76,0.1);
+    border: 1px solid var(--gold-dark);
+    color: var(--gold);
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+
+  .agent-channel-btn:hover {
+    background: var(--gold);
+    color: var(--concrete);
+  }
+
+  .agents-pricing-note {
+    margin-top: 48px;
+    padding: 32px;
+    border: 1px solid rgba(201,168,76,0.15);
+    background: rgba(201,168,76,0.04);
+  }
+
+  .agents-pricing-note h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+
+  .agents-pricing-note p {
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--steel-light);
+    line-height: 1.7;
+  }
+
+  .phase2-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    background: rgba(201,168,76,0.15);
+    color: var(--gold-dark);
+    margin-left: 12px;
+    vertical-align: middle;
   }
 </style>
 </head>
@@ -947,6 +1165,7 @@
     <li><a href="#how-it-works">How It Works</a></li>
     <li><a href="#industries">Industries</a></li>
     <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#agents">Agents</a></li>
   </ul>
   <a href="#pricing" class="nav-cta">Hire Your MA</a>
 </nav>
@@ -1184,6 +1403,461 @@
     </div>
   </div>
 </section>
+
+<!-- AGENTS PAMPHLET -->
+<section class="agents-section" id="agents">
+  <div class="section-tag">Your Team</div>
+  <h2 class="section-title reveal">20 Agents.<br><span class="gold">One Employee.</span><br>Zero Training.</h2>
+
+  <div class="agents-grid reveal">
+
+    <div class="agent-card" onclick="this.classList.toggle('open')">
+      <div class="agent-header">
+        <div>
+          <div class="agent-name">The MA</div>
+          <div class="agent-role">Managing Agent</div>
+        </div>
+        <span class="agent-toggle">+</span>
+      </div>
+      <div class="agent-desc">Your primary point of contact. Handles all customer conversations, routes tasks, and coordinates every other agent.</div>
+      <div class="agent-details"><div class="agent-details-inner">
+        <div class="sub-agents">
+          <span class="sub-agent-tag">Sales</span>
+          <span class="sub-agent-tag">Support</span>
+          <span class="sub-agent-tag">Language Detection</span>
+          <span class="sub-agent-tag">Client Context</span>
+        </div>
+        <ul class="agent-capabilities">
+          <li>Multilingual conversations (English, Thai, Russian, Arabic, Spanish, Mandarin, Japanese)</li>
+          <li>Automatic model routing &mdash; simple tasks use fast models, complex tasks use deep reasoning</li>
+          <li>Personal line detection &mdash; ignores non-business messages on personal numbers</li>
+        </ul>
+      </div></div>
+    </div>
+
+    <div class="agent-card" onclick="this.classList.toggle('open')">
+      <div class="agent-header">
+        <div>
+          <div class="agent-name">OnboardGenie</div>
+          <div class="agent-role">Client Onboarding</div>
+        </div>
+        <span class="agent-toggle">+</span>
+      </div>
+      <div class="agent-desc">20-minute conversational onboarding. Collects business details, matches industry specialist, configures your MA.</div>
+      <div class="agent-details"><div class="agent-details-inner">
+        <div class="sub-agents">
+          <span class="sub-agent-tag">Phase 1 &mdash; Universal</span>
+          <span class="sub-agent-tag">Phase 2 &mdash; Specialist</span>
+          <span class="sub-agent-tag">18 Industry Modules</span>
+        </div>
+        <ul class="agent-capabilities">
+          <li>12 universal questions followed by 14 industry-specific questions</li>
+          <li>Automatic specialist matching by industry keywords</li>
+          <li>Session persistence &mdash; pick up where you left off, even after disconnection</li>
+        </ul>
+      </div></div>
+    </div>
+
+    <div class="agent-card" onclick="this.classList.toggle('open')">
+      <div class="agent-header">
+        <div>
+          <div class="agent-name">BriefingOS</div>
+          <div class="agent-role">Daily Briefings</div>
+        </div>
+        <span class="agent-toggle">+</span>
+      </div>
+      <div class="agent-desc">Delivers a morning briefing at your chosen time covering sales, staff, inventory, and anything that needs attention.</div>
+      <div class="agent-details"><div class="agent-details-inner">
+        <ul class="agent-capabilities">
+          <li>Aggregates data from all other agents into one concise summary</li>
+          <li>Delivered via your preferred channel at your chosen time</li>
+          <li>Highlights urgent items that need immediate action</li>
+        </ul>
+      </div></div>
+    </div>
+
+    <div class="agent-card" onclick="this.classList.toggle('open')">
+      <div class="agent-header">
+        <div>
+          <div class="agent-name">OnCallGenie</div>
+          <div class="agent-role">After-Hours Triage</div>
+        </div>
+        <span class="agent-toggle">+</span>
+      </div>
+      <div class="agent-desc">Handles customer messages outside business hours. Triages by urgency and escalates critical issues to you instantly.</div>
+      <div class="agent-details"><div class="agent-details-inner">
+        <div class="sub-agents">
+          <span class="sub-agent-tag">Critical</span>
+          <span class="sub-agent-tag">Moderate</span>
+          <span class="sub-agent-tag">Low</span>
+        </div>
+        <ul class="agent-capabilities">
+          <li>Three-tier urgency classification</li>
+          <li>Critical issues trigger immediate Telegram alert to owner</li>
+          <li>Overnight summary delivered with your morning briefing</li>
+        </ul>
+      </div></div>
+    </div>
+
+    <div class="agent-card" onclick="this.classList.toggle('open')">
+      <div class="agent-header">
+        <div>
+          <div class="agent-name">OrderGenie</div>
+          <div class="agent-role">Bookings &amp; Reservations</div>
+        </div>
+        <span class="agent-toggle">+</span>
+      </div>
+      <div class="agent-desc">Natural language booking management. Customers just say what they want and OrderGenie handles the rest.</div>
+      <div class="agent-details"><div class="agent-details-inner">
+        <div class="sub-agents">
+          <span class="sub-agent-tag">NLP Parsing</span>
+          <span class="sub-agent-tag">Conflict Detection</span>
+          <span class="sub-agent-tag">Deposits</span>
+          <span class="sub-agent-tag">Waitlist</span>
+        </div>
+        <ul class="agent-capabilities">
+          <li>Book, cancel, reschedule via natural conversation</li>
+          <li>Automatic conflict detection and waitlist management</li>
+          <li>Stripe deposit collection for high-value reservations</li>
+        </ul>
+      </div></div>
+    </div>
+
+    <div class="agent-card" onclick="this.classList.toggle('open')">
+      <div class="agent-header">
+        <div>
+          <div class="agent-name">InventoryOS</div>
+          <div class="agent-role">Stock Tracking</div>
+        </div>
+        <span class="agent-toggle">+</span>
+      </div>
+      <div class="agent-desc">Tracks inventory levels, sends low-stock alerts, and suggests reorders before you run out.</div>
+      <div class="agent-details"><div class="agent-details-inner">
+        <ul class="agent-capabilities">
+          <li>Real-time stock level monitoring</li>
+          <li>Daily low-stock alerts at 6 AM</li>
+          <li>Automatic reorder suggestions based on consumption patterns</li>
+        </ul>
+      </div></div>
+    </div>
+
+    <div class="agent-card" onclick="this.classList.toggle('open')">
+      <div class="agent-header">
+        <div>
+          <div class="agent-name">SupplyGenie</div>
+          <div class="agent-role">Supplier Management</div>
+        </div>
+        <span class="agent-toggle">+</span>
+      </div>
+      <div class="agent-desc">Coordinates with your suppliers, tracks performance, compares prices, and matches invoices.</div>
+      <div class="agent-details"><div class="agent-details-inner">
+        <div class="sub-agents">
+          <span class="sub-agent-tag">Purchase Orders</span>
+          <span class="sub-agent-tag">Price Compare</span>
+          <span class="sub-agent-tag">Invoice Match</span>
+        </div>
+        <ul class="agent-capabilities">
+          <li>Sends purchase orders directly to suppliers via email</li>
+          <li>Weekly supplier price comparison reports</li>
+          <li>Supplier performance scoring and outreach for new vendors</li>
+        </ul>
+      </div></div>
+    </div>
+
+    <div class="agent-card" onclick="this.classList.toggle('open')">
+      <div class="agent-header">
+        <div>
+          <div class="agent-name">DeliveryOS</div>
+          <div class="agent-role">Delivery Management</div>
+        </div>
+        <span class="agent-toggle">+</span>
+      </div>
+      <div class="agent-desc">Manages in-house delivery drivers, assigns orders, balances loads, and tracks completion.</div>
+      <div class="agent-details"><div class="agent-details-inner">
+        <ul class="agent-capabilities">
+          <li>Driver assignment and load balancing</li>
+          <li>Real-time delivery status tracking</li>
+          <li>Route optimization via RouteGenie integration</li>
+        </ul>
+      </div></div>
+    </div>
+
+    <div class="agent-card" onclick="this.classList.toggle('open')">
+      <div class="agent-header">
+        <div>
+          <div class="agent-name">ShiftGenie</div>
+          <div class="agent-role">Staff Scheduling</div>
+        </div>
+        <span class="agent-toggle">+</span>
+      </div>
+      <div class="agent-desc">Builds schedules, handles shift swaps, detects conflicts, and sends reminders to your team.</div>
+      <div class="agent-details"><div class="agent-details-inner">
+        <ul class="agent-capabilities">
+          <li>Automatic shift conflict detection</li>
+          <li>Staff swap requests and approvals</li>
+          <li>Shift reminders sent 30 minutes before start</li>
+        </ul>
+      </div></div>
+    </div>
+
+    <div class="agent-card" onclick="this.classList.toggle('open')">
+      <div class="agent-header">
+        <div>
+          <div class="agent-name">TaskOS</div>
+          <div class="agent-role">Task Coordination</div>
+        </div>
+        <span class="agent-toggle">+</span>
+      </div>
+      <div class="agent-desc">Assigns and tracks staff tasks with priority scoring using the Eisenhower matrix.</div>
+      <div class="agent-details"><div class="agent-details-inner">
+        <ul class="agent-capabilities">
+          <li>Eisenhower priority matrix (urgent/important classification)</li>
+          <li>Task reminders every 15 minutes for overdue items</li>
+          <li>Daily task summaries for your briefing</li>
+        </ul>
+      </div></div>
+    </div>
+
+    <div class="agent-card" onclick="this.classList.toggle('open')">
+      <div class="agent-header">
+        <div>
+          <div class="agent-name">ReviewGenie</div>
+          <div class="agent-role">Review Monitoring</div>
+        </div>
+        <span class="agent-toggle">+</span>
+      </div>
+      <div class="agent-desc">Polls Google reviews daily, triages by rating, and holds 1-star reviews for your approval before responding.</div>
+      <div class="agent-details"><div class="agent-details-inner">
+        <div class="sub-agents">
+          <span class="sub-agent-tag">Google Places</span>
+          <span class="sub-agent-tag">EditorGenie</span>
+        </div>
+        <ul class="agent-capabilities">
+          <li>Daily Google review polling at 8 AM</li>
+          <li>Automatic triage: 4-5 stars auto-respond, 1 star held for approval</li>
+          <li>EditorGenie drafts responses matching your tone and language</li>
+        </ul>
+      </div></div>
+    </div>
+
+    <div class="agent-card" onclick="this.classList.toggle('open')">
+      <div class="agent-header">
+        <div>
+          <div class="agent-name">FeedbackGenie</div>
+          <div class="agent-role">Customer Feedback</div>
+        </div>
+        <span class="agent-toggle">+</span>
+      </div>
+      <div class="agent-desc">Collects post-service feedback, runs sentiment analysis, and flags trends for your attention.</div>
+      <div class="agent-details"><div class="agent-details-inner">
+        <ul class="agent-capabilities">
+          <li>Automated post-delivery and post-booking feedback collection</li>
+          <li>Sentiment analysis and trend detection</li>
+          <li>Negative feedback flagged immediately</li>
+        </ul>
+      </div></div>
+    </div>
+
+    <div class="agent-card" onclick="this.classList.toggle('open')">
+      <div class="agent-header">
+        <div>
+          <div class="agent-name">RouteGenie</div>
+          <div class="agent-role">Route Optimization</div>
+        </div>
+        <span class="agent-toggle">+</span>
+      </div>
+      <div class="agent-desc">Optimizes delivery routes using urgency-first, nearest-neighbour, and cluster grouping algorithms.</div>
+      <div class="agent-details"><div class="agent-details-inner">
+        <ul class="agent-capabilities">
+          <li>Three optimization strategies: urgency-first, nearest-neighbour, cluster</li>
+          <li>Real-time re-routing when new orders come in</li>
+          <li>Integrates with DeliveryOS for driver assignment</li>
+        </ul>
+      </div></div>
+    </div>
+
+    <div class="agent-card" onclick="this.classList.toggle('open')">
+      <div class="agent-header">
+        <div>
+          <div class="agent-name">KitchenOS</div>
+          <div class="agent-role">Kitchen Monitor</div>
+        </div>
+        <span class="agent-toggle">+</span>
+      </div>
+      <div class="agent-desc">Ambient monitoring for kitchen operations. Classifies messages, detects station issues, and escalates problems.</div>
+      <div class="agent-details"><div class="agent-details-inner">
+        <ul class="agent-capabilities">
+          <li>Message classification by station and urgency</li>
+          <li>Automatic escalation for food safety or equipment issues</li>
+          <li>Logs all kitchen activity for review</li>
+        </ul>
+      </div></div>
+    </div>
+
+    <div class="agent-card" onclick="this.classList.toggle('open')">
+      <div class="agent-header">
+        <div>
+          <div class="agent-name">ReportGenie</div>
+          <div class="agent-role">Financial Reports</div>
+        </div>
+        <span class="agent-toggle">+</span>
+      </div>
+      <div class="agent-desc">Generates financial reports, aggregates metrics across all agents, and exports to PDF.</div>
+      <div class="agent-details"><div class="agent-details-inner">
+        <ul class="agent-capabilities">
+          <li>Revenue, expense, and margin tracking</li>
+          <li>Cross-agent metrics aggregation</li>
+          <li>PDF export for accountant handoff</li>
+        </ul>
+      </div></div>
+    </div>
+
+    <div class="agent-card" onclick="this.classList.toggle('open')">
+      <div class="agent-header">
+        <div>
+          <div class="agent-name">AccountantOS</div>
+          <div class="agent-role">P&amp;L Automation</div>
+        </div>
+        <span class="agent-toggle">+</span>
+      </div>
+      <div class="agent-desc">Monthly profit and loss automation with fixed cost tracking and per-client cost analysis.</div>
+      <div class="agent-details"><div class="agent-details-inner">
+        <ul class="agent-capabilities">
+          <li>Monthly P&amp;L generated on the 1st of each month</li>
+          <li>Weekly cost spike alerts (20% threshold)</li>
+          <li>Per-client cost breakdown for pricing decisions</li>
+        </ul>
+      </div></div>
+    </div>
+
+    <div class="agent-card" onclick="this.classList.toggle('open')">
+      <div class="agent-header">
+        <div>
+          <div class="agent-name">RevenueOS</div>
+          <div class="agent-role">Billing &amp; Referrals</div>
+        </div>
+        <span class="agent-toggle">+</span>
+      </div>
+      <div class="agent-desc">Handles tier assignment, MRR tracking, Stripe billing, and the 20% referral commission program.</div>
+      <div class="agent-details"><div class="agent-details-inner">
+        <div class="sub-agents">
+          <span class="sub-agent-tag">Stripe</span>
+          <span class="sub-agent-tag">Referrals</span>
+          <span class="sub-agent-tag">Tiers</span>
+        </div>
+        <ul class="agent-capabilities">
+          <li>Automatic tier assignment (Flagship, Early Adopter, Standard)</li>
+          <li>Stripe subscription creation and checkout</li>
+          <li>20% referral commission credited automatically</li>
+        </ul>
+      </div></div>
+    </div>
+
+    <div class="agent-card" onclick="this.classList.toggle('open')">
+      <div class="agent-header">
+        <div>
+          <div class="agent-name">SecurityGenie</div>
+          <div class="agent-role">Threat Detection</div>
+        </div>
+        <span class="agent-toggle">+</span>
+      </div>
+      <div class="agent-desc">Centralised security layer protecting all agents from prompt injection, data exfiltration, and abuse.</div>
+      <div class="agent-details"><div class="agent-details-inner">
+        <ul class="agent-capabilities">
+          <li>7 threat categories monitored in real time</li>
+          <li>Input sanitisation across all channels</li>
+          <li>Automatic blocking with incident logging</li>
+        </ul>
+      </div></div>
+    </div>
+
+    <div class="agent-card" onclick="this.classList.toggle('open')">
+      <div class="agent-header">
+        <div>
+          <div class="agent-name">AgentOpsGenie</div>
+          <div class="agent-role">Self-Maintenance</div>
+        </div>
+        <span class="agent-toggle">+</span>
+      </div>
+      <div class="agent-desc">Internal maintenance agent that monitors all systems, auto-fixes issues, and escalates what it cannot resolve.</div>
+      <div class="agent-details"><div class="agent-details-inner">
+        <div class="sub-agents">
+          <span class="sub-agent-tag">Tier 1 Auto-Fix</span>
+          <span class="sub-agent-tag">Tier 2 Approval</span>
+          <span class="sub-agent-tag">Tier 3 Escalation</span>
+        </div>
+        <ul class="agent-capabilities">
+          <li>15-minute monitoring cycles across Railway, Supabase, and webhooks</li>
+          <li>Tier 1: automatic fixes applied without human input</li>
+          <li>Tier 2-3: approval required, escalated via Telegram</li>
+        </ul>
+      </div></div>
+    </div>
+
+    <div class="agent-card" onclick="this.classList.toggle('open')">
+      <div class="agent-header">
+        <div>
+          <div class="agent-name">OutreachGenie</div>
+          <div class="agent-role">Cold Outreach</div>
+        </div>
+        <span class="agent-toggle">+</span>
+      </div>
+      <div class="agent-desc">17 industry-specific outreach agents that find and contact potential clients via email and messaging.</div>
+      <div class="agent-details"><div class="agent-details-inner">
+        <div class="sub-agents">
+          <span class="sub-agent-tag">Apollo Leads</span>
+          <span class="sub-agent-tag">SendGrid Email</span>
+          <span class="sub-agent-tag">A/B Testing</span>
+        </div>
+        <ul class="agent-capabilities">
+          <li>17 agents, one per industry, each with custom opening and pain points</li>
+          <li>Campaign A (sales frame) and Campaign B (hire me frame) A/B testing</li>
+          <li>Automatic pitch switching when flagship spots fill</li>
+        </ul>
+      </div></div>
+    </div>
+
+  </div>
+
+  <div class="agents-industries reveal">
+    <h3>18 Industries <span class="gold">Supported</span></h3>
+    <div class="agents-industry-grid">
+      <span class="ind-tag">Restaurant</span>
+      <span class="ind-tag">Hotel</span>
+      <span class="ind-tag">Caf&eacute;</span>
+      <span class="ind-tag">Clinic</span>
+      <span class="ind-tag">Dental</span>
+      <span class="ind-tag">Salon &amp; Spa</span>
+      <span class="ind-tag">Gym</span>
+      <span class="ind-tag">Retail</span>
+      <span class="ind-tag">Real Estate</span>
+      <span class="ind-tag">Law Firm</span>
+      <span class="ind-tag">Auto Repair</span>
+      <span class="ind-tag">Construction</span>
+      <span class="ind-tag">Tutoring</span>
+      <span class="ind-tag">Event Venue</span>
+      <span class="ind-tag">Property Mgmt</span>
+      <span class="ind-tag">Logistics</span>
+      <span class="ind-tag">Dispensary</span>
+      <span class="ind-tag">Bakery</span>
+    </div>
+  </div>
+
+  <div class="agents-channels reveal">
+    <a href="https://wa.me/6683979970" class="agent-channel-btn">WhatsApp</a>
+    <a href="https://line.me/R/ti/p/@deployagentsinc" class="agent-channel-btn">LINE</a>
+    <a href="https://t.me/DeployAgentsBot" class="agent-channel-btn">Telegram</a>
+    <a href="mailto:hello@deployagentsinc.com" class="agent-channel-btn">Email</a>
+  </div>
+
+  <div class="agents-pricing-note reveal">
+    <h3>All 20 Agents. One Price.</h3>
+    <p>Every agent listed above is included in your MA subscription. Flagship clients get the first year completely free. After that, $20 per month locked for life. No per-agent fees. No add-ons. No surprises.</p>
+  </div>
+
+</section>
+
+<div class="wood-strip"></div>
 
 <!-- CTA -->
 <section class="cta-section">
