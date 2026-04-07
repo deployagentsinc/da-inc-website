@@ -1375,7 +1375,7 @@
       <a href="https://buy.stripe.com/fZu7sKfVHdce0T53RKe7m00" class="price-cta outline">Get Started</a>
     </div>
 
-    <div class="price-card featured">
+    <div class="price-card featured" id="flagship-card">
       <div class="price-tier">Flagship &mdash; First 100</div>
       <div class="price-amount">Free</div>
       <div class="price-period">Year one completely free</div>
@@ -1386,7 +1386,7 @@
         <li>Priority industry spot</li>
         <li>20% referral commission</li>
       </ul>
-      <a href="https://buy.stripe.com/fZu7sKfVHdce0T53RKe7m00" class="price-cta filled">Claim Flagship Spot</a>
+      <a href="https://wa.me/6683979970?text=Hi%2C%20I%20want%20to%20claim%20a%20flagship%20spot%20for%20my%20business" class="price-cta filled">Claim Flagship Spot</a>
     </div>
 
     <div class="price-card">
@@ -1964,6 +1964,19 @@
       ? 'rgba(201,168,76,0.25)'
       : 'rgba(201,168,76,0.15)';
   });
+
+  // Check flagship capacity — hide card when 100 spots filled
+  (function checkFlagship() {
+    fetch('https://da-inc-ma-production.up.railway.app/api/flagship-count')
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        if (data.full) {
+          var card = document.getElementById('flagship-card');
+          if (card) card.style.display = 'none';
+        }
+      })
+      .catch(function() {});
+  })();
 </script>
 </body>
 </html>
