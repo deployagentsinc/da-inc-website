@@ -16,10 +16,10 @@
 body { font-family: 'Playfair Display', Georgia, serif; background: #111; color: var(--cream); print-color-adjust: exact; -webkit-print-color-adjust: exact; }
 .page { width: 210mm; min-height: 297mm; margin: 0 auto 8px; position: relative; overflow: hidden; page-break-after: always; background: var(--steel-deep); }
 @media print { body { background: none; } .page { margin: 0; } }
-.page-num { position: absolute; bottom: 14px; right: 24px; font-family: 'DM Mono', monospace; font-size: 9px; color: var(--steel-mid); letter-spacing: 2px; }
+.page-num { position: absolute; bottom: 12px; right: 24px; font-family: 'DM Mono', monospace; font-size: 9px; color: var(--steel-mid); letter-spacing: 2px; }
 .label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); }
-.section-number { font-family: 'DM Mono', monospace; font-size: 9px; color: var(--steel-mid); letter-spacing: 3px; margin-bottom: 8px; }
-.section-title { font-family: 'Bebas Neue', sans-serif; font-size: 46px; letter-spacing: 3px; color: var(--white); line-height: 1; margin-bottom: 14px; }
+.section-number { font-family: 'DM Mono', monospace; font-size: 9px; color: var(--steel-mid); letter-spacing: 3px; margin-bottom: 6px; }
+.section-title { font-family: 'Bebas Neue', sans-serif; font-size: 44px; letter-spacing: 3px; color: var(--white); line-height: 1; margin-bottom: 12px; }
 .section-title em { font-style: normal; color: var(--gold); }
 
 /* PAGE 1 COVER */
@@ -50,78 +50,77 @@ body { font-family: 'Playfair Display', Georgia, serif; background: #111; color:
 .knife-silhouette { opacity: 0.1; }
 
 /* COMMON */
-.page-content { padding: 34px 44px 28px; }
+.page-content { padding: 30px 40px 24px; }
 .page-dark { background: linear-gradient(145deg, #0a1820 0%, #0d1c26 100%); }
 
 /* PROBLEM + SOLUTION */
-.problem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
-.problem-card { border: 1px solid rgba(122,154,170,0.15); padding: 14px; background: rgba(13,28,38,0.6); position: relative; }
+.problem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 10px; }
+.problem-card { border: 1px solid rgba(122,154,170,0.15); padding: 10px 12px; background: rgba(13,28,38,0.6); position: relative; }
 .problem-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--fire); opacity: 0.6; }
-.problem-icon { font-size: 18px; margin-bottom: 4px; display: block; }
-.problem-title { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 2px; color: var(--white); margin-bottom: 3px; }
-.problem-desc { font-size: 11px; color: var(--steel); line-height: 1.5; font-style: italic; }
-.p2-intro { font-size: 13px; font-style: italic; color: var(--steel); line-height: 1.6; margin-bottom: 14px; }
-.p2-quote { padding: 12px 16px; border-left: 3px solid var(--gold); background: rgba(200,146,42,0.06); margin-bottom: 14px; }
-.p2-quote p { font-size: 13px; font-style: italic; color: var(--cream); line-height: 1.5; }
-.p2-quote cite { display: block; font-family: 'DM Mono', monospace; font-size: 8px; color: var(--gold); letter-spacing: 2px; text-transform: uppercase; margin-top: 6px; font-style: normal; }
-.sol-box { border-top: 1px solid rgba(122,154,170,0.12); padding-top: 14px; }
-.sol-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-.sol-text p { font-size: 12px; color: var(--cream); line-height: 1.7; margin-bottom: 8px; }
-.sol-channels { border: 1px solid rgba(122,154,170,0.2); padding: 14px; background: rgba(13,28,38,0.5); }
-.ch-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.problem-icon { font-size: 16px; margin-bottom: 3px; display: block; }
+.problem-title { font-family: 'Bebas Neue', sans-serif; font-size: 16px; letter-spacing: 2px; color: var(--white); margin-bottom: 2px; }
+.problem-desc { font-size: 10px; color: var(--steel); line-height: 1.45; font-style: italic; }
+.p2-intro { font-size: 12px; font-style: italic; color: var(--steel); line-height: 1.55; margin-bottom: 10px; }
+.p2-quote { padding: 10px 14px; border-left: 3px solid var(--gold); background: rgba(200,146,42,0.06); margin-bottom: 10px; }
+.p2-quote p { font-size: 12px; font-style: italic; color: var(--cream); line-height: 1.5; }
+.p2-quote cite { display: block; font-family: 'DM Mono', monospace; font-size: 8px; color: var(--gold); letter-spacing: 2px; text-transform: uppercase; margin-top: 4px; font-style: normal; }
+.sol-box { border-top: 1px solid rgba(122,154,170,0.12); padding-top: 10px; }
+.sol-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.sol-text p { font-size: 11px; color: var(--cream); line-height: 1.65; margin-bottom: 6px; }
+.sol-channels { border: 1px solid rgba(122,154,170,0.2); padding: 12px; background: rgba(13,28,38,0.5); }
+.ch-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
 .ch-row:last-child { margin-bottom: 0; }
-.ch-icon { width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
+.ch-icon { width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; flex-shrink: 0; }
 .ch-wa { background: rgba(37,211,102,0.15); border: 1px solid rgba(37,211,102,0.3); }
 .ch-tg { background: rgba(0,136,204,0.15); border: 1px solid rgba(0,136,204,0.3); }
 .ch-li { background: rgba(0,195,0,0.15); border: 1px solid rgba(0,195,0,0.3); }
-.ch-name { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--cream); }
-.ch-desc { font-size: 10px; color: var(--steel); font-style: italic; margin-top: 1px; }
-.steps { border-top: 1px solid rgba(122,154,170,0.1); padding-top: 14px; margin-top: 14px; }
-.step { display: flex; gap: 12px; margin-bottom: 10px; }
-.step-n { font-family: 'Bebas Neue', sans-serif; font-size: 32px; color: rgba(200,146,42,0.18); line-height: 1; min-width: 30px; }
-.step-t { font-family: 'Bebas Neue', sans-serif; font-size: 16px; letter-spacing: 2px; color: var(--gold); margin-bottom: 2px; }
-.step-d { font-size: 11px; color: var(--steel); line-height: 1.5; font-style: italic; }
+.ch-name { font-family: 'DM Mono', monospace; font-size: 9px; color: var(--cream); }
+.ch-desc { font-size: 9px; color: var(--steel); font-style: italic; }
+.steps { border-top: 1px solid rgba(122,154,170,0.1); padding-top: 10px; margin-top: 10px; }
+.step { display: flex; gap: 10px; margin-bottom: 8px; }
+.step-n { font-family: 'Bebas Neue', sans-serif; font-size: 28px; color: rgba(200,146,42,0.18); line-height: 1; min-width: 24px; }
+.step-t { font-family: 'Bebas Neue', sans-serif; font-size: 15px; letter-spacing: 2px; color: var(--gold); margin-bottom: 1px; }
+.step-d { font-size: 10px; color: var(--steel); line-height: 1.5; font-style: italic; }
 
 /* AGENT PAGES */
 .agent-page { background: repeating-linear-gradient(0deg, transparent, transparent 4px, rgba(255,255,255,0.007) 4px, rgba(255,255,255,0.007) 5px), linear-gradient(145deg, #0a1820 0%, #0d1c26 100%); }
-.ap-tag { font-family: 'DM Mono', monospace; font-size: 8px; color: var(--gold); border: 1px solid rgba(200,146,42,0.4); padding: 3px 8px; letter-spacing: 2px; text-transform: uppercase; display: inline-block; margin-bottom: 10px; }
-.ap-title { font-family: 'Bebas Neue', sans-serif; font-size: 40px; letter-spacing: 3px; color: var(--white); margin-bottom: 4px; line-height: 1; }
-.ap-sub { font-size: 11px; color: var(--steel); font-style: italic; margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px solid rgba(122,154,170,0.12); line-height: 1.5; }
-.agents { display: flex; flex-direction: column; gap: 8px; }
-.agent { display: flex; gap: 12px; padding: 10px 12px; border: 1px solid rgba(122,154,170,0.1); background: rgba(13,28,38,0.4); }
-.a-icon { font-size: 24px; line-height: 1; min-width: 28px; }
-.a-name { font-family: 'Bebas Neue', sans-serif; font-size: 19px; letter-spacing: 2px; color: var(--gold); margin-bottom: 1px; }
-.a-role { font-family: 'DM Mono', monospace; font-size: 7px; color: var(--steel-mid); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 4px; }
+.ap-tag { font-family: 'DM Mono', monospace; font-size: 7px; color: var(--gold); border: 1px solid rgba(200,146,42,0.4); padding: 2px 7px; letter-spacing: 2px; text-transform: uppercase; display: inline-block; margin-bottom: 6px; }
+.ap-title { font-family: 'Bebas Neue', sans-serif; font-size: 34px; letter-spacing: 3px; color: var(--white); margin-bottom: 2px; line-height: 1; }
+.ap-sub { font-size: 10px; color: var(--steel); font-style: italic; margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px solid rgba(122,154,170,0.12); line-height: 1.45; }
+.agents { display: flex; flex-direction: column; gap: 5px; }
+.agent { display: flex; gap: 10px; padding: 7px 10px; border: 1px solid rgba(122,154,170,0.1); background: rgba(13,28,38,0.4); }
+.a-icon { font-size: 20px; line-height: 1; min-width: 24px; }
+.a-name { font-family: 'Bebas Neue', sans-serif; font-size: 16px; letter-spacing: 2px; color: var(--gold); margin-bottom: 0; }
+.a-role { font-family: 'DM Mono', monospace; font-size: 7px; color: var(--steel-mid); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 3px; }
 .a-bullets { list-style: none; }
-.a-bullets li { font-size: 10.5px; color: var(--cream); line-height: 1.45; padding-left: 12px; position: relative; margin-bottom: 1px; }
-.a-bullets li::before { content: '—'; position: absolute; left: 0; color: var(--gold); font-size: 9px; }
+.a-bullets li { font-size: 9.5px; color: var(--cream); line-height: 1.4; padding-left: 10px; position: relative; margin-bottom: 0; }
+.a-bullets li::before { content: '—'; position: absolute; left: 0; color: var(--gold); font-size: 8px; }
+.section-divider { border-top: 1px solid rgba(122,154,170,0.12); padding-top: 8px; margin-top: 8px; }
 
 /* PRICING */
-.pricing-hero { text-align: center; padding: 14px 0 16px; border-bottom: 1px solid rgba(122,154,170,0.12); margin-bottom: 14px; }
-.price-label { font-family: 'DM Mono', monospace; font-size: 9px; color: var(--gold); letter-spacing: 4px; text-transform: uppercase; margin-bottom: 6px; }
-.price-amount { font-family: 'Bebas Neue', sans-serif; font-size: 76px; color: var(--gold); letter-spacing: 4px; line-height: 1; }
-.price-period { font-family: 'DM Mono', monospace; font-size: 9px; color: var(--steel); letter-spacing: 3px; text-transform: uppercase; margin-top: 4px; }
-.price-note { font-size: 12px; color: var(--cream); font-style: italic; margin-top: 6px; }
-.compare { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
-.compare-col { padding: 14px; border: 1px solid rgba(122,154,170,0.15); }
+.pricing-hero { text-align: center; padding: 12px 0 14px; border-bottom: 1px solid rgba(122,154,170,0.12); margin-bottom: 12px; }
+.price-label { font-family: 'DM Mono', monospace; font-size: 9px; color: var(--gold); letter-spacing: 4px; text-transform: uppercase; margin-bottom: 4px; }
+.price-amount { font-family: 'Bebas Neue', sans-serif; font-size: 68px; color: var(--gold); letter-spacing: 4px; line-height: 1; }
+.price-period { font-family: 'DM Mono', monospace; font-size: 9px; color: var(--steel); letter-spacing: 3px; text-transform: uppercase; margin-top: 3px; }
+.price-note { font-size: 11px; color: var(--cream); font-style: italic; margin-top: 4px; }
+.compare { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; }
+.compare-col { padding: 12px; border: 1px solid rgba(122,154,170,0.15); }
 .compare-col.gold-col { border-color: rgba(200,146,42,0.3); background: rgba(200,146,42,0.04); }
-.col-title { font-family: 'Bebas Neue', sans-serif; font-size: 16px; letter-spacing: 2px; margin-bottom: 10px; padding-bottom: 6px; border-bottom: 1px solid rgba(122,154,170,0.12); }
+.col-title { font-family: 'Bebas Neue', sans-serif; font-size: 15px; letter-spacing: 2px; margin-bottom: 8px; padding-bottom: 5px; border-bottom: 1px solid rgba(122,154,170,0.12); }
 .col-red { color: var(--fire); } .col-gold { color: var(--gold); }
 .compare-col ul { list-style: none; }
-.compare-col li { font-size: 11px; color: var(--cream); padding-left: 13px; position: relative; margin-bottom: 5px; line-height: 1.4; }
-.compare-col.red-col li::before { content: '✕'; position: absolute; left: 0; color: var(--fire); font-size: 9px; }
-.compare-col.gold-col li::before { content: '✓'; position: absolute; left: 0; color: var(--gold); font-size: 9px; }
-.flagship { background: rgba(200,146,42,0.08); border: 1px solid rgba(200,146,42,0.3); padding: 14px 18px; text-align: center; margin-bottom: 14px; }
-.flagship-title { font-family: 'Bebas Neue', sans-serif; font-size: 24px; letter-spacing: 3px; color: var(--gold); margin-bottom: 4px; }
-.flagship-desc { font-size: 11px; color: var(--cream); font-style: italic; line-height: 1.6; }
-
-/* ONBOARDING */
-.ob-step { display: flex; gap: 12px; padding: 8px 0; border-bottom: 1px solid rgba(122,154,170,0.08); }
+.compare-col li { font-size: 10px; color: var(--cream); padding-left: 12px; position: relative; margin-bottom: 3px; line-height: 1.4; }
+.compare-col.red-col li::before { content: '✕'; position: absolute; left: 0; color: var(--fire); font-size: 8px; }
+.compare-col.gold-col li::before { content: '✓'; position: absolute; left: 0; color: var(--gold); font-size: 8px; }
+.flagship { background: rgba(200,146,42,0.08); border: 1px solid rgba(200,146,42,0.3); padding: 12px 16px; text-align: center; margin-bottom: 12px; }
+.flagship-title { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 3px; color: var(--gold); margin-bottom: 3px; }
+.flagship-desc { font-size: 10px; color: var(--cream); font-style: italic; line-height: 1.55; }
+.ob-step { display: flex; gap: 10px; padding: 6px 0; border-bottom: 1px solid rgba(122,154,170,0.08); }
 .ob-step:last-child { border-bottom: none; }
-.ob-n { font-family: 'Bebas Neue', sans-serif; font-size: 34px; color: rgba(200,146,42,0.14); line-height: 1; min-width: 28px; text-align: center; }
-.ob-title { font-family: 'Bebas Neue', sans-serif; font-size: 17px; letter-spacing: 2px; color: var(--gold); margin-bottom: 2px; }
-.ob-desc { font-size: 10.5px; color: var(--cream); line-height: 1.5; font-style: italic; }
-.ob-time { font-family: 'DM Mono', monospace; font-size: 8px; color: var(--steel-mid); letter-spacing: 2px; text-transform: uppercase; margin-top: 3px; }
+.ob-n { font-family: 'Bebas Neue', sans-serif; font-size: 30px; color: rgba(200,146,42,0.14); line-height: 1; min-width: 26px; text-align: center; }
+.ob-title { font-family: 'Bebas Neue', sans-serif; font-size: 16px; letter-spacing: 2px; color: var(--gold); margin-bottom: 1px; }
+.ob-desc { font-size: 10px; color: var(--cream); line-height: 1.45; font-style: italic; }
+.ob-time { font-family: 'DM Mono', monospace; font-size: 7px; color: var(--steel-mid); letter-spacing: 2px; text-transform: uppercase; margin-top: 2px; }
 
 /* BACK COVER */
 .p6 { background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(255,255,255,0.01) 3px, rgba(255,255,255,0.01) 4px), linear-gradient(145deg, #0d1c26 0%, #0a1820 100%); }
@@ -192,23 +191,23 @@ body { font-family: 'Playfair Display', Georgia, serif; background: #111; color:
     <div class="problem-grid">
       <div class="problem-card">
         <span class="problem-icon">🍽️</span>
-        <div class="problem-title">No-Shows</div>
-        <p class="problem-desc">Tables booked and empty. No reminder sent. No deposit taken. Revenue that simply disappears into the night.</p>
+        <div class="problem-title">No-Shows &amp; Lost Revenue</div>
+        <p class="problem-desc">Tables booked and empty. No reminder sent. No deposit taken. No waitlist to fill the gap. Revenue that simply disappears.</p>
       </div>
       <div class="problem-card">
         <span class="problem-icon">📦</span>
         <div class="problem-title">Supplier Chaos</div>
-        <p class="problem-desc">Wrong delivery. Late invoice. Price changed without warning. You only find out when service has already started.</p>
+        <p class="problem-desc">Wrong delivery. Late invoice. Price crept up 15% and nobody noticed. You find out mid-service when you run out of something critical.</p>
       </div>
       <div class="problem-card">
         <span class="problem-icon">👨‍🍳</span>
         <div class="problem-title">Staff Gaps</div>
-        <p class="problem-desc">Tasks assigned but never confirmed. Shifts that fell through. Nobody knew who was doing what until it was too late.</p>
+        <p class="problem-desc">Tasks assigned but never confirmed. Shift swaps lost in group chat. Nobody knew who was doing what until the kitchen backed up.</p>
       </div>
       <div class="problem-card">
         <span class="problem-icon">⭐</span>
         <div class="problem-title">Lost Reviews</div>
-        <p class="problem-desc">Happy customers who walked out and were never asked. Ten good meals, no reviews. One complaint, three stars.</p>
+        <p class="problem-desc">Happy customers walked out and were never asked. Ten great meals, zero reviews. One bad night, three stars on Google forever.</p>
       </div>
     </div>
     <div class="p2-quote">
@@ -216,48 +215,52 @@ body { font-family: 'Playfair Display', Georgia, serif; background: #111; color:
       <cite>— Deploy Agents Inc, Founding Principle</cite>
     </div>
     <div class="sol-box">
-      <div class="section-title" style="font-size:38px; margin-bottom:10px;">YOUR NEW <em>EMPLOYEE</em></div>
+      <div class="section-title" style="font-size:36px; margin-bottom:8px;">YOUR NEW <em>EMPLOYEE</em></div>
       <div class="sol-grid">
         <div class="sol-text">
           <p>The Managing Agent is a full-time AI employee that lives inside the messaging app you already use. WhatsApp, Telegram, or Line. No app. No dashboard. No login.</p>
-          <p>You message it like a staff member. It handles bookings, tracks inventory, dispatches tasks, chases suppliers, sends review requests, and briefs you every morning — automatically.</p>
+          <p>You message it like a staff member. It handles bookings and preorders, tracks inventory, dispatches tasks, chases suppliers, monitors prices, sends review requests, and briefs you every morning — automatically.</p>
           <p>It never calls in sick. It never forgets. It works at 3am when a customer messages about a reservation. It is ready when service starts and still running when you go home.</p>
         </div>
         <div class="sol-channels">
-          <div class="label" style="margin-bottom:10px">Available on</div>
-          <div class="ch-row"><div class="ch-icon ch-wa">💬</div><div><div class="ch-name">WhatsApp</div><div class="ch-desc">Most used in Thailand — your staff already have it</div></div></div>
-          <div class="ch-row"><div class="ch-icon ch-tg">✈️</div><div><div class="ch-name">Telegram</div><div class="ch-desc">Fast, reliable, excellent for group coordination</div></div></div>
-          <div class="ch-row"><div class="ch-icon ch-li">💚</div><div><div class="ch-name">Line</div><div class="ch-desc">Dominant in Thailand — your customers are already here</div></div></div>
+          <div class="label" style="margin-bottom:8px">Available on</div>
+          <div class="ch-row"><div class="ch-icon ch-wa">💬</div><div><div class="ch-name">WhatsApp</div><div class="ch-desc">Most used — your staff already have it</div></div></div>
+          <div class="ch-row"><div class="ch-icon ch-tg">✈️</div><div><div class="ch-name">Telegram</div><div class="ch-desc">Fast, reliable, great for coordination</div></div></div>
+          <div class="ch-row"><div class="ch-icon ch-li">💚</div><div><div class="ch-name">Line</div><div class="ch-desc">Dominant in Thailand — customers are here</div></div></div>
         </div>
       </div>
       <div class="steps">
-        <div class="label" style="margin-bottom:10px">How it works in 3 steps</div>
-        <div class="step"><div class="step-n">1</div><div><div class="step-t">20-Minute Setup Conversation</div><p class="step-d">You tell the MA about your restaurant. It configures itself to your kitchen, your team, your hours, and your biggest problem.</p></div></div>
-        <div class="step"><div class="step-n">2</div><div><div class="step-t">Morning Briefing, Every Day</div><p class="step-d">At the time you choose, your MA sends a briefing — reservations, tasks, stock alerts, overnight messages. You start service ready.</p></div></div>
-        <div class="step"><div class="step-n">3</div><div><div class="step-t">Your Team Messages It All Day</div><p class="step-d">Stock update, task done, complaint, booking. Everything goes to one number. The MA routes, responds, and alerts you to what matters.</p></div></div>
+        <div class="label" style="margin-bottom:8px">How it works</div>
+        <div class="step"><div class="step-n">1</div><div><div class="step-t">20-Minute Setup Conversation</div><p class="step-d">Tell the MA about your restaurant — menu, team, hours, suppliers, biggest problem. It configures itself around your kitchen.</p></div></div>
+        <div class="step"><div class="step-n">2</div><div><div class="step-t">Morning Briefing, Every Day</div><p class="step-d">At your chosen time — reservations, tasks, stock alerts, overnight messages, yesterday's revenue. You start service fully informed.</p></div></div>
+        <div class="step"><div class="step-n">3</div><div><div class="step-t">Your Team Messages It All Day</div><p class="step-d">Stock update, task done, complaint, booking, preorder, delivery dispatch. One number. The MA routes, responds, and alerts you to what matters.</p></div></div>
       </div>
     </div>
   </div>
   <div class="page-num">02 / 06</div>
 </div>
 
-<!-- PAGE 3: AGENTS — FRONT OF HOUSE -->
+<!-- PAGE 3: AGENTS — CUSTOMER EXPERIENCE + BACK OF HOUSE -->
 <div class="page agent-page">
   <div class="page-content">
-    <div class="ap-tag">Agent Stack — Front of House</div>
-    <div class="ap-title">CUSTOMER <em>EXPERIENCE</em></div>
-    <p class="ap-sub">These agents own the customer journey — from the moment a reservation is made to the moment a review is requested. No customer falls through the cracks.</p>
+    <div class="ap-tag">Agent Stack — Customer Experience</div>
+    <div class="ap-title">FRONT OF <em>HOUSE</em></div>
+    <p class="ap-sub">From the moment a reservation is made to the moment a review is posted. Every customer interaction managed, every opportunity captured.</p>
     <div class="agents">
       <div class="agent">
         <div class="a-icon">📅</div>
         <div>
           <div class="a-name">OrderGenie</div>
-          <div class="a-role">Bookings &amp; Reservations Agent</div>
+          <div class="a-role">Bookings, Preorders &amp; Reservations</div>
           <ul class="a-bullets">
-            <li>Accepts reservation requests via WhatsApp, Telegram, or Line — 24 hours a day</li>
-            <li>Sends automatic confirmations and reminders to reduce no-shows</li>
-            <li>Tracks deposits and flags late arrivals before service begins</li>
-            <li>Logs every booking — full reservation history in one place</li>
+            <li>Accepts reservations 24/7 via WhatsApp, Telegram, or Line — natural language ("table for 4 Friday 7pm")</li>
+            <li>Preorder handling — customers order ahead, kitchen knows before they arrive</li>
+            <li>Automatic confirmations and reminders (24h and 2h before) to eliminate no-shows</li>
+            <li>Deposit tracking and late arrival flagging before service begins</li>
+            <li>Waitlist management — auto-adds when full, auto-promotes on cancellation, notifies next in line</li>
+            <li>No-show tracking per customer — flags repeat offenders after 3 incidents</li>
+            <li>Conflict checking with capacity validation — prevents overbooking automatically</li>
+            <li>Walk-in support, group booking detection, full reservation history log</li>
           </ul>
         </div>
       </div>
@@ -265,12 +268,14 @@ body { font-family: 'Playfair Display', Georgia, serif; background: #111; color:
         <div class="a-icon">⭐</div>
         <div>
           <div class="a-name">ReviewGenie + EditorGenie</div>
-          <div class="a-role">Review Management Agent</div>
+          <div class="a-role">Review Management &amp; Response Drafting</div>
           <ul class="a-bullets">
-            <li>Sends a personalised review request to every customer after their visit</li>
-            <li>Monitors your Google Reviews and alerts you when a new review arrives</li>
-            <li>Drafts professional responses to negative reviews for your approval</li>
-            <li>Tracks your average rating over time and reports weekly</li>
+            <li>Daily automatic Google Reviews polling — new reviews detected and categorised by rating</li>
+            <li>Auto-responds to 4-5 star reviews with warm, personalised responses using your business details</li>
+            <li>Holds 1-star reviews for your approval — drafts professional responses, never defensive</li>
+            <li>Multi-language support — responds in the reviewer's exact language (Thai, Japanese, Arabic, etc.)</li>
+            <li>Tone calibration by rating: delighted (5★), pleased (4★), empathetic (3★), apologetic (2★), listening (1★)</li>
+            <li>Tracks average rating over time, reports trends weekly</li>
           </ul>
         </div>
       </div>
@@ -278,30 +283,34 @@ body { font-family: 'Playfair Display', Georgia, serif; background: #111; color:
         <div class="a-icon">🔔</div>
         <div>
           <div class="a-name">FeedbackGenie</div>
-          <div class="a-role">Post-Service Feedback Agent</div>
+          <div class="a-role">Post-Service Feedback &amp; Sentiment Analysis</div>
           <ul class="a-bullets">
-            <li>Collects feedback after every table — through WhatsApp, no paper forms</li>
-            <li>Immediately alerts you if feedback is negative so you can intervene</li>
-            <li>Nudges satisfied customers to leave a Google review while the meal is fresh</li>
+            <li>Sends feedback requests after every completed booking and delivery — via WhatsApp, no paper forms</li>
+            <li>Claude-powered sentiment analysis — classifies positive, neutral, negative from text responses</li>
+            <li>Instantly alerts you on negative feedback so you can intervene before they go to Google</li>
+            <li>Flags repeat negative customers (3+ in 30 days) — pattern detection for systemic issues</li>
+            <li>Nudges satisfied customers to leave a Google review while the experience is fresh</li>
+            <li>Weekly summary — average rating, sentiment distribution, trends vs previous week</li>
           </ul>
         </div>
       </div>
     </div>
-    <div style="margin-top:14px; border-top: 1px solid rgba(122,154,170,0.12); padding-top:14px;">
+    <div class="section-divider">
       <div class="ap-tag">Agent Stack — Back of House</div>
-      <div class="ap-title" style="font-size:36px;">KITCHEN &amp; <em>SUPPLY CHAIN</em></div>
-      <p class="ap-sub">The kitchen runs on inventory, staff, and suppliers. These agents watch all three — tracking what is running low, who is doing what, and whether deliveries are on schedule.</p>
+      <div class="ap-title" style="font-size:30px;">KITCHEN &amp; <em>SUPPLY CHAIN</em></div>
+      <p class="ap-sub">Inventory, staff, and suppliers. These agents watch all three — predicting shortages, optimising schedules, and scoring supplier performance.</p>
       <div class="agents">
         <div class="agent">
           <div class="a-icon">📦</div>
           <div>
             <div class="a-name">InventoryOS</div>
-            <div class="a-role">Stock Tracking Agent</div>
+            <div class="a-role">Stock Tracking &amp; Usage Prediction</div>
             <ul class="a-bullets">
-              <li>Tracks ingredient stock levels — staff message updates directly through WhatsApp</li>
-              <li>Sends low-stock alerts before you run out mid-service</li>
-              <li>Triggers automatic reorder messages to suppliers when par levels are hit</li>
-              <li>Logs all movements — arrivals, usage, waste — for weekly review</li>
+              <li>Track stock levels via staff messages ("50kg chicken delivered", "used 3 bottles oil", "86 salmon")</li>
+              <li>Low-stock alerts before service — auto-triggers reorder messages to suppliers at par levels</li>
+              <li>Usage prediction — estimates days remaining based on 14-day consumption history</li>
+              <li>Tracks all movements: restocks, usage, waste, adjustments — full audit trail</li>
+              <li>Suggests combined reorders when multiple items from the same supplier are low</li>
             </ul>
           </div>
         </div>
@@ -309,12 +318,14 @@ body { font-family: 'Playfair Display', Georgia, serif; background: #111; color:
           <div class="a-icon">🧑‍🍳</div>
           <div>
             <div class="a-name">ShiftGenie</div>
-            <div class="a-role">Staff Scheduling Agent</div>
+            <div class="a-role">Staff Scheduling &amp; Traffic Optimisation</div>
             <ul class="a-bullets">
-              <li>Manages weekly shift schedules and sends each staff member their assigned times</li>
-              <li>Handles swap requests — routes to the right person and confirms changes</li>
-              <li>Sends shift reminders the night before to reduce staff no-shows</li>
-              <li>Alerts you instantly when a shift is uncovered</li>
+              <li>Natural language scheduling — "Maria works Mon Wed Fri 9am to 5pm" — parses and creates shifts</li>
+              <li>Conflict detection — catches overlapping shifts before they happen</li>
+              <li>Shift swap handling — staff request via message, validates availability, confirms both sides</li>
+              <li>Opt-in reminders — 12h and 1h before shift via LINE or Telegram</li>
+              <li>Traffic-based optimisation — analyses sales data to identify peak/normal/slow hours, schedules accordingly</li>
+              <li>Max 8h without break enforcement, 6-day consecutive limit, even hour distribution</li>
             </ul>
           </div>
         </div>
@@ -322,12 +333,14 @@ body { font-family: 'Playfair Display', Georgia, serif; background: #111; color:
           <div class="a-icon">🚚</div>
           <div>
             <div class="a-name">SupplyGenie</div>
-            <div class="a-role">Supplier Management Agent</div>
+            <div class="a-role">Supplier Management &amp; Price Intelligence</div>
             <ul class="a-bullets">
-              <li>Tracks supplier orders, expected delivery times, and invoice status</li>
-              <li>Compares prices across suppliers and flags when a better rate is available</li>
-              <li>Alerts you to overdue deliveries or price changes before they affect service</li>
-              <li>Complete supplier communication log — searchable any time</li>
+              <li>Supplier performance scoring (0-100) — delivery accuracy, price consistency, response time</li>
+              <li>Price monitoring — weekly comparison, flags items 10%+ above 90-day average</li>
+              <li>Auto-reorder when days remaining hits lead time + 2 day safety buffer</li>
+              <li>Order consolidation — groups items by supplier into single purchase orders</li>
+              <li>Invoice matching — compares received invoice against original order, flags discrepancies</li>
+              <li>Emergency reorder — tries primary supplier, auto-switches to backup if unavailable</li>
             </ul>
           </div>
         </div>
@@ -342,18 +355,20 @@ body { font-family: 'Playfair Display', Georgia, serif; background: #111; color:
   <div class="page-content">
     <div class="ap-tag">Agent Stack — Operations</div>
     <div class="ap-title">FLOOR <em>COORDINATION</em></div>
-    <p class="ap-sub">Deliveries, tasks, and emergencies. These agents keep the floor and the kitchen in sync — from driver dispatch to after-hours coverage.</p>
+    <p class="ap-sub">Tasks, deliveries, and emergencies. These agents keep every moving part synchronised — from driver dispatch to after-hours triage.</p>
     <div class="agents">
       <div class="agent">
         <div class="a-icon">🗂️</div>
         <div>
           <div class="a-name">TaskOS</div>
-          <div class="a-role">Task Assignment Agent</div>
+          <div class="a-role">Task Assignment &amp; Priority Management</div>
           <ul class="a-bullets">
-            <li>Assign tasks to any staff member via a single message — plain language, no forms</li>
-            <li>Sends reminders at your chosen frequency — hourly, daily, or by deadline</li>
-            <li>Confirms completion and logs every task with a timestamp</li>
-            <li>Escalates overdue tasks directly to you if they are not done on time</li>
+            <li>Assign tasks in plain language — auto-matches to staff role (kitchen, floor, manager)</li>
+            <li>4-tier priority matrix: Critical (now), High (today), Normal (end of day), Low (end of week)</li>
+            <li>Auto-promotes tasks approaching deadline — pending becomes critical when overdue</li>
+            <li>Reminders at your chosen frequency — hourly, daily, or by deadline</li>
+            <li>Even distribution — never overloads one person, respects current workload</li>
+            <li>Escalates overdue tasks directly to you with full context</li>
           </ul>
         </div>
       </div>
@@ -361,11 +376,16 @@ body { font-family: 'Playfair Display', Georgia, serif; background: #111; color:
         <div class="a-icon">🛵</div>
         <div>
           <div class="a-name">DeliveryOS + RouteGenie</div>
-          <div class="a-role">Delivery Dispatch Agent</div>
+          <div class="a-role">Delivery Dispatch &amp; Route Optimisation</div>
           <ul class="a-bullets">
-            <li>Dispatches delivery orders to drivers with Google Maps deep links — no confusion</li>
-            <li>Tracks delivery status and alerts you if a driver is running late</li>
-            <li>Logs every delivery — time, driver, address, status — for end-of-day review</li>
+            <li>Auto-assigns to best available driver — load balancing, fairness rotation, max 3 concurrent</li>
+            <li>Route optimisation — urgency first, time windows, nearest-neighbour clustering, peak hour adjustments</li>
+            <li>Google Maps deep links for every stop — no address confusion</li>
+            <li>Real-time status tracking: pending → assigned → in transit → delivered (or failed)</li>
+            <li>Proof of delivery — prompts driver for photo confirmation</li>
+            <li>Cash payment warning — suggests Stripe link instead, flags risk to owner</li>
+            <li>Driver check-in/out system — "ready to work" / "going home" via message</li>
+            <li>Route efficiency scoring (0-100) — tracks recalculations, time accuracy, completion</li>
           </ul>
         </div>
       </div>
@@ -373,30 +393,33 @@ body { font-family: 'Playfair Display', Georgia, serif; background: #111; color:
         <div class="a-icon">🌙</div>
         <div>
           <div class="a-name">OnCallGenie</div>
-          <div class="a-role">After-Hours Emergency Agent</div>
+          <div class="a-role">After-Hours Emergency Triage</div>
           <ul class="a-bullets">
-            <li>Handles all incoming messages outside your operating hours automatically</li>
-            <li>Triages urgency — Critical, Moderate, or Low — and routes accordingly</li>
-            <li>Wakes you for real emergencies. Handles everything else without disturbing you.</li>
-            <li>Responds to customers professionally so nobody is left unanswered overnight</li>
+            <li>3-level urgency classification: Critical (wake owner), Moderate (handle + tell morning), Low (polite hold)</li>
+            <li>Critical triggers: kitchen fire, freezer down, break-in, flood, POS dead, payment system failure</li>
+            <li>Moderate handling: staff sick calls, late supplier, minor equipment, low inventory — logged for briefing</li>
+            <li>Low handling: customer asking hours, prices, future bookings — answers from your business data</li>
+            <li>Responds to every message professionally — nobody is left unanswered overnight</li>
+            <li>One alert per incident to owner — no duplicate wake-ups</li>
           </ul>
         </div>
       </div>
     </div>
-    <div style="margin-top:14px; border-top: 1px solid rgba(122,154,170,0.12); padding-top:14px;">
+    <div class="section-divider">
       <div class="ap-tag">Agent Stack — Intelligence</div>
-      <div class="ap-title" style="font-size:36px;">DAILY <em>INTELLIGENCE</em></div>
-      <p class="ap-sub">Your MA does not just respond — it reports. Full visibility over your operation so you always know exactly how your kitchen is performing.</p>
+      <div class="ap-title" style="font-size:30px;">DAILY <em>INTELLIGENCE</em></div>
+      <p class="ap-sub">Your MA doesn't just respond — it reports. Full visibility over every part of your operation, delivered to your phone before service starts.</p>
       <div class="agents">
         <div class="agent">
           <div class="a-icon">☀️</div>
           <div>
             <div class="a-name">BriefingOS</div>
-            <div class="a-role">Daily Morning Intelligence Agent</div>
+            <div class="a-role">Daily Morning Intelligence &amp; Contact Management</div>
             <ul class="a-bullets">
-              <li>Every morning at your chosen time — a full briefing in your WhatsApp</li>
-              <li>Today's reservations, pending tasks, low stock alerts, overnight messages</li>
-              <li>You start every service shift fully informed. Nothing surprises you.</li>
+              <li>Every morning at your chosen time — sales, overnight messages, tasks, stock alerts, supplier issues, new reviews</li>
+              <li>Yesterday's revenue with customer count, average transaction, and week-over-week comparison</li>
+              <li>2-3 specific action items for you — "Approve the held 1-star from Somchai", not generic advice</li>
+              <li>Customer contact list on demand — VIP-first, searchable, with add/mark VIP commands</li>
             </ul>
           </div>
         </div>
@@ -404,11 +427,12 @@ body { font-family: 'Playfair Display', Georgia, serif; background: #111; color:
           <div class="a-icon">📊</div>
           <div>
             <div class="a-name">ReportGenie</div>
-            <div class="a-role">Business Intelligence Agent</div>
+            <div class="a-role">Business Intelligence &amp; PDF Reports</div>
             <ul class="a-bullets">
-              <li>7 report types — bookings, reviews, tasks, inventory, delivery, complaints, weekly summary</li>
-              <li>Ask for any report via WhatsApp in plain language: "Show me this week's no-shows"</li>
-              <li>Weekly digest sent automatically every Monday morning before service</li>
+              <li>7 report types: inventory, tasks, contacts, revenue, reviews, staff schedule, briefing history</li>
+              <li>Ask in plain language: "Show me this week's no-shows" or "Revenue report for March"</li>
+              <li>PDF generation with professional formatting — ready for meetings, tax filings, supplier negotiations</li>
+              <li>Weekly digest every Monday morning before service — automatic, no request needed</li>
             </ul>
           </div>
         </div>
@@ -416,18 +440,21 @@ body { font-family: 'Playfair Display', Georgia, serif; background: #111; color:
           <div class="a-icon">🍳</div>
           <div>
             <div class="a-name">KitchenOS</div>
-            <div class="a-role">Ambient Kitchen Monitoring Agent</div>
+            <div class="a-role">Ambient Kitchen Monitoring &amp; Pattern Detection</div>
             <ul class="a-bullets">
-              <li>Kitchen staff message updates throughout service — equipment, stock, issues</li>
-              <li>KitchenOS logs everything and routes urgent issues to you immediately</li>
-              <li>Creates a full service log you can review and learn from after every shift</li>
+              <li>Classifies every kitchen message: status update, equipment alert, stock alert, service communication</li>
+              <li>Time-of-day awareness — prep, pre-service, lunch rush, afternoon lull, dinner rush, closing</li>
+              <li>Routes equipment alerts to OnCallGenie, stock alerts to InventoryOS, urgent issues to you</li>
+              <li>Pattern detection — same equipment breaking repeatedly triggers maintenance recommendation</li>
+              <li>Shift handoff summaries — incoming staff get outstanding issues from previous period</li>
+              <li>Full service log after every shift — review and learn from what happened</li>
             </ul>
           </div>
         </div>
       </div>
     </div>
-    <div style="margin-top:10px; padding:10px 12px; border:1px solid rgba(200,146,42,0.2); background:rgba(200,146,42,0.05);">
-      <p style="font-size:10.5px; color:var(--cream); font-style:italic; line-height:1.5;"><strong style="color:var(--gold); font-style:normal;">Guarantee:</strong> Any message starting with <span style="font-family:'DM Mono',monospace; color:var(--gold); font-size:9px;">complaint:</span> is routed to the founder instantly. A goodwill credit is issued automatically. No complaint is ever lost.</p>
+    <div style="margin-top:8px; padding:8px 12px; border:1px solid rgba(200,146,42,0.2); background:rgba(200,146,42,0.05);">
+      <p style="font-size:10px; color:var(--cream); font-style:italic; line-height:1.5;"><strong style="color:var(--gold); font-style:normal;">Guarantee:</strong> Any message starting with <span style="font-family:'DM Mono',monospace; color:var(--gold); font-size:9px;">complaint:</span> is routed to the founder instantly. A goodwill credit is issued automatically. No complaint is ever lost.</p>
     </div>
   </div>
   <div class="page-num">04 / 06</div>
@@ -452,6 +479,7 @@ body { font-family: 'Playfair Display', Georgia, serif; background: #111; color:
           <li>Review management: $80/month</li>
           <li>Scheduling app: $40/month</li>
           <li>Inventory system: $100/month</li>
+          <li>Delivery dispatch: $60/month</li>
           <li>Still doing morning admin yourself</li>
           <li>Still manually chasing everything</li>
         </ul>
@@ -460,37 +488,38 @@ body { font-family: 'Playfair Display', Georgia, serif; background: #111; color:
         <div class="col-title col-gold">Your Managing Agent</div>
         <ul>
           <li>All 13 agents — one price</li>
-          <li>Works through WhatsApp — nothing new</li>
-          <li>Runs 24 hours, 7 days a week</li>
+          <li>Works through WhatsApp — nothing new to learn</li>
+          <li>Runs 24 hours, 7 days a week, 365 days</li>
           <li>First year completely free</li>
           <li>Rate locked forever at signup</li>
           <li>12 months access, pay for 10</li>
+          <li>Multi-language support included</li>
         </ul>
       </div>
     </div>
     <div class="flagship">
       <div class="flagship-title">Flagship Programme</div>
-      <p class="flagship-desc">The first 100 restaurants in the world to sign up receive their first year completely free. No credit card required. No commitment. After year one, your rate locks at $20 per month forever — unchanged regardless of how many times we raise prices for new clients. Once 100 spots are taken, the founding rate closes permanently.</p>
+      <p class="flagship-desc">The first 100 restaurants in the world to sign up receive their first year completely free. No credit card required. No commitment. After year one, your rate locks at $20 per month forever — unchanged regardless of how many times we raise prices for new clients. Once 100 spots are taken, the founding rate closes permanently and new clients pay the current market rate.</p>
     </div>
-    <div class="section-title" style="font-size:36px; margin-top:6px;">UP AND RUNNING <em>IN 20 MINUTES</em></div>
+    <div class="section-title" style="font-size:34px; margin-top:4px;">UP AND RUNNING <em>IN 20 MINUTES</em></div>
     <div style="margin-bottom:10px;">
       <div class="ob-step">
         <div class="ob-n">1</div>
-        <div><div class="ob-title">Scan or Message the Number</div><p class="ob-desc">Open WhatsApp, Telegram, or Line. Message +66 83 979 9707 or visit deployagentsinc.agency. Your MA greets you and begins the onboarding conversation immediately.</p><div class="ob-time">// Takes 30 seconds</div></div>
+        <div><div class="ob-title">Message the Number</div><p class="ob-desc">Open WhatsApp, Telegram, or Line. Message +66 83 979 9707 or visit deployagentsinc.agency. Your MA greets you and begins the onboarding conversation immediately.</p><div class="ob-time">// Takes 30 seconds</div></div>
       </div>
       <div class="ob-step">
         <div class="ob-n">2</div>
-        <div><div class="ob-title">Answer 9 Simple Questions</div><p class="ob-desc">Your MA asks about your restaurant — name, location, hours, staff count, briefing time, the problem that costs you most. Plain conversation. No forms. No login.</p><div class="ob-time">// Takes 10–15 minutes</div></div>
+        <div><div class="ob-title">Answer 9 Simple Questions</div><p class="ob-desc">Restaurant name, location, hours, staff count, menu items, suppliers, briefing time, biggest problem. Plain conversation. No forms. No login. Your MA also collects supplier contacts and driver phone numbers to start managing them immediately.</p><div class="ob-time">// Takes 10–15 minutes</div></div>
       </div>
       <div class="ob-step">
         <div class="ob-n">3</div>
-        <div><div class="ob-title">Your MA Activates</div><p class="ob-desc">Your Managing Agent is configured and live. Tomorrow morning at your chosen time, your first briefing arrives. Tonight, OnCallGenie is already watching your number.</p><div class="ob-time">// Flagship clients — active immediately, no payment needed</div></div>
+        <div><div class="ob-title">Your MA Activates</div><p class="ob-desc">All 13 agents are configured and live. Tomorrow morning at your chosen time, your first briefing arrives. Tonight, OnCallGenie is already watching your number. Customers can already book, preorder, and message.</p><div class="ob-time">// Flagship clients — active immediately, no payment needed</div></div>
       </div>
     </div>
     <div style="text-align:center; padding:10px; border:1px solid rgba(200,146,42,0.25); background:rgba(200,146,42,0.06);">
       <div style="font-family:'Bebas Neue',sans-serif; font-size:20px; letter-spacing:2px; color:var(--gold); margin-bottom:4px;">Start Now — Message Your MA</div>
       <div style="font-family:'DM Mono',monospace; font-size:10px; color:var(--cream); letter-spacing:1px;">WhatsApp: +66 83 979 9707 · Telegram: @DeployAgentsIncBot · Line: @963ieadj</div>
-      <div style="font-family:'DM Mono',monospace; font-size:9px; color:var(--steel); letter-spacing:1px; margin-top:4px;">deployagentsinc.agency</div>
+      <div style="font-family:'DM Mono',monospace; font-size:9px; color:var(--steel); letter-spacing:1px; margin-top:3px;">deployagentsinc.agency · founder@deployagentsinc.com</div>
     </div>
   </div>
   <div class="page-num">05 / 06</div>
