@@ -1509,7 +1509,7 @@
 
   <div class="price-timeline reveal">
     <h3>Price Schedule &mdash; <span class="gold">Lock In Early</span></h3>
-    <p class="price-timeline-sub">The price increases $49 every quarter. Whatever you lock in today stays yours forever.</p>
+    <p class="price-timeline-sub">The price increases at subscriber milestones. Whatever you lock in today stays yours forever.</p>
 
     <div class="timeline-track">
       <div class="timeline-inner" id="price-timeline"></div>
@@ -1938,38 +1938,39 @@
       : 'rgba(201,168,76,0.15)';
   });
 
-  // Generate price timeline — $20 base, +$49 every quarter, 20 raises to $1000
+  // Generate price timeline — milestone-based pricing scale
   (function buildTimeline() {
     var container = document.getElementById('price-timeline');
     if (!container) return;
-    var base = 20;
-    var raise = 49;
-    var steps = 21; // 20 raises + starting point
-    var startDate = new Date(2026, 0, 1); // Q1 2026
-    var now = new Date();
-    var quarterNames = ['Q1', 'Q2', 'Q3', 'Q4'];
 
-    for (var i = 0; i < steps; i++) {
-      var price = base + (raise * i);
-      var date = new Date(startDate);
-      date.setMonth(date.getMonth() + (i * 3));
-      var q = quarterNames[Math.floor(date.getMonth() / 3)];
-      var year = date.getFullYear();
-      var isCurrent = (i === 0); // We are in Q1 — the first quarter of launch
+    var milestones = [
+      { price: 20,  label: 'Launch', subs: '0' },
+      { price: 35,  label: '1K subs', subs: '1,000' },
+      { price: 55,  label: '5K subs', subs: '5,000' },
+      { price: 85,  label: '10K subs', subs: '10,000' },
+      { price: 120, label: '25K subs', subs: '25,000' },
+      { price: 175, label: '50K subs', subs: '50,000' },
+      { price: 240, label: '100K subs', subs: '100,000' },
+      { price: 320, label: '250K subs', subs: '250,000' },
+      { price: 420, label: '500K subs', subs: '500,000' },
+      { price: 500, label: '1M subs', subs: '1,000,000' },
+    ];
+
+    for (var i = 0; i < milestones.length; i++) {
+      var m = milestones[i];
+      var isCurrent = (i === 0);
 
       var step = document.createElement('div');
       step.className = 'tl-step' + (isCurrent ? ' current' : '');
       step.innerHTML =
-        '<div class="tl-price">$' + price + '</div>' +
+        '<div class="tl-price">$' + m.price + '/mo</div>' +
         '<div class="tl-dot"></div>' +
-        '<div class="tl-date">' + q + ' ' + year + '</div>' +
+        '<div class="tl-date">' + m.label + '</div>' +
         (isCurrent ? '<div class="tl-label">You are here</div>' : '') +
-        (i === 0 ? '<div class="tl-label">Launch</div>' : '') +
-        (i === steps - 1 ? '<div class="tl-label">Final price</div>' : '');
+        (i === milestones.length - 1 ? '<div class="tl-label">Final price</div>' : '');
       container.appendChild(step);
     }
 
-    // Scroll to current quarter
     var currentEl = container.querySelector('.current');
     if (currentEl) {
       var track = container.parentElement;
