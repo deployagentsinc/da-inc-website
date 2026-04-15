@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Deploy Agents Inc. — BusinessOS, Managing Agents | AI for Small Business</title>
+<title>Deploy Agents Inc. — The AI Operating System Company</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
@@ -1268,6 +1268,51 @@
     margin-left: 12px;
     vertical-align: middle;
   }
+
+  /* PRODUCT CARDS */
+  .products-section { padding: 120px 80px; background: var(--concrete); }
+  .products-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 60px; }
+  .product-card { border: 1px solid rgba(201,168,76,0.15); padding: 48px 40px; background: var(--concrete-light); position: relative; transition: border-color 0.3s; }
+  .product-card:hover { border-color: var(--gold); }
+  .product-icon { font-size: 48px; margin-bottom: 20px; display: block; }
+  .product-name { font-family: 'Bebas Neue', sans-serif; font-size: 48px; letter-spacing: 0.1em; color: var(--gold); margin-bottom: 4px; }
+  .product-for { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--steel); margin-bottom: 20px; }
+  .product-desc { font-size: 18px; font-weight: 300; color: var(--cream); line-height: 1.7; margin-bottom: 24px; }
+  .product-price { font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.1em; color: var(--gold-dark); margin-bottom: 28px; }
+  .product-cta { display: inline-block; font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--concrete); background: var(--gold); padding: 14px 28px; text-decoration: none; transition: background 0.3s; }
+  .product-cta:hover { background: var(--gold-light); }
+  @media (max-width: 768px) { .products-grid { grid-template-columns: 1fr; } .products-section { padding: 80px 24px; } }
+
+  /* HUMANOS SECTION */
+  .humanos-section { padding: 120px 80px; background: var(--concrete-light); }
+  .humanos-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 60px; margin-bottom: 80px; }
+  .humanos-step-num { font-family: 'Bebas Neue', sans-serif; font-size: 64px; color: rgba(201,168,76,0.15); line-height: 1; margin-bottom: 12px; }
+  .humanos-step-title { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 0.05em; color: var(--gold); margin-bottom: 8px; }
+  .humanos-step-desc { font-size: 16px; font-weight: 300; color: var(--steel-light); line-height: 1.7; }
+  .humanos-agents-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 48px; margin-bottom: 60px; }
+  .humanos-agent-card { border: 1px solid rgba(201,168,76,0.1); padding: 20px; background: var(--concrete); transition: border-color 0.3s; }
+  .humanos-agent-card:hover { border-color: var(--gold); }
+  .humanos-agent-icon { font-size: 28px; margin-bottom: 8px; display: block; }
+  .humanos-agent-name { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.1em; color: var(--gold); margin-bottom: 4px; }
+  .humanos-agent-role { font-size: 13px; font-weight: 300; color: var(--steel-light); line-height: 1.5; }
+  .humanos-pricing { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 48px; margin-bottom: 48px; }
+  .humanos-price-card { border: 1px solid rgba(201,168,76,0.15); padding: 24px; text-align: center; }
+  .humanos-price-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--steel); margin-bottom: 8px; }
+  .humanos-price-amount { font-family: 'Bebas Neue', sans-serif; font-size: 36px; color: var(--gold); }
+  .humanos-price-note { font-size: 13px; color: var(--steel-light); margin-top: 4px; }
+  .humanos-ctas { display: flex; gap: 16px; justify-content: center; margin-top: 40px; }
+  .humanos-cta-btn { display: inline-block; font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; padding: 14px 28px; text-decoration: none; transition: all 0.3s; }
+  .humanos-cta-primary { background: var(--gold); color: var(--concrete); }
+  .humanos-cta-primary:hover { background: var(--gold-light); }
+  .humanos-cta-secondary { border: 1px solid var(--gold); color: var(--gold); }
+  .humanos-cta-secondary:hover { background: rgba(201,168,76,0.1); }
+  @media (max-width: 768px) {
+    .humanos-section { padding: 80px 24px; }
+    .humanos-steps { grid-template-columns: 1fr; }
+    .humanos-agents-grid { grid-template-columns: repeat(2, 1fr); }
+    .humanos-pricing { grid-template-columns: 1fr 1fr; }
+    .humanos-ctas { flex-direction: column; align-items: center; }
+  }
 </style>
 </head>
 <body>
@@ -1277,33 +1322,32 @@
 
 <!-- NAV -->
 <nav>
-  <a href="#" class="nav-logo">Deploy Agents Inc. — BusinessOS</a>
+  <a href="#" class="nav-logo">Deploy Agents Inc.</a>
   <ul class="nav-links">
-    <li><a href="#how-it-works">How It Works</a></li>
-    <li><a href="#industries">Industries</a></li>
+    <li><a href="#businessos">BusinessOS</a></li>
+    <li><a href="#humanos">HumanOS</a></li>
     <li><a href="#pricing">Pricing</a></li>
-    <li><a href="#agents">Agents</a></li>
+    <li><a href="mailto:hello@deployagentsinc.com">Contact</a></li>
   </ul>
-  <a href="#agents" class="nav-cta">Hire Your MA</a>
+  <a href="#products" class="nav-cta">Explore Products</a>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
   <div class="hero-left">
-    <div class="hero-eyebrow">AI Managing Agents for Small Business</div>
+    <div class="hero-eyebrow">Deploy Agents Inc.</div>
     <h1 class="hero-headline">
-      Your business<br>
-      needs an<br>
-      <span class="gold">employee</span><br>
-      <span class="indent">like this.</span>
+      The AI<br>
+      <span class="gold">Operating</span><br>
+      <span class="gold">System</span><br>
+      <span class="indent">Company.</span>
     </h1>
     <p class="hero-sub">
-      A Managing Agent that works 24 hours a day through WhatsApp, Line, or Telegram.
-      No app. No training. No dashboard. Just results.
+      Two products. One mission. Give people their time back.
     </p>
     <div class="hero-actions">
-      <a href="#agents" class="btn-primary"><span>Hire Your MA &mdash; Free Year One</span></a>
-      <a href="#how-it-works" class="btn-secondary">See how it works</a>
+      <a href="#businessos" class="btn-primary"><span>Explore BusinessOS &rarr;</span></a>
+      <a href="#humanos" class="btn-secondary">Explore HumanOS &rarr;</a>
     </div>
   </div>
 
@@ -1319,6 +1363,33 @@
           <span></span><span></span><span></span>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<div class="wood-strip"></div>
+
+<!-- PRODUCT CARDS -->
+<section class="products-section" id="products">
+  <div class="section-tag">Products</div>
+  <h2 class="section-title reveal">Two Products.<br><span class="gold">One Mission.</span></h2>
+
+  <div class="products-grid reveal">
+    <div class="product-card">
+      <span class="product-icon">🏢</span>
+      <div class="product-name">BusinessOS</div>
+      <div class="product-for">For small businesses</div>
+      <p class="product-desc">A Managing Agent that runs your business through WhatsApp, Telegram, and LINE. 13 agents. One employee. No app. No training. Just results.</p>
+      <div class="product-price">$20/month &mdash; locked forever</div>
+      <a href="https://wa.me/66839799707" class="product-cta" target="_blank">Hire Your MA &rarr;</a>
+    </div>
+    <div class="product-card">
+      <span class="product-icon">🧠</span>
+      <div class="product-name">HumanOS</div>
+      <div class="product-for">For people and families</div>
+      <p class="product-desc">A personal AI operating system that runs your life through WhatsApp and Telegram. 14 specialized agents. One number. No app. No dashboard. Just your life, handled.</p>
+      <div class="product-price">From $3/month</div>
+      <a href="https://t.me/HumanOS_DA_Inc_bot" class="product-cta" target="_blank">Get HumanOS &rarr;</a>
     </div>
   </div>
 </section>
@@ -1344,6 +1415,9 @@
     <div class="stat-label">Tasks Automated</div>
   </div>
 </div>
+
+<!-- BUSINESSOS SECTION -->
+<div id="businessos"></div>
 
 <!-- HOW IT WORKS -->
 <section class="how-it-works" id="how-it-works">
@@ -1845,18 +1919,96 @@
 
 <div class="wood-strip"></div>
 
+<!-- HUMANOS SECTION -->
+<section class="humanos-section" id="humanos">
+  <div class="section-tag">HumanOS</div>
+  <h2 class="section-title reveal">Your life.<br><span class="gold">Handled.</span></h2>
+  <p class="section-sub reveal" style="font-size:19px;font-weight:300;color:var(--steel-light);max-width:560px;line-height:1.7;">
+    14 AI agents running quietly in the background. One WhatsApp number. Nothing to install. Nothing to learn.
+  </p>
+
+  <div class="humanos-steps reveal">
+    <div>
+      <div class="humanos-step-num">01</div>
+      <div class="humanos-step-title">You Start a Conversation</div>
+      <p class="humanos-step-desc">Click the WhatsApp or Telegram link. Your MA asks 9 quick questions. Takes 2 minutes.</p>
+    </div>
+    <div>
+      <div class="humanos-step-num">02</div>
+      <div class="humanos-step-title">Your Agents Activate</div>
+      <p class="humanos-step-desc">Based on your answers your personal agent stack activates. They start working immediately.</p>
+    </div>
+    <div>
+      <div class="humanos-step-num">03</div>
+      <div class="humanos-step-title">Your Life Gets Quieter</div>
+      <p class="humanos-step-desc">Daily briefing every morning. Proactive alerts. Everything handled before you have to think about it.</p>
+    </div>
+  </div>
+
+  <div class="section-tag">The 14 Agents</div>
+  <h2 class="section-title reveal" style="font-size:42px;">Your Personal <span class="gold">Agent Stack</span></h2>
+
+  <div class="humanos-agents-grid reveal">
+    <div class="humanos-agent-card"><span class="humanos-agent-icon">🧠</span><div class="humanos-agent-name">HumanOS MA</div><div class="humanos-agent-role">Your chief of staff</div></div>
+    <div class="humanos-agent-card"><span class="humanos-agent-icon">🔒</span><div class="humanos-agent-name">Security MA</div><div class="humanos-agent-role">Silent protector</div></div>
+    <div class="humanos-agent-card"><span class="humanos-agent-icon">📅</span><div class="humanos-agent-name">Life MA</div><div class="humanos-agent-role">Daily commander</div></div>
+    <div class="humanos-agent-card"><span class="humanos-agent-icon">💰</span><div class="humanos-agent-name">Money MA</div><div class="humanos-agent-role">Finance coach</div></div>
+    <div class="humanos-agent-card"><span class="humanos-agent-icon">❤️</span><div class="humanos-agent-name">Health MA</div><div class="humanos-agent-role">Wellness guardian</div></div>
+    <div class="humanos-agent-card"><span class="humanos-agent-icon">📱</span><div class="humanos-agent-name">Comms MA</div><div class="humanos-agent-role">Communications secretary</div></div>
+    <div class="humanos-agent-card"><span class="humanos-agent-icon">🚗</span><div class="humanos-agent-name">Mobility MA</div><div class="humanos-agent-role">Travel commander</div></div>
+    <div class="humanos-agent-card"><span class="humanos-agent-icon">🌱</span><div class="humanos-agent-name">Growth MA</div><div class="humanos-agent-role">Accountability partner</div></div>
+    <div class="humanos-agent-card"><span class="humanos-agent-icon">🏛️</span><div class="humanos-agent-name">Government MA</div><div class="humanos-agent-role">Compliance admin</div></div>
+    <div class="humanos-agent-card"><span class="humanos-agent-icon">🛡️</span><div class="humanos-agent-name">Guardian MA</div><div class="humanos-agent-role">Crisis protector</div></div>
+    <div class="humanos-agent-card"><span class="humanos-agent-icon">👤</span><div class="humanos-agent-name">Shadow MA</div><div class="humanos-agent-role">Silent safety guardian</div></div>
+    <div class="humanos-agent-card"><span class="humanos-agent-icon">🤝</span><div class="humanos-agent-name">Social MA</div><div class="humanos-agent-role">Community navigator</div></div>
+    <div class="humanos-agent-card"><span class="humanos-agent-icon">✨</span><div class="humanos-agent-name">Concierge MA</div><div class="humanos-agent-role">Personal butler</div></div>
+    <div class="humanos-agent-card"><span class="humanos-agent-icon">📚</span><div class="humanos-agent-name">Learning MA</div><div class="humanos-agent-role">Knowledge architect</div></div>
+  </div>
+
+  <div class="section-tag">HumanOS Pricing</div>
+  <div class="humanos-pricing reveal">
+    <div class="humanos-price-card">
+      <div class="humanos-price-label">Single Agent</div>
+      <div class="humanos-price-amount">$3/mo</div>
+      <div class="humanos-price-note">per agent access</div>
+    </div>
+    <div class="humanos-price-card">
+      <div class="humanos-price-label">Full Platform</div>
+      <div class="humanos-price-amount">$25/mo</div>
+      <div class="humanos-price-note">all 14 agents</div>
+    </div>
+    <div class="humanos-price-card">
+      <div class="humanos-price-label">Senior Discount</div>
+      <div class="humanos-price-amount">50% off</div>
+      <div class="humanos-price-note">age 65+</div>
+    </div>
+    <div class="humanos-price-card">
+      <div class="humanos-price-label">Referral</div>
+      <div class="humanos-price-amount">25%</div>
+      <div class="humanos-price-note">recurring commission forever</div>
+    </div>
+  </div>
+
+  <div class="humanos-ctas reveal">
+    <a href="https://wa.me/66839799707" class="humanos-cta-btn humanos-cta-primary" target="_blank">Start on WhatsApp &rarr;</a>
+    <a href="https://t.me/HumanOS_DA_Inc_bot" class="humanos-cta-btn humanos-cta-secondary" target="_blank">Start on Telegram &rarr;</a>
+  </div>
+</section>
+
+<div class="wood-strip"></div>
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-top">
     <div>
-      <span class="footer-logo">Deploy Agents Inc. — BusinessOS, Managing Agents</span>
-      <p class="footer-tagline">AI Managing Agents for small businesses.<br>WhatsApp. Line. Telegram.<br>No app. No training. Just results.</p>
+      <span class="footer-logo">Deploy Agents Inc.</span>
+      <p class="footer-tagline">The AI Operating System Company.<br>BusinessOS. HumanOS.<br>WhatsApp. Telegram. Line.</p>
     </div>
     <div class="footer-col">
-      <h4>Product</h4>
+      <h4>Products</h4>
       <ul>
-        <li><a href="#how-it-works">How It Works</a></li>
-        <li><a href="#industries">Industries</a></li>
+        <li><a href="#businessos">BusinessOS</a></li>
+        <li><a href="#humanos">HumanOS</a></li>
         <li><a href="#pricing">Pricing</a></li>
       </ul>
     </div>
@@ -1880,7 +2032,7 @@
     </div>
   </div>
   <div class="footer-bottom">
-    <span class="footer-copy">&copy; 2026 Deploy Agents Inc. — BusinessOS, Managing Agents. All rights reserved.</span>
+    <span class="footer-copy">&copy; 2026 Deploy Agents Inc. All rights reserved.</span>
     <span class="footer-tagline-bottom">deployagentsinc.agency</span>
   </div>
 </footer>
