@@ -1314,6 +1314,43 @@
     .humanos-ctas { flex-direction: column; align-items: center; }
   }
 </style>
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1622984352364723');
+fbq('track', 'PageView');
+</script>
+<!-- End Meta Pixel Code -->
+
+<!-- Meta Pixel Conversion Events -->
+<script>
+document.addEventListener('click', function(e) {
+  var a = e.target.closest('a');
+  if (!a) return;
+  var href = a.getAttribute('href') || '';
+  if (!href || typeof fbq !== 'function') return;
+  if (href.indexOf('t.me/') !== -1) {
+    fbq('track', 'Lead', {content_name: 'HumanOS Telegram'});
+  } else if (href.indexOf('wa.me/') !== -1) {
+    fbq('track', 'Lead', {content_name: 'HumanOS WhatsApp'});
+  } else if (href.indexOf('3cI6oG5h31twgS373We7m01') !== -1) {
+    fbq('track', 'InitiateCheckout', {value: 3.00, currency: 'USD'});
+  } else if (href.indexOf('4gMfZgfVHegi59l4VOe7m02') !== -1) {
+    fbq('track', 'InitiateCheckout', {value: 25.00, currency: 'USD'});
+  } else if (href.indexOf('bJedR8cJv5JMdFR2NGe7m03') !== -1) {
+    fbq('track', 'InitiateCheckout', {value: 20.00, currency: 'USD'});
+  }
+}, true);
+</script>
+<!-- End Meta Pixel Conversion Events -->
 </head>
 <body>
 
