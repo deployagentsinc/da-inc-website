@@ -37,3 +37,14 @@ To preview locally, open the file directly in a browser or run any static server
 ## Commit style
 
 Recent history is terse imperative one-liners, often `Add X`, `Replace X with Y`, `Rebrand to …`. No prefixes, no scopes, no body unless the change needs it.
+
+## Related systems
+
+The site advertises two products served by sibling repos in `~/`:
+
+- `~/humanos/` — the HumanOS Express service (WhatsApp/Telegram/Stripe webhooks, 14 specialist agents, ChoreGenie family flow). Deployed to Railway.
+- `~/` (root) — BusinessOS specialists / Hermes gateway (separate runtime).
+
+If you change a Stripe link, contact number, or Telegram bot handle on this site, mirror the change in the corresponding service repo.
+
+**Telegram bot setup gotcha:** the `@HumanOS_DA_Inc_bot` linked from `index.html` and the HumanOS invite flow requires **BotFather privacy mode set to DISABLED** to receive non-command messages in group chats (chore photos, chore keywords, role changes). Without that, ChoreGenie silently never fires. Set via `@BotFather` → `/setprivacy` → pick the bot → **Disable**. Mirrored in `~/humanos/README.md`.
