@@ -1500,52 +1500,34 @@ document.addEventListener('click', function(e) {
 
   <div class="industries-grid reveal">
     <div class="industry-card">
-      <span class="industry-icon">&#127861;</span>
-      <div class="industry-name">Restaurant</div>
+      <span class="industry-icon">&#127869;</span>
+      <div class="industry-name">Restaurants</div>
+      <div class="industry-desc" style="font-family:'Cormorant Garamond',serif;font-size:0.9rem;color:var(--steel-light);margin-top:4px;">KitchenOS &middot; OrderGenie &middot; SupplyGenie</div>
     </div>
     <div class="industry-card">
       <span class="industry-icon">&#127976;</span>
-      <div class="industry-name">Hotel</div>
-    </div>
-    <div class="industry-card">
-      <span class="industry-icon">&#9749;</span>
-      <div class="industry-name">Caf&eacute;</div>
-    </div>
-    <div class="industry-card">
-      <span class="industry-icon">&#127973;</span>
-      <div class="industry-name">Clinic</div>
-    </div>
-    <div class="industry-card">
-      <span class="industry-icon">&#129463;</span>
-      <div class="industry-name">Dental</div>
+      <div class="industry-name">Hotels</div>
+      <div class="industry-desc" style="font-family:'Cormorant Garamond',serif;font-size:0.9rem;color:var(--steel-light);margin-top:4px;">StayOS &middot; driver + PIN relay</div>
     </div>
     <div class="industry-card">
       <span class="industry-icon">&#128136;</span>
-      <div class="industry-name">Salon</div>
+      <div class="industry-name">Spas</div>
+      <div class="industry-desc" style="font-family:'Cormorant Garamond',serif;font-size:0.9rem;color:var(--steel-light);margin-top:4px;">SpaOS &middot; bookings + therapist flow</div>
     </div>
     <div class="industry-card">
-      <span class="industry-icon">&#127947;</span>
-      <div class="industry-name">Gym</div>
+      <span class="industry-icon">&#127864;</span>
+      <div class="industry-name">Bars</div>
+      <div class="industry-desc" style="font-family:'Cormorant Garamond',serif;font-size:0.9rem;color:var(--steel-light);margin-top:4px;">BarOS &middot; walk-ins + promos</div>
     </div>
     <div class="industry-card">
-      <span class="industry-icon">&#128717;</span>
-      <div class="industry-name">Retail</div>
+      <span class="industry-icon">&#128506;&#65039;</span>
+      <div class="industry-name">Tour Operators</div>
+      <div class="industry-desc" style="font-family:'Cormorant Garamond',serif;font-size:0.9rem;color:var(--steel-light);margin-top:4px;">TourOS &middot; multilingual bookings + routes</div>
     </div>
     <div class="industry-card">
-      <span class="industry-icon">&#127968;</span>
-      <div class="industry-name">Real Estate</div>
-    </div>
-    <div class="industry-card">
-      <span class="industry-icon">&#9878;</span>
-      <div class="industry-name">Law</div>
-    </div>
-    <div class="industry-card">
-      <span class="industry-icon">&#128295;</span>
-      <div class="industry-name">Auto Repair</div>
-    </div>
-    <div class="industry-card">
-      <span class="industry-icon">&#127959;</span>
-      <div class="industry-name">Construction</div>
+      <span class="industry-icon">&#127807;</span>
+      <div class="industry-name">Dispensaries</div>
+      <div class="industry-desc" style="font-family:'Cormorant Garamond',serif;font-size:0.9rem;color:var(--steel-light);margin-top:4px;">BudOS &middot; compliant &middot; founder-reviewed activation</div>
     </div>
   </div>
 </section>
@@ -1593,55 +1575,201 @@ document.addEventListener('click', function(e) {
 <div class="divider"></div>
 
 <!-- PRICING -->
+<style>
+  .metrics-ticker { display:flex; flex-wrap:wrap; gap:24px; justify-content:center; margin:28px auto 48px; max-width:960px; padding:0 16px; }
+  .metric-cell { text-align:center; min-width:120px; }
+  .metric-value { font-family:'Bebas Neue', sans-serif; font-size:2.2rem; letter-spacing:0.05em; color:var(--gold); }
+  .metric-label { font-family:'DM Mono', monospace; font-size:0.7rem; letter-spacing:0.12em; color:var(--steel-light); text-transform:uppercase; margin-top:4px; }
+  .ticker-subline { font-family:'DM Mono', monospace; font-size:0.72rem; letter-spacing:0.12em; color:var(--steel-light); text-align:center; text-transform:uppercase; margin-top:-28px; margin-bottom:32px; }
+  .tier-ladder { max-width:860px; margin:0 auto 40px; padding:0 16px; }
+  .tier-ladder table { width:100%; border-collapse:collapse; font-family:'Cormorant Garamond', serif; font-size:1.02rem; color:var(--cream); }
+  .tier-ladder th, .tier-ladder td { padding:10px 12px; border-bottom:1px solid rgba(201,168,76,0.18); text-align:left; }
+  .tier-ladder th { font-family:'DM Mono', monospace; font-size:0.7rem; letter-spacing:0.12em; color:var(--steel-light); text-transform:uppercase; border-bottom-color:rgba(201,168,76,0.4); }
+  .tier-ladder tr.active-tier td { background:rgba(201,168,76,0.08); color:var(--gold); font-weight:600; }
+  .tier-ladder tr.next-tier td { background:rgba(201,168,76,0.03); }
+  .tier-ladder td.num { text-align:right; font-variant-numeric:tabular-nums; }
+  .tier-badge { display:inline-block; font-family:'DM Mono', monospace; font-size:0.66rem; letter-spacing:0.14em; color:var(--concrete); background:var(--gold); padding:2px 8px; border-radius:2px; margin-left:8px; }
+  .tier-badge.next { background:rgba(201,168,76,0.3); color:var(--gold); }
+  .affiliate-box { max-width:720px; margin:56px auto 0; padding:32px 24px; border:1px solid rgba(201,168,76,0.3); border-radius:4px; }
+  .affiliate-box h3 { font-family:'Bebas Neue', sans-serif; color:var(--gold); letter-spacing:0.08em; font-size:1.5rem; margin-bottom:8px; }
+  .affiliate-box p { font-family:'Cormorant Garamond', serif; font-size:1.08rem; line-height:1.6; margin-bottom:8px; }
+  .signup-box { max-width:560px; margin:56px auto 0; padding:28px 24px; border:1px solid rgba(201,168,76,0.35); border-radius:4px; text-align:center; }
+  .signup-box h3 { font-family:'Bebas Neue', sans-serif; color:var(--gold); letter-spacing:0.08em; font-size:1.4rem; margin-bottom:14px; }
+  .signup-box form { display:flex; gap:8px; flex-wrap:wrap; justify-content:center; }
+  .signup-box input[type=email] { flex:1 1 220px; min-width:220px; padding:12px 14px; background:transparent; border:1px solid rgba(245,240,232,0.3); color:var(--cream); font-family:'Cormorant Garamond', serif; font-size:1rem; border-radius:2px; }
+  .signup-box input[type=email]:focus { outline:none; border-color:var(--gold); }
+  .signup-box button { padding:12px 20px; font-family:'DM Mono', monospace; font-size:0.82rem; letter-spacing:0.12em; color:var(--concrete); background:var(--gold); border:0; border-radius:2px; cursor:pointer; text-transform:uppercase; }
+  .signup-box button:hover { background:var(--gold-light); }
+  .signup-msg { margin-top:12px; font-family:'DM Mono', monospace; font-size:0.78rem; letter-spacing:0.08em; color:var(--steel-light); min-height:1.2em; }
+  .pricing-lock { max-width:720px; margin:28px auto 0; text-align:center; font-family:'Cormorant Garamond', serif; font-size:1.06rem; color:var(--cream); opacity:0.85; line-height:1.6; padding:0 16px; }
+</style>
 <section class="pricing" id="pricing">
   <div class="section-tag">Investment</div>
-  <h2 class="section-title reveal">One Employee.<br><span class="gold">One Price.</span><br>Locked Forever.</h2>
+  <h2 class="section-title reveal">One Price.<br><span class="gold">Locked Forever.</span></h2>
+
+  <div class="ticker-subline">Yesterday across BusinessOS &middot; live</div>
+  <div class="metrics-ticker reveal" id="metrics-ticker">
+    <div class="metric-cell"><div class="metric-value" data-metric="total_messages">&mdash;</div><div class="metric-label">Messages handled</div></div>
+    <div class="metric-cell"><div class="metric-value" data-metric="total_orders">&mdash;</div><div class="metric-label">Orders placed</div></div>
+    <div class="metric-cell"><div class="metric-value" data-metric="total_reviews_recovered">&mdash;</div><div class="metric-label">Reviews recovered</div></div>
+    <div class="metric-cell"><div class="metric-value" data-metric="total_customers_reactivated">&mdash;</div><div class="metric-label">Customers reactivated</div></div>
+    <div class="metric-cell"><div class="metric-value" data-metric="active_clients">&mdash;</div><div class="metric-label">Active businesses</div></div>
+  </div>
 
   <div class="pricing-cards reveal">
-    <div class="price-card featured" id="flagship-card">
-      <div class="price-tier">Flagship &mdash; First 100 Per Industry</div>
-      <div class="price-amount">Free</div>
-      <div class="price-period">Year one completely free</div>
+    <div class="price-card featured" id="active-tier-card">
+      <div class="price-tier"><span id="active-tier-label">Current Tier</span></div>
+      <div class="price-amount" id="active-tier-price">$50</div>
+      <div class="price-period">/ month &middot; locked forever at signup</div>
       <ul class="price-features">
-        <li>Everything included &mdash; all 13 agents</li>
-        <li>Full MA onboarding in 20 minutes</li>
-        <li>Founding rate $20/mo locked after year one</li>
-        <li>Priority industry spot</li>
+        <li>Full BusinessOS agent stack</li>
+        <li>Year 1 free for flagship signups</li>
+        <li>Your price never increases</li>
         <li>20% referral commission for life</li>
+        <li id="next-unlock-note">Next tier unlocks at the next milestone</li>
       </ul>
-      <a href="#agents" class="price-cta filled">Claim Flagship Spot</a>
+      <a href="#signup" class="price-cta filled">Lock this price</a>
     </div>
 
     <div class="price-card">
-      <div class="price-tier">Current Rate</div>
-      <div class="price-amount">$20</div>
-      <div class="price-period">/ month &middot; locked forever at signup</div>
+      <div class="price-tier">WhatsApp Premium (Optional)</div>
+      <div class="price-amount" id="whatsapp-premium-price">$40</div>
+      <div class="price-period">/ month &middot; plus $299 one-off setup</div>
       <ul class="price-features">
-        <li>Everything included &mdash; all 13 agents</li>
-        <li>Your rate never increases</li>
-        <li>20% referral commission for life</li>
-        <li>Sign up before the next raise</li>
+        <li>WhatsApp Business API via Meta Cloud</li>
+        <li>Official verified sender</li>
+        <li>Required only if you want the WA badge</li>
+        <li>Locks at signup like core pricing</li>
       </ul>
-      <a href="https://buy.stripe.com/bJedR8cJv5JMdFR2NGe7m03" class="price-cta outline" target="_blank">Start BusinessOS &mdash; $20/mo</a>
+      <a href="#signup" class="price-cta outline">Add WhatsApp Premium</a>
     </div>
   </div>
 
-  <div class="price-timeline reveal">
-    <h3>Price Schedule &mdash; <span class="gold">Lock In Early</span></h3>
-    <p class="price-timeline-sub">The price increases at subscriber milestones. Whatever you lock in today stays yours forever.</p>
+  <p class="pricing-lock reveal">Prices rise as more businesses join. The day you sign up, your rate is locked for life &mdash; even after the ladder climbs past you. This is a lifetime commitment to early adopters, not a sale.</p>
 
-    <div class="timeline-track">
-      <div class="timeline-inner" id="price-timeline"></div>
-    </div>
+  <div class="tier-ladder reveal">
+    <h3 style="font-family:'Bebas Neue', sans-serif; letter-spacing:0.08em; color:var(--gold); text-align:center; margin:48px 0 16px;">Full Pricing Ladder</h3>
+    <table id="tier-table">
+      <thead>
+        <tr><th>Tier</th><th class="num">Price / mo</th><th class="num">WhatsApp+</th><th class="num">Unlocks at</th></tr>
+      </thead>
+      <tbody id="tier-rows">
+        <!-- populated from /api/active-tier; static fallback below -->
+        <tr><td>1</td><td class="num">$50</td><td class="num">$40</td><td class="num">0 clients</td></tr>
+        <tr><td>2</td><td class="num">$99</td><td class="num">$40</td><td class="num">1,000 clients</td></tr>
+        <tr><td>3</td><td class="num">$149</td><td class="num">$50</td><td class="num">2,000 clients</td></tr>
+        <tr><td>4</td><td class="num">$199</td><td class="num">$50</td><td class="num">4,000 clients</td></tr>
+        <tr><td>5</td><td class="num">$249</td><td class="num">$60</td><td class="num">8,000 clients</td></tr>
+        <tr><td>6</td><td class="num">$299</td><td class="num">$60</td><td class="num">15,000 clients</td></tr>
+        <tr><td>7</td><td class="num">$349</td><td class="num">$70</td><td class="num">25,000 clients</td></tr>
+        <tr><td>8</td><td class="num">$399</td><td class="num">$70</td><td class="num">40,000 clients</td></tr>
+        <tr><td>9</td><td class="num">$449</td><td class="num">$80</td><td class="num">60,000 clients</td></tr>
+        <tr><td>10</td><td class="num">$499</td><td class="num">$80</td><td class="num">90,000 clients</td></tr>
+        <tr><td>11</td><td class="num">$549</td><td class="num">$90</td><td class="num">130,000 clients</td></tr>
+        <tr><td>12</td><td class="num">$599</td><td class="num">$90</td><td class="num">180,000 clients</td></tr>
+        <tr><td>13</td><td class="num">$649</td><td class="num">$100</td><td class="num">240,000 clients</td></tr>
+        <tr><td>14</td><td class="num">$699</td><td class="num">$100</td><td class="num">320,000 clients</td></tr>
+        <tr><td>15</td><td class="num">$749</td><td class="num">$110</td><td class="num">420,000 clients</td></tr>
+        <tr><td>16</td><td class="num">$799</td><td class="num">$110</td><td class="num">550,000 clients</td></tr>
+        <tr><td>17</td><td class="num">$849</td><td class="num">$120</td><td class="num">700,000 clients</td></tr>
+        <tr><td>18</td><td class="num">$899</td><td class="num">$120</td><td class="num">850,000 clients</td></tr>
+        <tr><td>19</td><td class="num">$949</td><td class="num">$130</td><td class="num">950,000 clients</td></tr>
+        <tr><td>20</td><td class="num">$1,000</td><td class="num">$140</td><td class="num">1,000,000 clients</td></tr>
+      </tbody>
+    </table>
+  </div>
 
-    <p class="timeline-lock-note">Your rate locks the day you sign up. It never goes up. Ever.</p>
+  <div class="affiliate-box reveal">
+    <h3>20% Affiliate Commission, For Life</h3>
+    <p>Refer a business. Earn 20% of their locked monthly price &mdash; forever &mdash; for as long as they stay subscribed.</p>
+    <p>If you refer a client at tier 1 ($50/mo), you earn <strong>$10/month for the life of their subscription</strong>. If you refer at tier 10 ($499/mo), you earn <strong>$99/month</strong>. Commission locks at the tier your referral joined under &mdash; and rises if they later upgrade.</p>
+    <p>Payouts are recurring. If your referral cancels, commission stops. That's the only condition.</p>
+  </div>
+
+  <div class="signup-box reveal" id="signup">
+    <h3>Lock Your Rate</h3>
+    <p style="font-family:'Cormorant Garamond', serif; font-size:1.04rem; margin-bottom:18px; color:var(--cream);">Drop your email. We'll hand you over to OnboardGenie on Telegram or WhatsApp &mdash; install takes about 20 minutes.</p>
+    <form id="signup-form" onsubmit="return daSignup(event)">
+      <input type="email" name="email" placeholder="you@yourbusiness.com" required aria-label="email">
+      <button type="submit">Get Started</button>
+    </form>
+    <div class="signup-msg" id="signup-msg" aria-live="polite"></div>
   </div>
 </section>
+
+<script>
+(function(){
+  var API = (window.DA_API_BASE) || 'https://deployagentsinc.com';
+  function fmt(n){ if(n==null) return '—'; return Number(n).toLocaleString(); }
+  function fmtMoney(cents){ if(cents==null) return '—'; return '฿' + Math.round(cents/100).toLocaleString(); }
+
+  // Live metrics ticker
+  fetch(API + '/api/public-metrics').then(function(r){return r.json();}).then(function(m){
+    document.querySelectorAll('[data-metric]').forEach(function(el){
+      var k = el.getAttribute('data-metric');
+      el.textContent = fmt(m[k]);
+    });
+  }).catch(function(){});
+
+  // Active tier + ladder highlight
+  fetch(API + '/api/active-tier').then(function(r){return r.json();}).then(function(t){
+    if (t && t.active_tier) {
+      var a = t.active_tier;
+      var labelEl = document.getElementById('active-tier-label');
+      var priceEl = document.getElementById('active-tier-price');
+      var waEl    = document.getElementById('whatsapp-premium-price');
+      var noteEl  = document.getElementById('next-unlock-note');
+      if (labelEl) labelEl.textContent = 'Tier ' + a.tier_number + ' — current';
+      if (priceEl) priceEl.textContent = '$' + a.price_monthly_usd;
+      if (waEl)    waEl.textContent    = '$' + a.whatsapp_premium_monthly_usd;
+      if (noteEl && t.next_tier) {
+        var to = t.clients_to_next_unlock;
+        noteEl.textContent = 'Next tier ($' + t.next_tier.price_monthly_usd + '/mo) unlocks at ' +
+                             t.next_tier.unlock_at_client_count.toLocaleString() + ' clients (' +
+                             fmt(to) + ' to go)';
+      }
+    }
+    if (t && Array.isArray(t.all_tiers) && t.all_tiers.length) {
+      var tbody = document.getElementById('tier-rows');
+      if (tbody) {
+        tbody.innerHTML = t.all_tiers.map(function(row){
+          var cls = row.active && (!t.next_tier || row.tier_number >= t.next_tier.tier_number - 1 && row.active) ? 'active-tier' : '';
+          var nextCls = (t.next_tier && row.tier_number === t.next_tier.tier_number) ? 'next-tier' : '';
+          var badge = row.active ? '<span class="tier-badge">current</span>' : (nextCls ? '<span class="tier-badge next">next</span>' : '');
+          return '<tr class="' + (cls || nextCls) + '"><td>' + row.tier_number + badge + '</td>' +
+                 '<td class="num">$' + row.price_monthly_usd.toLocaleString() + '</td>' +
+                 '<td class="num">$' + row.whatsapp_premium_monthly_usd + '</td>' +
+                 '<td class="num">' + row.unlock_at_client_count.toLocaleString() + ' clients</td></tr>';
+        }).join('');
+      }
+    }
+  }).catch(function(){});
+
+  window.daSignup = function(ev){
+    ev.preventDefault();
+    var f = ev.target;
+    var email = f.email.value.trim();
+    var msg = document.getElementById('signup-msg');
+    msg.textContent = 'Saving...';
+    fetch(API + '/api/signup', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ email: email, source: 'deployagentsinc.agency' })
+    }).then(function(r){return r.json();}).then(function(res){
+      if (res && res.ok) {
+        msg.innerHTML = '✓ Saved. Next: message <a href="' + res.telegram + '" style="color:var(--gold)">OnboardGenie on Telegram</a> or <a href="' + res.whatsapp + '" style="color:var(--gold)">WhatsApp</a> to finish setup.';
+      } else {
+        msg.textContent = (res && res.error) || 'Something went wrong. Email hello@deployagentsinc.com.';
+      }
+    }).catch(function(){ msg.textContent = 'Network error. Email hello@deployagentsinc.com.'; });
+    return false;
+  };
+})();
+</script>
 
 <!-- AGENTS PAMPHLET -->
 <section class="agents-section" id="agents">
   <div class="section-tag">Your Team</div>
-  <h2 class="section-title reveal">13 Agents.<br><span class="gold">One Employee.</span><br>Zero Training.</h2>
+  <h2 class="section-title reveal">14 Agents.<br><span class="gold">One Employee.</span><br>Zero Training.</h2>
 
   <div class="agents-grid reveal">
 
@@ -1899,10 +2027,28 @@ document.addEventListener('click', function(e) {
       </div></div>
     </div>
 
+    <div class="agent-card" onclick="this.classList.toggle('open')">
+      <div class="agent-header">
+        <div>
+          <div class="agent-name">WalkInGenie</div>
+          <div class="agent-role">Walk-In Capture</div>
+        </div>
+        <span class="agent-toggle">+</span>
+      </div>
+      <div class="agent-desc">Turns anonymous walk-ins into messaging contacts &mdash; captures name and channel at the table, bar, or front desk.</div>
+      <div class="agent-details"><div class="agent-details-inner">
+        <ul class="agent-capabilities">
+          <li>QR-code entry flow that adds a customer to your contact list instantly</li>
+          <li>Attributes walk-in revenue back to the host who captured them</li>
+          <li>Drives the daily walk-in count reported in BriefingOS</li>
+        </ul>
+      </div></div>
+    </div>
+
   </div>
 
   <div class="agents-industries reveal">
-    <h3>18 Industries <span class="gold">Supported</span></h3>
+    <h3>6 Core Industries <span class="gold">Served</span></h3>
     <div class="agents-industry-grid">
       <span class="ind-tag">Restaurant</span>
       <span class="ind-tag">Hotel</span>
@@ -2061,6 +2207,7 @@ document.addEventListener('click', function(e) {
     <div>
       <span class="footer-logo">Deploy Agents Inc.</span>
       <p class="footer-tagline">The AI Operating System Company.<br>BusinessOS. HumanOS.<br>WhatsApp. Telegram. Line.</p>
+      <p class="footer-tagline" style="margin-top:12px;font-size:0.78rem;color:var(--steel-light);">GDPR &amp; PDPA compliant.<br>Data hosted in Singapore (AWS ap-southeast-1).<br>Privacy requests: <a href="mailto:privacy@deployagentsinc.com" style="color:var(--gold);">privacy@deployagentsinc.com</a></p>
     </div>
     <div class="footer-col">
       <h4>Products</h4>
