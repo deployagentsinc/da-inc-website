@@ -3,12 +3,12 @@
   "rewrites": [
     {
       "source": "/:path*",
-      "has": [{ "type": "host", "value": "businessos.deployagentsinc.com" }],
+      "has": [{ "type": "host", "value": "businessos.deployagentsinc.agency" }],
       "destination": "/businessos.html"
     },
     {
       "source": "/:path*",
-      "has": [{ "type": "host", "value": "humanos.deployagentsinc.com" }],
+      "has": [{ "type": "host", "value": "humanos.deployagentsinc.agency" }],
       "destination": "/humanos.html"
     }
   ]
