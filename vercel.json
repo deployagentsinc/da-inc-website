@@ -1,7 +1,7 @@
 {
   "cleanUrls": true,
   "rewrites": [
-    { "source": "/(.*)", "destination": "/businessos.html", "has": [{ "type": "host", "value": "businessos.deployagentsinc.agency" }] },
-    { "source": "/(.*)", "destination": "/humanos.html",    "has": [{ "type": "host", "value": "humanos.deployagentsinc.agency" }] }
+    { "source": "/(.*)", "destination": "/businessos.html", "has": [{ "type": "host", "value": "businessos.deployagentsinc.com" }] },
+    { "source": "/(.*)", "destination": "/humanos.html",    "has": [{ "type": "host", "value": "humanos.deployagentsinc.com" }] }
   ]
 }
