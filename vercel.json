@@ -1,3 +1,7 @@
 {
-  "cleanUrls": true
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/businessos.html", "has": [{ "type": "host", "value": "businessos.deployagentsinc.agency" }] },
+    { "source": "/(.*)", "destination": "/humanos.html",    "has": [{ "type": "host", "value": "humanos.deployagentsinc.agency" }] }
+  ]
 }

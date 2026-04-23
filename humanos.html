@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="HumanOS — Your personal AI that runs your life through WhatsApp, LINE, and Telegram. Health, money, home, goals, family, seniors. 16 agents. One conversation.">
+<meta property="og:title" content="HumanOS — Your Life, Handled.">
+<meta property="og:description" content="16 AI agents running your personal life 24/7. Health, money, smart home, goals, learning, family, seniors. One conversation handles everything.">
+<meta property="og:url" content="https://humanos.deployagentsinc.agency">
+<meta property="og:type" content="website">
+<title>HumanOS — Your Life, Handled.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','1622984352364723');
+fbq('track','PageView');
+</script>
+<script>
+document.addEventListener('click',function(e){
+  var a=e.target.closest('a');
+  if(!a||typeof fbq!=='function') return;
+  var href=a.getAttribute('href')||'';
+  if(href.indexOf('t.me')!==-1) fbq('track','Lead',{content_name:'HumanOS Telegram'});
+  if(href.indexOf('wa.me')!==-1) fbq('track','Lead',{content_name:'HumanOS WhatsApp'});
+  if(href.indexOf('line.me')!==-1) fbq('track','Lead',{content_name:'HumanOS LINE'});
+  if(href.indexOf('3cI6oG5h31twgS373We7m01')!==-1) fbq('track','InitiateCheckout',{value:3.00,currency:'USD'});
+  if(href.indexOf('4gMfZgfVHegi59l4VOe7m02')!==-1) fbq('track','InitiateCheckout',{value:25.00,currency:'USD'});
+  if(href.indexOf('cNi9ASeRD5JM8lx3RKe7m06')!==-1) fbq('track','InitiateCheckout',{value:49.00,currency:'USD'});
+},true);
+</script>
+
+<style>
+  :root {
+    --concrete: #2a2825;
+    --concrete-light: #3d3a36;
+    --concrete-mid: #4f4b45;
+    --steel: #8a8a8a;
+    --steel-light: #b0aca6;
+    --wood: #6b4c2a;
+    --wood-light: #8b6340;
+    --gold: #c9a84c;
+    --gold-light: #e2c97e;
+    --gold-dark: #a07830;
+    --cream: #f5f0e8;
+    --cream-dark: #ede5d6;
+  }
+
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--concrete);color:var(--cream);font-family:'Cormorant Garamond',serif;overflow-x:hidden;cursor:none;}
+
+  .cursor{width:8px;height:8px;background:var(--gold);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;mix-blend-mode:screen;}
+  .cursor-ring{width:32px;height:32px;border:1px solid var(--gold);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transition:transform 0.15s ease,width 0.2s,height 0.2s;mix-blend-mode:screen;opacity:0.6;}
+  body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:1000;opacity:0.4;}
+
+  /* NAV */
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:24px 64px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(201,168,76,0.15);background:rgba(42,40,37,0.92);backdrop-filter:blur(12px);}
+  .nav-back{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--steel-light);text-decoration:none;display:flex;align-items:center;gap:8px;transition:color 0.3s;}
+  .nav-back::before{content:'\2190';}
+  .nav-back:hover{color:var(--gold);}
+  .nav-logo{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:0.28em;color:var(--gold);text-decoration:none;}
+  .nav-cta{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--concrete);background:var(--gold);padding:10px 24px;text-decoration:none;transition:background 0.3s;}
+  .nav-cta:hover{background:var(--gold-light);}
+
+  /* WOOD */
+  .wood-strip{height:6px;background:linear-gradient(90deg,var(--wood-light),#a0724a,var(--wood),#8b6340,var(--wood-light));background-size:200% 100%;animation:woodShift 8s linear infinite;}
+
+  /* HERO */
+  .hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;position:relative;overflow:hidden;}
+  .hero::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 80px,rgba(201,168,76,0.025) 80px,rgba(201,168,76,0.025) 81px),repeating-linear-gradient(90deg,transparent,transparent 80px,rgba(201,168,76,0.025) 80px,rgba(201,168,76,0.025) 81px);pointer-events:none;}
+  .hero-left{display:flex;flex-direction:column;justify-content:center;padding:160px 64px 80px 80px;position:relative;z-index:2;}
+  .hero-eyebrow{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.35em;text-transform:uppercase;color:var(--gold);margin-bottom:32px;display:flex;align-items:center;gap:16px;opacity:0;animation:fadeUp 0.8s ease forwards 0.2s;}
+  .hero-eyebrow::before{content:'';display:block;width:40px;height:1px;background:var(--gold);}
+  .hero-headline{font-family:'Bebas Neue',sans-serif;font-size:clamp(72px,9vw,130px);line-height:0.9;letter-spacing:0.02em;color:var(--cream);margin-bottom:40px;opacity:0;animation:fadeUp 0.8s ease forwards 0.4s;}
+  .hero-headline .gold{color:var(--gold);}
+  .hero-sub{font-size:20px;font-weight:300;line-height:1.75;color:var(--steel-light);max-width:460px;margin-bottom:24px;opacity:0;animation:fadeUp 0.8s ease forwards 0.6s;}
+  .hero-sub strong{color:var(--cream);font-weight:600;}
+  .hero-note{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold-dark);margin-bottom:48px;opacity:0;animation:fadeUp 0.8s ease forwards 0.7s;}
+  .hero-actions{display:flex;flex-direction:column;gap:12px;opacity:0;animation:fadeUp 0.8s ease forwards 0.8s;}
+  .platform-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.25em;text-transform:uppercase;color:var(--steel);margin-bottom:4px;}
+  .platform-btns{display:flex;gap:12px;flex-wrap:wrap;}
+  .platform-btn{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;text-decoration:none;padding:14px 28px;transition:all 0.3s;display:flex;align-items:center;gap:10px;}
+  .platform-btn.wa{background:rgba(37,211,102,0.12);border:1px solid rgba(37,211,102,0.4);color:#25d366;}
+  .platform-btn.wa:hover{background:rgba(37,211,102,0.2);}
+  .platform-btn.line{background:rgba(0,195,0,0.1);border:1px solid rgba(0,195,0,0.35);color:#00c300;}
+  .platform-btn.line:hover{background:rgba(0,195,0,0.2);}
+  .platform-btn.tg{background:rgba(0,136,204,0.1);border:1px solid rgba(0,136,204,0.35);color:#0088cc;}
+  .platform-btn.tg:hover{background:rgba(0,136,204,0.2);}
+
+  /* HERO RIGHT */
+  .hero-right{position:relative;overflow:hidden;background:var(--concrete-light);border-left:1px solid rgba(201,168,76,0.08);}
+  .hero-right::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 60px,rgba(201,168,76,0.03) 60px,rgba(201,168,76,0.03) 61px),repeating-linear-gradient(90deg,transparent,transparent 60px,rgba(201,168,76,0.03) 60px,rgba(201,168,76,0.03) 61px);}
+  .hero-visual{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:2;padding:40px;}
+  .chat-demo{width:100%;max-width:360px;background:var(--concrete);border:1px solid rgba(201,168,76,0.2);position:relative;}
+  .chat-demo::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--wood),var(--gold));}
+  .chat-header{padding:16px 20px;border-bottom:1px solid rgba(201,168,76,0.1);display:flex;align-items:center;gap:12px;}
+  .chat-avatar{width:36px;height:36px;background:var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:14px;color:var(--concrete);flex-shrink:0;}
+  .chat-name{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.1em;color:var(--cream);}
+  .chat-status{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.1em;color:#25d366;text-transform:uppercase;}
+  .chat-body{padding:20px;display:flex;flex-direction:column;gap:12px;}
+  .msg{padding:12px 16px;font-size:14px;font-weight:300;line-height:1.6;opacity:0;animation:slideIn 0.5s ease forwards;}
+  .msg.user{background:rgba(107,76,42,0.2);border-left:2px solid var(--wood-light);color:var(--steel-light);margin-left:24px;}
+  .msg.ai{background:rgba(201,168,76,0.08);border-left:2px solid var(--gold);color:var(--cream-dark);}
+  .msg:nth-child(1){animation-delay:1s;}
+  .msg:nth-child(2){animation-delay:2.2s;}
+  .msg:nth-child(3){animation-delay:3.4s;}
+  .msg:nth-child(4){animation-delay:4.6s;}
+  .msg:nth-child(5){animation-delay:5.8s;}
+  .typing{display:flex;gap:4px;padding:12px 16px;opacity:0;animation:slideIn 0.5s ease forwards 6.8s;}
+  .typing span{width:6px;height:6px;background:var(--gold);border-radius:50%;animation:bounce 1.2s infinite;}
+  .typing span:nth-child(2){animation-delay:0.2s;}
+  .typing span:nth-child(3){animation-delay:0.4s;}
+
+  /* STAT BAR */
+  .stat-bar{background:var(--concrete-light);border-top:1px solid rgba(201,168,76,0.1);border-bottom:1px solid rgba(201,168,76,0.1);padding:32px 80px;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;}
+  .stat-item{padding:24px 40px;border-right:1px solid rgba(201,168,76,0.1);}
+  .stat-item:last-child{border-right:none;}
+  .stat-number{font-family:'Bebas Neue',sans-serif;font-size:52px;color:var(--gold);line-height:1;margin-bottom:8px;}
+  .stat-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--steel);}
+
+  /* SECTION */
+  section{padding:120px 80px;position:relative;}
+  .section-tag{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:24px;display:flex;align-items:center;gap:16px;}
+  .section-tag::before{content:'';display:block;width:24px;height:1px;background:var(--gold);}
+  .section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(48px,6vw,80px);letter-spacing:0.03em;color:var(--cream);line-height:1;margin-bottom:32px;}
+  .section-title .gold{color:var(--gold);}
+
+  /* HOW IT WORKS */
+  .how{background:var(--concrete);}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:64px;background:rgba(201,168,76,0.08);}
+  .step{background:var(--concrete);padding:48px 40px;position:relative;transition:background 0.3s;}
+  .step:hover{background:var(--concrete-light);}
+  .step::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);transform:scaleX(0);transition:transform 0.4s ease;}
+  .step:hover::after{transform:scaleX(1);}
+  .step-num{font-family:'Bebas Neue',sans-serif;font-size:80px;color:rgba(201,168,76,0.12);line-height:1;margin-bottom:24px;transition:color 0.3s;}
+  .step:hover .step-num{color:rgba(201,168,76,0.25);}
+  .step-title{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:600;color:var(--cream);margin-bottom:16px;}
+  .step-desc{font-size:17px;font-weight:300;line-height:1.7;color:var(--steel-light);}
+
+  /* USE CASES — three audience panels */
+  .use-cases{background:var(--concrete-light);}
+  .audience-tabs{display:flex;gap:2px;margin-bottom:2px;background:rgba(201,168,76,0.08);}
+  .tab-btn{flex:1;padding:20px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--steel-light);background:var(--concrete-light);border:none;cursor:pointer;transition:all 0.3s;}
+  .tab-btn:hover{color:var(--gold);}
+  .tab-btn.active{background:var(--concrete-mid);color:var(--gold);border-bottom:2px solid var(--gold);}
+  .tab-panel{display:none;background:var(--concrete-mid);padding:56px;}
+  .tab-panel.active{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;}
+  .panel-headline{font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,5vw,64px);color:var(--cream);line-height:1;margin-bottom:16px;}
+  .panel-headline .gold{color:var(--gold);}
+  .panel-sub{font-size:18px;font-weight:300;font-style:italic;color:var(--steel-light);line-height:1.7;margin-bottom:32px;}
+  .panel-scenarios{display:flex;flex-direction:column;gap:16px;}
+  .scenario{padding:20px 24px;background:var(--concrete-light);border-left:3px solid rgba(201,168,76,0.2);transition:border-color 0.3s;}
+  .scenario:hover{border-left-color:var(--gold);}
+  .scenario-title{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold-dark);margin-bottom:6px;}
+  .scenario-desc{font-size:16px;font-weight:300;color:var(--cream);line-height:1.6;}
+  .panel-cta{margin-top:32px;}
+  .senior-badge{display:inline-block;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;background:var(--gold);color:var(--concrete);padding:4px 12px;margin-bottom:16px;}
+
+  /* AGENTS */
+  .agents{background:var(--concrete);}
+  .agents-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;margin-top:64px;background:rgba(201,168,76,0.08);}
+  .agent-card{background:var(--concrete);padding:28px 32px;transition:background 0.3s;cursor:pointer;}
+  .agent-card:hover{background:var(--concrete-light);}
+  .agent-header{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;}
+  .agent-name{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:0.05em;color:var(--cream);transition:color 0.3s;margin-bottom:4px;}
+  .agent-card:hover .agent-name{color:var(--gold);}
+  .agent-role{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold-dark);}
+  .agent-toggle{font-family:'DM Mono',monospace;font-size:20px;color:var(--gold);transition:transform 0.3s;flex-shrink:0;}
+  .agent-card.open .agent-toggle{transform:rotate(45deg);}
+  .agent-desc{font-size:15px;font-weight:300;color:var(--steel-light);line-height:1.6;margin-top:10px;}
+  .agent-details{max-height:0;overflow:hidden;transition:max-height 0.4s ease;}
+  .agent-card.open .agent-details{max-height:400px;}
+  .agent-details-inner{padding-top:16px;border-top:1px solid rgba(201,168,76,0.12);margin-top:16px;}
+  .agent-caps{list-style:none;}
+  .agent-caps li{font-size:14px;font-weight:300;color:var(--steel-light);padding:6px 0 6px 16px;border-bottom:1px solid rgba(201,168,76,0.06);position:relative;}
+  .agent-caps li::before{content:'';position:absolute;left:0;top:13px;width:6px;height:1px;background:var(--gold-dark);}
+
+  /* PRICING */
+  .pricing{background:var(--concrete-light);position:relative;overflow:hidden;}
+  .pricing::before{content:'PRICING';position:absolute;font-family:'Bebas Neue',sans-serif;font-size:280px;color:rgba(201,168,76,0.03);top:50%;left:50%;transform:translate(-50%,-50%);white-space:nowrap;pointer-events:none;}
+  .pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:64px;background:rgba(201,168,76,0.08);position:relative;z-index:1;}
+  .price-card{background:var(--concrete-light);padding:40px 32px;position:relative;}
+  .price-card.featured{background:var(--concrete-mid);}
+  .price-card.featured::before{content:'MOST POPULAR';position:absolute;top:-1px;left:50%;transform:translateX(-50%);font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.3em;background:var(--gold);color:var(--concrete);padding:6px 20px;white-space:nowrap;}
+  .price-tier{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;}
+  .price-amount{font-family:'Bebas Neue',sans-serif;font-size:72px;color:var(--cream);line-height:1;margin-bottom:6px;}
+  .price-period{font-family:'DM Mono',monospace;font-size:11px;color:var(--steel);letter-spacing:0.15em;margin-bottom:32px;}
+  .price-features{list-style:none;margin-bottom:32px;}
+  .price-features li{font-size:15px;font-weight:300;color:var(--steel-light);padding:10px 0;border-bottom:1px solid rgba(201,168,76,0.08);display:flex;align-items:center;gap:12px;}
+  .price-features li::before{content:'\2014';color:var(--gold);font-size:12px;}
+  .senior-pricing{margin-top:48px;padding:40px;border:1px solid rgba(201,168,76,0.25);background:rgba(201,168,76,0.04);position:relative;z-index:1;}
+  .senior-pricing-tag{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
+  .senior-pricing-headline{font-family:'Bebas Neue',sans-serif;font-size:40px;color:var(--cream);margin-bottom:12px;}
+  .senior-pricing-desc{font-size:17px;font-weight:300;color:var(--steel-light);line-height:1.7;margin-bottom:24px;max-width:680px;}
+  .senior-prices{display:flex;gap:32px;flex-wrap:wrap;}
+  .senior-price-item{text-align:center;}
+  .senior-price-amount{font-family:'Bebas Neue',sans-serif;font-size:48px;color:var(--gold);line-height:1;}
+  .senior-price-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:var(--steel);margin-top:4px;}
+  .affiliate-note{margin-top:48px;padding:32px;border:1px solid rgba(201,168,76,0.2);background:rgba(201,168,76,0.04);position:relative;z-index:1;}
+  .affiliate-note h3{font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--gold);margin-bottom:12px;}
+  .affiliate-note p{font-size:16px;font-weight:300;color:var(--steel-light);line-height:1.7;}
+
+  /* CTA */
+  .cta-block{background:var(--concrete);padding:140px 80px;text-align:center;position:relative;overflow:hidden;}
+  .cta-block::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(201,168,76,0.06) 0%,transparent 70%);pointer-events:none;}
+  .cta-headline{font-family:'Bebas Neue',sans-serif;font-size:clamp(60px,7vw,110px);letter-spacing:0.02em;color:var(--cream);line-height:0.92;margin-bottom:32px;position:relative;z-index:1;}
+  .cta-headline .gold{color:var(--gold);}
+  .cta-sub{font-size:20px;font-weight:300;font-style:italic;color:var(--steel-light);margin-bottom:16px;position:relative;z-index:1;}
+  .cta-note{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold-dark);margin-bottom:56px;position:relative;z-index:1;}
+  .cta-platforms{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1;}
+  .cta-btn{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;text-decoration:none;padding:16px 36px;transition:all 0.3s;display:flex;align-items:center;gap:10px;}
+  .cta-btn.wa{background:rgba(37,211,102,0.12);border:1px solid rgba(37,211,102,0.4);color:#25d366;}
+  .cta-btn.wa:hover{background:rgba(37,211,102,0.25);}
+  .cta-btn.line{background:rgba(0,195,0,0.1);border:1px solid rgba(0,195,0,0.35);color:#00c300;}
+  .cta-btn.line:hover{background:rgba(0,195,0,0.2);}
+  .cta-btn.tg{background:rgba(0,136,204,0.1);border:1px solid rgba(0,136,204,0.35);color:#0088cc;}
+  .cta-btn.tg:hover{background:rgba(0,136,204,0.2);}
+
+  /* FOOTER */
+  footer{background:var(--concrete-light);padding:64px 80px 40px;border-top:1px solid rgba(201,168,76,0.15);}
+  .footer-top{display:grid;grid-template-columns:2fr 1fr 1fr;gap:64px;margin-bottom:48px;padding-bottom:48px;border-bottom:1px solid rgba(201,168,76,0.1);}
+  .footer-logo{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:0.2em;color:var(--gold);display:block;margin-bottom:8px;}
+  .footer-product{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--steel);margin-bottom:16px;}
+  .footer-tagline{font-size:15px;font-weight:300;font-style:italic;color:var(--steel);line-height:1.7;}
+  .footer-col h4{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;}
+  .footer-col ul{list-style:none;}
+  .footer-col ul li{margin-bottom:10px;}
+  .footer-col ul li a{font-size:15px;font-weight:300;color:var(--steel);text-decoration:none;transition:color 0.3s;}
+  .footer-col ul li a:hover{color:var(--cream);}
+  .footer-bottom{display:flex;justify-content:space-between;align-items:center;}
+  .footer-copy{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.15em;color:var(--steel);text-transform:uppercase;}
+  .footer-motto{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.2em;color:var(--gold);text-transform:uppercase;}
+
+  /* DIVIDER */
+  .divider{height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0.2;margin:0 80px;}
+
+  /* ANIMATIONS */
+  @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes slideIn{from{opacity:0;transform:translateX(-12px)}to{opacity:1;transform:translateX(0)}}
+  @keyframes bounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-6px)}}
+  @keyframes woodShift{0%{background-position:0% 0%}100%{background-position:200% 0%}}
+  .reveal{opacity:0;transform:translateY(32px);transition:opacity 0.7s ease,transform 0.7s ease;}
+  .reveal.visible{opacity:1;transform:translateY(0);}
+
+  /* MOBILE */
+  @media(max-width:768px){
+    nav{padding:20px 24px;}
+    .hero{grid-template-columns:1fr;}
+    .hero-right{display:none;}
+    .hero-left{padding:120px 24px 80px;}
+    .stat-bar{padding:24px;grid-template-columns:repeat(2,1fr);}
+    section{padding:80px 24px;}
+    .steps{grid-template-columns:1fr;}
+    .audience-tabs{flex-direction:column;}
+    .tab-panel.active{grid-template-columns:1fr;}
+    .tab-panel{padding:32px 24px;}
+    .agents-grid{grid-template-columns:1fr;}
+    .pricing-grid{grid-template-columns:1fr;}
+    .senior-prices{flex-direction:column;gap:16px;}
+    footer{padding:48px 24px 32px;}
+    .footer-top{grid-template-columns:1fr;gap:32px;}
+    .footer-bottom{flex-direction:column;gap:12px;text-align:center;}
+    .cta-block{padding:80px 24px;}
+    .divider{margin:0 24px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursor-ring"></div>
+
+<!-- NAV -->
+<nav id="main-nav">
+  <a href="https://deployagentsinc.agency" class="nav-back">Deploy Agents Inc.</a>
+  <a href="/" class="nav-logo">HumanOS</a>
+  <a href="#cta" class="nav-cta">Get Started</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">HumanOS &mdash; by Deploy Agents Inc.</div>
+    <h1 class="hero-headline">
+      Your Life.<br>
+      <span class="gold">Sorted</span><br>
+      By Morning.
+    </h1>
+    <p class="hero-sub">
+      <strong>16 AI agents</strong> handle your health, money, home, goals, travel, and daily life — 24 hours a day. Wake up every morning with everything already taken care of.
+    </p>
+    <p class="hero-note">Text it &middot; Call it &middot; Fax it &middot; No app needed</p>
+    <div class="hero-actions">
+      <div class="platform-label">Pick your platform to get started</div>
+      <div class="platform-btns">
+        <a href="#cta" class="platform-btn wa">&#128172; WhatsApp</a>
+        <a href="#cta" class="platform-btn line">&#128994; LINE</a>
+        <a href="#cta" class="platform-btn tg">&#9992; Telegram</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-visual">
+      <div class="chat-demo">
+        <div class="chat-header">
+          <div class="chat-avatar">AI</div>
+          <div>
+            <div class="chat-name">HumanOS</div>
+            <div class="chat-status">&#9679; Online</div>
+          </div>
+        </div>
+        <div class="chat-body">
+          <div class="msg user">What do I have going on today?</div>
+          <div class="msg ai">Good morning. You have a dentist at 2pm — I'll remind you at 1:30. Your electricity bill is due Friday, I've flagged it. You're 400 calories under your weekly goal. Want me to suggest lunch options nearby?</div>
+          <div class="msg user">Yes please. Also check on mum</div>
+          <div class="msg ai">Mum's morning check-in came through at 8am — she's fine. Her medication reminder goes out at noon. I've sent her three lunch spots near her that accept her mobility needs.</div>
+          <div class="typing"><span></span><span></span><span></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wood-strip"></div>
+
+<!-- STATS -->
+<div class="stat-bar">
+  <div class="stat-item reveal">
+    <div class="stat-number">16</div>
+    <div class="stat-label">AI Agents Working</div>
+  </div>
+  <div class="stat-item reveal">
+    <div class="stat-number">24/7</div>
+    <div class="stat-label">Always On</div>
+  </div>
+  <div class="stat-item reveal">
+    <div class="stat-number">$3</div>
+    <div class="stat-label">Starts From</div>
+  </div>
+  <div class="stat-item reveal">
+    <div class="stat-number">50%</div>
+    <div class="stat-label">Off for Seniors 65+</div>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<section class="how">
+  <div class="section-tag reveal">How It Works</div>
+  <h2 class="section-title reveal">Three steps.<br><span class="gold">That's it.</span></h2>
+  <div class="steps">
+    <div class="step reveal">
+      <div class="step-num">01</div>
+      <h3 class="step-title">You Say Hello</h3>
+      <p class="step-desc">Open WhatsApp, LINE, or Telegram and message your HumanOS number. Your AI asks 9 quick questions. Takes about 2 minutes. No forms, no signup pages, no app to download.</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">02</div>
+      <h3 class="step-title">Your Agents Activate</h3>
+      <p class="step-desc">Based on your answers, your personal agent stack switches on. Health, money, home, goals — whatever matters to you. They start working immediately and remember everything.</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">03</div>
+      <h3 class="step-title">Your Life Gets Quieter</h3>
+      <p class="step-desc">Every morning you get a briefing — what's on today, what needs attention, what's already been handled. The digital tasks that eat away your day disappear. You just live.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- USE CASES — THREE AUDIENCES -->
+<section class="use-cases">
+  <div class="section-tag reveal">Who It's For</div>
+  <h2 class="section-title reveal">Built for <span class="gold">everyone.</span></h2>
+  <p class="reveal" style="font-size:18px;font-weight:300;color:var(--steel-light);max-width:560px;line-height:1.7;margin-bottom:48px;">Whether you're managing your own life, looking after an elderly parent, or running a household — HumanOS has a version for you.</p>
+
+  <div class="audience-tabs reveal">
+    <button class="tab-btn active" onclick="showTab('individual',this)">&#128100; For You</button>
+    <button class="tab-btn" onclick="showTab('senior',this)">&#10084; For Your Parents</button>
+    <button class="tab-btn" onclick="showTab('family',this)">&#127968; For Your Family</button>
+  </div>
+
+  <!-- INDIVIDUAL -->
+  <div class="tab-panel active" id="tab-individual">
+    <div>
+      <div class="panel-headline">You have<br><span class="gold">enough going on.</span></div>
+      <p class="panel-sub">HumanOS handles the digital tasks that eat away your day so you can focus on actually living.</p>
+      <div class="platform-btns panel-cta">
+        <a href="#cta" class="platform-btn wa">&#128172; WhatsApp</a>
+        <a href="#cta" class="platform-btn line">&#128994; LINE</a>
+        <a href="#cta" class="platform-btn tg">&#9992; Telegram</a>
+      </div>
+    </div>
+    <div class="panel-scenarios">
+      <div class="scenario">
+        <div class="scenario-title">Health &amp; Wellness</div>
+        <div class="scenario-desc">Tracks your fitness goals, medication schedule, and water intake. Nudges you when you're off track. Reminds you about appointments before you forget.</div>
+      </div>
+      <div class="scenario">
+        <div class="scenario-title">Money &amp; Bills</div>
+        <div class="scenario-desc">Monitors your spending, flags bills before they're due, and gives you a weekly money summary so you always know where you stand.</div>
+      </div>
+      <div class="scenario">
+        <div class="scenario-title">Smart Home</div>
+        <div class="scenario-desc">Controls your lights, temperature, and security through a simple text message. No app switching. Just say what you want.</div>
+      </div>
+      <div class="scenario">
+        <div class="scenario-title">Goals &amp; Learning</div>
+        <div class="scenario-desc">Keeps you accountable to the things you said you'd do. Tracks your progress, sends encouragement, and finds learning content matched to your goals.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SENIOR -->
+  <div class="tab-panel" id="tab-senior">
+    <div>
+      <div class="senior-badge">65+ gets 50% off — always</div>
+      <div class="panel-headline">Your parents<br><span class="gold">deserve this.</span></div>
+      <p class="panel-sub">Your mum or dad doesn't need to learn anything new. If they can send a WhatsApp message, they can use HumanOS. You set it up. They just talk to it.</p>
+      <div class="platform-btns panel-cta">
+        <a href="#cta" class="platform-btn wa">&#128172; WhatsApp</a>
+        <a href="#cta" class="platform-btn line">&#128994; LINE</a>
+        <a href="#cta" class="platform-btn tg">&#9992; Telegram</a>
+      </div>
+    </div>
+    <div class="panel-scenarios">
+      <div class="scenario">
+        <div class="scenario-title">Daily Check-In</div>
+        <div class="scenario-desc">Every morning your parent gets a friendly message. They reply when they're up. If they don't reply, you get a notification. Peace of mind, every single day.</div>
+      </div>
+      <div class="scenario">
+        <div class="scenario-title">Medication Reminders</div>
+        <div class="scenario-desc">Their AI sends medication reminders at the right time, every day. It logs when they confirm. You can check in anytime and see if they've taken their meds.</div>
+      </div>
+      <div class="scenario">
+        <div class="scenario-title">Doctor Appointments</div>
+        <div class="scenario-desc">Their AI keeps track of upcoming appointments, sends reminders the day before and the morning of, and can help them find nearby services they need.</div>
+      </div>
+      <div class="scenario">
+        <div class="scenario-title">Family Connection</div>
+        <div class="scenario-desc">Their AI bridges the distance. When something important comes up — a missed check-in, an upcoming birthday, a health concern — it notifies the right family member immediately.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAMILY -->
+  <div class="tab-panel" id="tab-family">
+    <div>
+      <div class="panel-headline">One family.<br><span class="gold">One plan.</span></div>
+      <p class="panel-sub">Up to 6 family members on one plan. Every person gets their own AI. And ChoreGenie keeps the kids accountable without anyone having to nag.</p>
+      <p style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold-dark);margin-bottom:24px;">$49 / month &middot; Up to 6 members &middot; All 16 agents for everyone</p>
+      <div class="platform-btns panel-cta">
+        <a href="#cta" class="platform-btn wa">&#128172; WhatsApp</a>
+        <a href="#cta" class="platform-btn line">&#128994; LINE</a>
+        <a href="#cta" class="platform-btn tg">&#9992; Telegram</a>
+      </div>
+    </div>
+    <div class="panel-scenarios">
+      <div class="scenario">
+        <div class="scenario-title">ChoreGenie — Kids &amp; Chores</div>
+        <div class="scenario-desc">Parents assign chores in the family group chat. Kids submit photo proof when done. The AI checks the photo, verifies the chore is complete, and releases payment to the child's prepaid card. No arguments. No nagging.</div>
+      </div>
+      <div class="scenario">
+        <div class="scenario-title">Family Coordination</div>
+        <div class="scenario-desc">Schedules, reminders, and shared tasks all in one place. Every family member has their own AI, and the family AI keeps everyone in sync without anyone being the organiser.</div>
+      </div>
+      <div class="scenario">
+        <div class="scenario-title">Every Member Gets Their Own AI</div>
+        <div class="scenario-desc">Mum gets her health and money agents. Dad gets his goals and travel agents. The kids get their learning and accountability agents. All 16 agents, for everyone, on one $49 plan.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wood-strip"></div>
+
+<!-- AGENTS -->
+<section class="agents">
+  <div class="section-tag reveal">Your Agent Stack</div>
+  <h2 class="section-title reveal">16 Agents.<br><span class="gold">One Conversation.</span><br>Everything Handled.</h2>
+  <p class="reveal" style="font-size:18px;font-weight:300;color:var(--steel-light);max-width:560px;line-height:1.7;margin-bottom:16px;">Tap any agent to see what it does.</p>
+
+  <div class="agents-grid reveal">
+
+    <div class="agent-card" onclick="this.classList.toggle('open')">
+      <div class="agent-header"><div><div class="agent-name">HumanOS MA</div><div class="agent-role">Your Chief of Staff</div></div><span class="agent-toggle">+</span></div>
+      <div class="agent-desc">The main agent that coordinates everything. Routes your messages to the right specialist, delivers your morning briefing, and keeps your whole life stack running smoothly.</div>
+      <div class="agent-details"><div class="agent-details-inner"><ul class="agent-caps">
+        <li>Morning briefing at your chosen time every day</li>
+        <li>Routes requests to the right specialist agent automatically</li>
+        <li>Remembers everything you've ever told it</li>
+      </ul></div></div>
+    </div>
+
+    <div class="agent-card" onclick="this.classList.toggle('open')">
+      <div class="agent-header"><div><div class="agent-name">Health MA</div><div class="agent-role">Wellness Guardian</div></div><span class="agent-toggle">+</span></div>
+      <div class="agent-desc">Tracks your fitness goals, hydration, sleep, medication, and medical appointments. Nudges you when you're off track and celebrates when you're not.</div>
+      <div class="agent-details"><div class="agent-details-inner"><ul class="agent-caps">
+        <li>Daily health check-ins and goal tracking</li>
+        <li>Medication reminders at the right time every day</li>
+        <li>Appointment reminders and health record summaries</li>
+      </ul></div></div>
+    </div>
+
+    <div class="agent-card" onclick="this.classList.toggle('open')">
+      <div class="agent-header"><div><div class="agent-name">Money MA</div><div class="agent-role">Finance Coach</div></div><span class="agent-toggle">+</span></div>
+      <div class="agent-desc">Monitors your spending, flags upcoming bills, tracks your savings goals, and sends you a weekly money summary so you always know exactly where you stand.</div>
+      <div class="agent-details"><div class="agent-details-inner"><ul class="agent-caps">
+        <li>Weekly spending summary every Monday morning</li>
+        <li>Bill due reminders 3 days in advance</li>
+        <li>Savings goal tracking and progress updates</li>
+      </ul></div></div>
+    </div>
+
+    <div class="agent-card" onclick="this.classList.toggle('open')">
+      <div class="agent-header"><div><div class="agent-name">Life MA</div><div class="agent-role">Daily Commander</div></div><span class="agent-toggle">+</span></div>
+      <div class="agent-desc">Manages your schedule, tasks, and to-do list. Keeps your day organised so nothing slips through the cracks.</div>
+      <div class="agent-details"><div class="agent-details-inner"><ul class="agent-caps">
+        <li>Daily schedule overview every morning</li>
+        <li>Task tracking with priority scoring</li>
+        <li>Deadline reminders and follow-up nudges</li>
+      </ul></div></div>
+    </div>
+
+    <div class="agent-card" onclick="this.classList.toggle('open')">
+      <div class="agent-header"><div><div class="agent-name">HomeOS</div><div class="agent-role">Smart Home Control</div></div><span class="agent-toggle">+</span></div>
+      <div class="agent-desc">Controls your smart home devices through a simple text message. Lights, temperature, locks, security cameras — all through the same conversation.</div>
+      <div class="agent-details"><div class="agent-details-inner"><ul class="agent-caps">
+        <li>Control lights, temperature, locks by text</li>
+        <li>Automated routines — morning mode, away mode, night mode</li>
+        <li>Security alerts sent directly to your phone</li>
+      </ul></div></div>
+    </div>
+
+    <div class="agent-card" onclick="this.classList.toggle('open')">
+      <div class="agent-header"><div><div class="agent-name">Growth MA</div><div class="agent-role">Accountability Partner</div></div><span class="agent-toggle">+</span></div>
+      <div class="agent-desc">Keeps you on track with your personal goals. Tracks progress, sends encouragement, and calls you out when you're falling behind.</div>
+      <div class="agent-details"><div class="agent-details-inner"><ul class="agent-caps">
+        <li>Weekly goal progress check-ins</li>
+        <li>Streak tracking and milestone celebrations</li>
+        <li>Gentle accountability nudges when you go quiet</li>
+      </ul></div></div>
+    </div>
+
+    <div class="agent-card" onclick="this.classList.toggle('open')">
+      <div class="agent-header"><div><div class="agent-name">Learning MA</div><div class="agent-role">Knowledge Architect</div></div><span class="agent-toggle">+</span></div>
+      <div class="agent-desc">Finds learning content matched to your goals, tracks what you're studying, and sends you daily micro-lessons so you're always growing.</div>
+      <div class="agent-details"><div class="agent-details-inner"><ul class="agent-caps">
+        <li>Daily micro-lessons matched to your interests</li>
+        <li>Reading list and course tracking</li>
+        <li>Progress summaries and skill milestone tracking</li>
+      </ul></div></div>
+    </div>
+
+    <div class="agent-card" onclick="this.classList.toggle('open')">
+      <div class="agent-header"><div><div class="agent-name">Mobility MA</div><div class="agent-role">Travel Commander</div></div><span class="agent-toggle">+</span></div>
+      <div class="agent-desc">Handles your travel planning, transport reminders, and route suggestions. Whether it's a daily commute or an international trip — your AI has it sorted.</div>
+      <div class="agent-details"><div class="agent-details-inner"><ul class="agent-caps">
+        <li>Travel itinerary management and reminders</li>
+        <li>Real-time transport alerts and route suggestions</li>
+        <li>Trip packing lists and pre-travel checklists</li>
+      </ul></div></div>
+    </div>
+
+    <div class="agent-card" onclick="this.classList.toggle('open')">
+      <div class="agent-header"><div><div class="agent-name">Guardian MA</div><div class="agent-role">Crisis Protector</div></div><span class="agent-toggle">+</span></div>
+      <div class="agent-desc">Your emergency safety net. If something goes wrong, Guardian MA knows who to contact, what to do, and how to help — instantly.</div>
+      <div class="agent-details"><div class="agent-details-inner"><ul class="agent-caps">
+        <li>Emergency contact list always ready</li>
+        <li>Crisis protocol — one word triggers help</li>
+        <li>Notifies your chosen family members immediately</li>
+      </ul></div></div>
+    </div>
+
+    <div class="agent-card" onclick="this.classList.toggle('open')">
+      <div class="agent-header"><div><div class="agent-name">Shadow MA</div><div class="agent-role">Silent Safety Guardian</div></div><span class="agent-toggle">+</span></div>
+      <div class="agent-desc">Runs quietly in the background. Monitors check-in patterns and flags anomalies to your trusted contacts — without you having to do anything.</div>
+      <div class="agent-details"><div class="agent-details-inner"><ul class="agent-caps">
+        <li>Passive check-in pattern monitoring</li>
+        <li>Anomaly detection — alerts family if patterns change</li>
+        <li>Especially important for elderly users living alone</li>
+      </ul></div></div>
+    </div>
+
+    <div class="agent-card" onclick="this.classList.toggle('open')">
+      <div class="agent-header"><div><div class="agent-name">Government MA</div><div class="agent-role">Compliance Admin</div></div><span class="agent-toggle">+</span></div>
+      <div class="agent-desc">Tracks passport expiry, visa deadlines, tax dates, licence renewals, and government paperwork so you never miss a deadline that costs you money or freedom.</div>
+      <div class="agent-details"><div class="agent-details-inner"><ul class="agent-caps">
+        <li>Passport and visa expiry reminders 90 days out</li>
+        <li>Tax deadline and renewal date tracking</li>
+        <li>Document checklist and submission reminders</li>
+      </ul></div></div>
+    </div>
+
+    <div class="agent-card" onclick="this.classList.toggle('open')">
+      <div class="agent-header"><div><div class="agent-name">Concierge MA</div><div class="agent-role">Personal Butler</div></div><span class="agent-toggle">+</span></div>
+      <div class="agent-desc">Your personal assistant for everything else. Recommendations, reservations, research, gift ideas, local services — whatever you need, it finds it.</div>
+      <div class="agent-details"><div class="agent-details-inner"><ul class="agent-caps">
+        <li>Restaurant and venue recommendations</li>
+        <li>Gift ideas and occasion reminders</li>
+        <li>Local service and supplier research</li>
+      </ul></div></div>
+    </div>
+
+    <div class="agent-card" onclick="this.classList.toggle('open')">
+      <div class="agent-header"><div><div class="agent-name">Comms MA</div><div class="agent-role">Communications Secretary</div></div><span class="agent-toggle">+</span></div>
+      <div class="agent-desc">Helps you draft messages, emails, and replies. Keeps track of important conversations and reminds you when you owe someone a response.</div>
+      <div class="agent-details"><div class="agent-details-inner"><ul class="agent-caps">
+        <li>Draft assistance for messages and emails</li>
+        <li>Follow-up reminders for unanswered messages</li>
+        <li>Communication tone and language suggestions</li>
+      </ul></div></div>
+    </div>
+
+    <div class="agent-card" onclick="this.classList.toggle('open')">
+      <div class="agent-header"><div><div class="agent-name">Social MA</div><div class="agent-role">Community Navigator</div></div><span class="agent-toggle">+</span></div>
+      <div class="agent-desc">Keeps track of your social commitments, birthdays, and important dates. Reminds you before it's too late and suggests meaningful ways to show up for people.</div>
+      <div class="agent-details"><div class="agent-details-inner"><ul class="agent-caps">
+        <li>Birthday and anniversary reminders 7 days ahead</li>
+        <li>Social commitment tracking</li>
+        <li>Thoughtful gesture suggestions for important moments</li>
+      </ul></div></div>
+    </div>
+
+    <div class="agent-card" onclick="this.classList.toggle('open')">
+      <div class="agent-header"><div><div class="agent-name">Security MA</div><div class="agent-role">Silent Protector</div></div><span class="agent-toggle">+</span></div>
+      <div class="agent-desc">Runs silently behind every conversation. Detects suspicious patterns, protects your data, and blocks anything that doesn't belong.</div>
+      <div class="agent-details"><div class="agent-details-inner"><ul class="agent-caps">
+        <li>Threat detection across all conversations</li>
+        <li>Blocks unauthorised access attempts automatically</li>
+        <li>Privacy-first — your data never leaves your account</li>
+      </ul></div></div>
+    </div>
+
+    <div class="agent-card" onclick="this.classList.toggle('open')">
+      <div class="agent-header"><div><div class="agent-name">ChoreGenie</div><div class="agent-role">Family Plan Only</div></div><span class="agent-toggle">+</span></div>
+      <div class="agent-desc">Parents assign chores. Kids submit photo proof. The AI verifies the photo and releases payment to the child's prepaid card. No arguments. No nagging. No forgotten chores.</div>
+      <div class="agent-details"><div class="agent-details-inner"><ul class="agent-caps">
+        <li>Chore assignment via family group chat</li>
+        <li>Photo proof verification using AI vision</li>
+        <li>Automatic payment release to child's prepaid card on approval</li>
+      </ul></div></div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PRICING -->
+<section class="pricing">
+  <div class="section-tag reveal">Pricing</div>
+  <h2 class="section-title reveal">Simple pricing.<br><span class="gold">For everyone.</span></h2>
+  <p class="reveal" style="font-size:18px;font-weight:300;color:var(--steel-light);max-width:560px;line-height:1.7;">Start with one agent or get everything. Cancel any time. No contracts.</p>
+
+  <div class="pricing-grid reveal">
+    <div class="price-card">
+      <div class="price-tier">Single Agent</div>
+      <div class="price-amount">$3</div>
+      <div class="price-period">/ month &middot; per agent</div>
+      <ul class="price-features">
+        <li>Pick any one agent</li>
+        <li>WhatsApp, LINE, or Telegram</li>
+        <li>Text, voice, and fax</li>
+        <li>Cancel any time</li>
+      </ul>
+    </div>
+    <div class="price-card featured">
+      <div class="price-tier">Full Platform</div>
+      <div class="price-amount">$25</div>
+      <div class="price-period">/ month &middot; all 16 agents</div>
+      <ul class="price-features">
+        <li>All 16 agents included</li>
+        <li>WhatsApp, LINE, and Telegram</li>
+        <li>Text, voice, and fax</li>
+        <li>Morning briefing every day</li>
+        <li>Cancel any time</li>
+      </ul>
+    </div>
+    <div class="price-card">
+      <div class="price-tier">Family Plan</div>
+      <div class="price-amount">$49</div>
+      <div class="price-period">/ month &middot; up to 6 members</div>
+      <ul class="price-features">
+        <li>Up to 6 family members</li>
+        <li>All 16 agents for every member</li>
+        <li>ChoreGenie included</li>
+        <li>Family group coordination</li>
+        <li>Cancel any time</li>
+      </ul>
+    </div>
+  </div>
+  <div class="platform-btns reveal" style="margin-top:32px;position:relative;z-index:1;">
+    <a href="#cta" class="platform-btn wa">&#128172; WhatsApp</a>
+    <a href="#cta" class="platform-btn line">&#128994; LINE</a>
+    <a href="#cta" class="platform-btn tg">&#9992; Telegram</a>
+  </div>
+
+  <!-- SENIOR PRICING -->
+  <div class="senior-pricing reveal">
+    <div class="senior-pricing-tag">&#10084; Senior Pricing &mdash; 65 and over</div>
+    <div class="senior-pricing-headline">Half price. Always.</div>
+    <p class="senior-pricing-desc">Anyone 65 or over gets 50% off every plan, forever. No proof needed — just tell your AI you qualify when you sign up. This isn't a promotion. It's a permanent commitment to making this accessible for every elderly person who needs it.</p>
+    <div class="senior-prices">
+      <div class="senior-price-item">
+        <div class="senior-price-amount">$1.50</div>
+        <div class="senior-price-label">Single Agent / mo</div>
+      </div>
+      <div class="senior-price-item" style="display:flex;align-items:center;color:var(--steel);font-size:24px;padding-top:8px;">&mdash;</div>
+      <div class="senior-price-item">
+        <div class="senior-price-amount">$12.50</div>
+        <div class="senior-price-label">Full Platform / mo</div>
+      </div>
+    </div>
+    <p style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--steel);margin-top:20px;">Note: Senior pricing is for individual plans only. Seniors are not included in the Family Plan — they get their own discounted individual account.</p>
+  </div>
+
+  <!-- AFFILIATE -->
+  <div class="affiliate-note reveal">
+    <h3>25% Referral Commission — For Life</h3>
+    <p>Tell someone about HumanOS. If they sign up, you earn 25% of their monthly plan — every month for as long as they stay. Refer a full platform user at $25/mo and earn $6.25/month forever. Refer 20 people and that's $125/month in passive income from one conversation.</p>
+  </div>
+</section>
+
+<div class="wood-strip"></div>
+
+<!-- CTA -->
+<section class="cta-block" id="cta">
+  <h2 class="cta-headline reveal">
+    Your life is<br>
+    waiting to get<br>
+    <span class="gold">a lot easier.</span>
+  </h2>
+  <p class="cta-sub reveal">Pick your platform. Say hello. Your AI does the rest.</p>
+  <p class="cta-note reveal">Takes 2 minutes to start &middot; No app &middot; No contract &middot; 65+ gets 50% off</p>
+  <div class="cta-platforms reveal">
+    <a href="https://wa.me/66839799707" class="cta-btn wa" target="_blank">&#128172; Start on WhatsApp</a>
+    <a href="https://line.me/R/ti/p/@963ieadj" class="cta-btn line" target="_blank">&#128994; Start on LINE</a>
+    <a href="https://t.me/HumanOS_DA_Inc_bot" class="cta-btn tg" target="_blank">&#9992; Start on Telegram</a>
+  </div>
+</section>
+
+<div class="wood-strip"></div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <span class="footer-logo">HumanOS</span>
+      <div class="footer-product">by Deploy Agents Inc.</div>
+      <p class="footer-tagline">AI that runs your personal life through the apps you already use. No app. No training. Just your life, handled.</p>
+      <p class="footer-tagline" style="margin-top:12px;font-size:0.78rem;color:var(--steel-light);">GDPR &amp; PDPA compliant. Data hosted in Singapore.<br>Privacy: <a href="mailto:privacy@deployagentsinc.com" style="color:var(--gold);">privacy@deployagentsinc.com</a></p>
+    </div>
+    <div class="footer-col">
+      <h4>Get Started</h4>
+      <ul>
+        <li><a href="https://wa.me/66839799707" target="_blank">WhatsApp</a></li>
+        <li><a href="https://line.me/R/ti/p/@963ieadj" target="_blank">LINE</a></li>
+        <li><a href="https://t.me/HumanOS_DA_Inc_bot" target="_blank">Telegram</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="https://deployagentsinc.agency">Deploy Agents Inc.</a></li>
+        <li><a href="https://businessos.deployagentsinc.agency">BusinessOS</a></li>
+        <li><a href="mailto:hello@deployagentsinc.com">Contact</a></li>
+        <li><a href="/privacy">Privacy</a></li>
+        <li><a href="/terms">Terms</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">&copy; 2026 Deploy Agents Inc. All rights reserved.</span>
+    <span class="footer-motto">Run and Done</span>
+  </div>
+</footer>
+
+<script>
+  const cursor=document.getElementById('cursor');
+  const ring=document.getElementById('cursor-ring');
+  let mouseX=0,mouseY=0,ringX=0,ringY=0;
+  document.addEventListener('mousemove',e=>{
+    mouseX=e.clientX;mouseY=e.clientY;
+    cursor.style.transform=`translate(${mouseX-4}px,${mouseY-4}px)`;
+  });
+  function animateRing(){
+    ringX+=(mouseX-ringX-16)*0.12;ringY+=(mouseY-ringY-16)*0.12;
+    ring.style.transform=`translate(${ringX}px,${ringY}px)`;
+    requestAnimationFrame(animateRing);
+  }
+  animateRing();
+  document.querySelectorAll('a,button').forEach(el=>{
+    el.addEventListener('mouseenter',()=>{ring.style.width='48px';ring.style.height='48px';ring.style.opacity='1';});
+    el.addEventListener('mouseleave',()=>{ring.style.width='32px';ring.style.height='32px';ring.style.opacity='0.6';});
+  });
+  const observer=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
+  },{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+  window.addEventListener('scroll',()=>{
+    document.getElementById('main-nav').style.borderBottomColor=
+      window.scrollY>50?'rgba(201,168,76,0.25)':'rgba(201,168,76,0.15)';
+  });
+  // Tab switching
+  function showTab(id,btn){
+    document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    document.getElementById('tab-'+id).classList.add('active');
+    btn.classList.add('active');
+  }
+</script>
+</body>
+</html>
