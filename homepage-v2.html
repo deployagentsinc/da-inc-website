@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Deploy Agents Inc. — We build AI operating systems. BusinessOS for small businesses. HumanOS for people and families. The future of communication starts here.">
+<meta property="og:title" content="Deploy Agents Inc. — The AI Operating System Company">
+<meta property="og:description" content="We build AI operating systems that run through the messaging apps you already use. No app. No training. Just results.">
+<meta property="og:url" content="https://deployagentsinc.agency">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<title>Deploy Agents Inc. — The AI Operating System Company</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --concrete: #2a2825;
+    --concrete-light: #3d3a36;
+    --concrete-mid: #4f4b45;
+    --steel: #8a8a8a;
+    --steel-light: #b0aca6;
+    --wood: #6b4c2a;
+    --wood-light: #8b6340;
+    --gold: #c9a84c;
+    --gold-light: #e2c97e;
+    --gold-dark: #a07830;
+    --cream: #f5f0e8;
+    --cream-dark: #ede5d6;
+    --off-white: #faf8f4;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--concrete);
+    color: var(--cream);
+    font-family: 'Cormorant Garamond', serif;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* Custom cursor */
+  .cursor {
+    width: 8px; height: 8px;
+    background: var(--gold);
+    border-radius: 50%;
+    position: fixed; top: 0; left: 0;
+    pointer-events: none; z-index: 9999;
+    transition: transform 0.1s ease;
+    mix-blend-mode: screen;
+  }
+  .cursor-ring {
+    width: 32px; height: 32px;
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    position: fixed; top: 0; left: 0;
+    pointer-events: none; z-index: 9998;
+    transition: transform 0.15s ease, width 0.2s, height 0.2s;
+    mix-blend-mode: screen; opacity: 0.6;
+  }
+
+  /* Noise */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 1000; opacity: 0.4;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 24px 64px;
+    display: flex; justify-content: space-between; align-items: center;
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+    background: rgba(42,40,37,0.92);
+    backdrop-filter: blur(12px);
+    transition: border-bottom-color 0.3s;
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px; letter-spacing: 0.28em;
+    color: var(--gold); text-decoration: none;
+  }
+  .nav-links {
+    display: flex; gap: 48px; list-style: none;
+  }
+  .nav-links a {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; letter-spacing: 0.2em;
+    color: var(--steel-light); text-decoration: none;
+    text-transform: uppercase; transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cta {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--concrete);
+    background: var(--gold); padding: 10px 24px;
+    text-decoration: none; transition: background 0.3s;
+  }
+  .nav-cta:hover { background: var(--gold-light); }
+
+  /* WOOD STRIP */
+  .wood-strip {
+    height: 6px;
+    background: linear-gradient(90deg, var(--wood-light), #a0724a, var(--wood), #8b6340, var(--wood-light));
+    background-size: 200% 100%;
+    animation: woodShift 8s linear infinite;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: flex-start;
+    padding: 160px 64px 100px;
+    position: relative; overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      repeating-linear-gradient(0deg, transparent, transparent 80px, rgba(201,168,76,0.025) 80px, rgba(201,168,76,0.025) 81px),
+      repeating-linear-gradient(90deg, transparent, transparent 80px, rgba(201,168,76,0.025) 80px, rgba(201,168,76,0.025) 81px);
+    pointer-events: none;
+  }
+
+  /* Large background text */
+  .hero-bg-text {
+    position: absolute;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(180px, 22vw, 320px);
+    color: rgba(201,168,76,0.03);
+    letter-spacing: 0.02em;
+    line-height: 1;
+    right: -40px; bottom: 60px;
+    pointer-events: none;
+    white-space: nowrap;
+    user-select: none;
+  }
+
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; letter-spacing: 0.4em;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 40px;
+    display: flex; align-items: center; gap: 16px;
+    opacity: 0; animation: fadeUp 0.8s ease forwards 0.2s;
+  }
+  .hero-eyebrow::before {
+    content: ''; display: block;
+    width: 40px; height: 1px; background: var(--gold);
+  }
+
+  .hero-headline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(80px, 10vw, 150px);
+    line-height: 0.9; letter-spacing: 0.02em;
+    color: var(--cream); margin-bottom: 48px;
+    max-width: 900px;
+    opacity: 0; animation: fadeUp 0.8s ease forwards 0.4s;
+  }
+  .hero-headline .gold { color: var(--gold); }
+
+  .hero-sub {
+    font-size: clamp(18px, 2vw, 24px);
+    font-weight: 300; line-height: 1.7;
+    font-style: italic; color: var(--steel-light);
+    max-width: 580px; margin-bottom: 64px;
+    opacity: 0; animation: fadeUp 0.8s ease forwards 0.6s;
+  }
+
+  .hero-meta {
+    display: flex; gap: 48px; align-items: center;
+    opacity: 0; animation: fadeUp 0.8s ease forwards 0.8s;
+  }
+  .hero-meta-item {
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .hero-meta-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px; color: var(--gold); line-height: 1;
+  }
+  .hero-meta-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--steel);
+  }
+  .hero-meta-divider {
+    width: 1px; height: 60px;
+    background: rgba(201,168,76,0.2);
+  }
+
+  /* MISSION */
+  .mission {
+    padding: 120px 64px;
+    background: var(--concrete-light);
+    position: relative; overflow: hidden;
+  }
+  .mission::after {
+    content: 'DEPLOY';
+    position: absolute;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 280px; color: rgba(201,168,76,0.03);
+    bottom: -40px; right: -20px;
+    pointer-events: none; line-height: 1;
+    letter-spacing: 0.02em;
+  }
+
+  .mission-inner {
+    max-width: 860px; position: relative; z-index: 1;
+  }
+  .section-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 24px;
+    display: flex; align-items: center; gap: 16px;
+  }
+  .section-tag::before {
+    content: ''; display: block;
+    width: 24px; height: 1px; background: var(--gold);
+  }
+  .mission-statement {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 3.5vw, 48px);
+    font-weight: 300; line-height: 1.45;
+    color: var(--cream); margin-bottom: 48px;
+  }
+  .mission-statement strong {
+    font-weight: 600; color: var(--gold);
+    font-style: italic;
+  }
+  .mission-pillars {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 2px; background: rgba(201,168,76,0.08);
+    margin-top: 64px;
+  }
+  .pillar {
+    background: var(--concrete-light);
+    padding: 40px 32px;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s;
+  }
+  .pillar:hover {
+    background: var(--concrete-mid);
+    border-bottom-color: var(--gold);
+  }
+  .pillar-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 64px; color: rgba(201,168,76,0.15);
+    line-height: 1; margin-bottom: 20px;
+    transition: color 0.3s;
+  }
+  .pillar:hover .pillar-number { color: rgba(201,168,76,0.3); }
+  .pillar-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px; letter-spacing: 0.05em;
+    color: var(--cream); margin-bottom: 12px;
+  }
+  .pillar-desc {
+    font-size: 16px; font-weight: 300;
+    line-height: 1.7; color: var(--steel-light);
+  }
+
+  /* PRODUCTS */
+  .products {
+    padding: 120px 64px;
+    background: var(--concrete);
+  }
+  .products-header {
+    display: flex; justify-content: space-between;
+    align-items: flex-end; margin-bottom: 64px;
+  }
+  .products-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(52px, 6vw, 88px);
+    letter-spacing: 0.03em; color: var(--cream);
+    line-height: 1;
+  }
+  .products-title .gold { color: var(--gold); }
+  .products-sub {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--steel);
+    max-width: 260px; text-align: right;
+    line-height: 1.8;
+  }
+
+  .products-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 2px; background: rgba(201,168,76,0.08);
+  }
+
+  .product-card {
+    background: var(--concrete);
+    padding: 64px 56px;
+    position: relative; overflow: hidden;
+    transition: background 0.4s;
+    text-decoration: none;
+    display: block;
+  }
+  .product-card:hover { background: var(--concrete-light); }
+
+  .product-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 3px;
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.5s ease;
+  }
+  .product-card.business::before { background: linear-gradient(90deg, var(--gold), var(--gold-light)); }
+  .product-card.human::before { background: linear-gradient(90deg, var(--wood-light), var(--gold)); }
+  .product-card:hover::before { transform: scaleX(1); }
+
+  .product-bg-letter {
+    position: absolute;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 320px; line-height: 1;
+    color: rgba(201,168,76,0.04);
+    right: -20px; bottom: -40px;
+    pointer-events: none; user-select: none;
+    transition: color 0.4s;
+  }
+  .product-card:hover .product-bg-letter { color: rgba(201,168,76,0.07); }
+
+  .product-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--gold-dark);
+    margin-bottom: 32px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .product-tag::before {
+    content: ''; width: 16px; height: 1px;
+    background: var(--gold-dark);
+  }
+
+  .product-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(64px, 7vw, 100px);
+    letter-spacing: 0.05em; color: var(--gold);
+    line-height: 1; margin-bottom: 8px;
+    position: relative; z-index: 1;
+  }
+
+  .product-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; font-weight: 300;
+    font-style: italic; color: var(--cream);
+    margin-bottom: 32px; position: relative; z-index: 1;
+  }
+
+  .product-desc {
+    font-size: 17px; font-weight: 300;
+    line-height: 1.75; color: var(--steel-light);
+    max-width: 420px; margin-bottom: 48px;
+    position: relative; z-index: 1;
+  }
+
+  .product-agents {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    margin-bottom: 48px; position: relative; z-index: 1;
+  }
+  .agent-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px; letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border: 1px solid rgba(201,168,76,0.2);
+    color: var(--steel-light);
+    background: rgba(201,168,76,0.04);
+    transition: all 0.3s;
+  }
+  .product-card:hover .agent-tag {
+    border-color: rgba(201,168,76,0.35);
+    color: var(--gold-light);
+  }
+
+  .product-cta {
+    display: inline-flex; align-items: center; gap: 12px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--concrete);
+    background: var(--gold); padding: 14px 32px;
+    transition: background 0.3s;
+    position: relative; z-index: 1;
+  }
+  .product-cta:hover { background: var(--gold-light); }
+  .product-cta::after { content: '\2192'; }
+
+  .product-price {
+    position: absolute; bottom: 64px; right: 56px;
+    text-align: right; z-index: 1;
+  }
+  .product-price-amount {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 40px; color: var(--cream); line-height: 1;
+  }
+  .product-price-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--steel);
+    margin-top: 4px;
+  }
+
+  /* CHANNELS BAR */
+  .channels-bar {
+    background: var(--concrete-light);
+    padding: 48px 64px;
+    border-top: 1px solid rgba(201,168,76,0.1);
+    border-bottom: 1px solid rgba(201,168,76,0.1);
+    display: flex; align-items: center;
+    justify-content: space-between; gap: 40px;
+  }
+  .channels-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; letter-spacing: 0.25em;
+    text-transform: uppercase; color: var(--steel);
+    white-space: nowrap;
+  }
+  .channels-list {
+    display: flex; gap: 2px; flex: 1;
+    background: rgba(201,168,76,0.06);
+  }
+  .channel {
+    flex: 1; padding: 20px 24px;
+    background: var(--concrete-light);
+    display: flex; align-items: center; gap: 16px;
+    transition: background 0.3s, transform 0.2s;
+    cursor: default;
+  }
+  .channel:hover {
+    background: var(--concrete-mid);
+    transform: translateY(-2px);
+  }
+  .channel-icon { font-size: 22px; }
+  .channel-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px; font-weight: 600; color: var(--cream);
+  }
+  .channel-region {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--steel);
+  }
+  .channels-motto {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px; font-style: italic;
+    font-weight: 300; color: var(--steel-light);
+    white-space: nowrap; max-width: 220px;
+    text-align: right;
+  }
+
+  /* MANIFESTO */
+  .manifesto {
+    padding: 140px 64px;
+    background: var(--concrete);
+    text-align: center; position: relative; overflow: hidden;
+  }
+  .manifesto::before {
+    content: '';
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(201,168,76,0.05) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .manifesto-year {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; letter-spacing: 0.4em;
+    text-transform: uppercase; color: var(--gold-dark);
+    margin-bottom: 48px; position: relative; z-index: 1;
+  }
+  .manifesto-headline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(60px, 8vw, 120px);
+    letter-spacing: 0.02em; color: var(--cream);
+    line-height: 0.92; margin-bottom: 48px;
+    position: relative; z-index: 1;
+  }
+  .manifesto-headline .gold { color: var(--gold); }
+  .manifesto-body {
+    font-size: clamp(18px, 2vw, 24px);
+    font-weight: 300; font-style: italic;
+    color: var(--steel-light); line-height: 1.8;
+    max-width: 720px; margin: 0 auto 72px;
+    position: relative; z-index: 1;
+  }
+  .manifesto-body em { color: var(--cream); font-style: normal; }
+
+  .manifesto-actions {
+    display: flex; gap: 16px; justify-content: center;
+    flex-wrap: wrap; position: relative; z-index: 1;
+  }
+  .manifesto-btn {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; letter-spacing: 0.2em;
+    text-transform: uppercase; text-decoration: none;
+    padding: 14px 36px; transition: all 0.3s;
+  }
+  .manifesto-btn.primary {
+    color: var(--concrete); background: var(--gold);
+  }
+  .manifesto-btn.primary:hover { background: var(--gold-light); }
+  .manifesto-btn.secondary {
+    color: var(--gold); border: 1px solid rgba(201,168,76,0.4);
+  }
+  .manifesto-btn.secondary:hover { background: rgba(201,168,76,0.08); }
+
+  /* FOOTER */
+  footer {
+    background: var(--concrete-light);
+    padding: 72px 64px 40px;
+    border-top: 1px solid rgba(201,168,76,0.15);
+  }
+  .footer-top {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 64px; margin-bottom: 64px;
+    padding-bottom: 64px;
+    border-bottom: 1px solid rgba(201,168,76,0.1);
+  }
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px; letter-spacing: 0.2em;
+    color: var(--gold); display: block; margin-bottom: 16px;
+  }
+  .footer-tagline {
+    font-size: 15px; font-weight: 300;
+    font-style: italic; color: var(--steel);
+    line-height: 1.7;
+  }
+  .footer-col h4 {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; letter-spacing: 0.25em;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 24px;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 12px; }
+  .footer-col ul li a {
+    font-size: 15px; font-weight: 300;
+    color: var(--steel); text-decoration: none;
+    transition: color 0.3s;
+  }
+  .footer-col ul li a:hover { color: var(--cream); }
+  .footer-bottom {
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-copy {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; letter-spacing: 0.15em;
+    color: var(--steel); text-transform: uppercase;
+  }
+  .footer-motto {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; letter-spacing: 0.2em;
+    color: var(--gold); text-transform: uppercase;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes woodShift {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 200% 0%; }
+  }
+
+  .reveal {
+    opacity: 0; transform: translateY(32px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    nav { padding: 20px 24px; }
+    .nav-links { display: none; }
+    .hero { padding: 120px 24px 80px; }
+    .hero-meta { flex-wrap: wrap; gap: 24px; }
+    .hero-meta-divider { display: none; }
+    .mission { padding: 80px 24px; }
+    .mission-pillars { grid-template-columns: 1fr; }
+    .products { padding: 80px 24px; }
+    .products-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+    .products-sub { text-align: left; }
+    .products-grid { grid-template-columns: 1fr; }
+    .product-card { padding: 48px 32px; }
+    .product-price { display: none; }
+    .channels-bar { flex-direction: column; padding: 40px 24px; }
+    .channels-list { flex-direction: column; width: 100%; }
+    .channels-motto { text-align: left; }
+    .manifesto { padding: 80px 24px; }
+    footer { padding: 48px 24px 32px; }
+    .footer-top { grid-template-columns: 1fr; gap: 32px; }
+    .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursor-ring"></div>
+
+<!-- NAV -->
+<nav id="main-nav">
+  <a href="/" class="nav-logo">Deploy Agents Inc.</a>
+  <ul class="nav-links">
+    <li><a href="https://businessos.deployagentsinc.agency">BusinessOS</a></li>
+    <li><a href="https://humanos.deployagentsinc.agency">HumanOS</a></li>
+    <li><a href="mailto:hello@deployagentsinc.com">Contact</a></li>
+  </ul>
+  <a href="mailto:hello@deployagentsinc.com" class="nav-cta">Get in Touch</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-text">AGENTS</div>
+
+  <div class="hero-eyebrow">Deploy Agents Inc. &mdash; Founded 2026</div>
+
+  <h1 class="hero-headline">
+    Your Phone.<br>
+    <span class="gold">Your AI.</span><br>
+    Your Time Back.
+  </h1>
+
+  <p class="hero-sub">
+    Imagine texting someone who handles your bookings, tracks your spending, manages your staff, and sorts your life admin. That someone is AI. It lives right inside your phone. Text it, talk to it, or even fax it.
+  </p>
+
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <div class="hero-meta-number">2</div>
+      <div class="hero-meta-label">Products Live</div>
+    </div>
+    <div class="hero-meta-divider"></div>
+    <div class="hero-meta-item">
+      <div class="hero-meta-number">29</div>
+      <div class="hero-meta-label">Agents Deployed</div>
+    </div>
+    <div class="hero-meta-divider"></div>
+    <div class="hero-meta-item">
+      <div class="hero-meta-number">3</div>
+      <div class="hero-meta-label">Platforms</div>
+    </div>
+    <div class="hero-meta-divider"></div>
+    <div class="hero-meta-item">
+      <div class="hero-meta-number">100+</div>
+      <div class="hero-meta-label">Tasks Automated</div>
+    </div>
+  </div>
+</section>
+
+<div class="wood-strip"></div>
+
+<!-- MISSION -->
+<section class="mission">
+  <div class="mission-inner">
+    <div class="section-tag reveal">Mission</div>
+    <p class="mission-statement reveal">
+      An AI agent is like a smart helper that lives in your phone.
+      You text it, call it, or fax it. It does the work. It replies when it's done.
+      <strong>No app to download. No class to take. No new password.</strong>
+      It works inside WhatsApp, LINE, and Telegram —
+      apps you already have on your phone right now.
+    </p>
+
+    <div class="mission-pillars">
+      <div class="pillar reveal">
+        <div class="pillar-number">01</div>
+        <div class="pillar-title">What Is an AI Agent?</div>
+        <p class="pillar-desc">A smart helper that lives in your phone. You tell it what you need. It does the work. It never sleeps, never forgets, and never calls in sick.</p>
+      </div>
+      <div class="pillar reveal">
+        <div class="pillar-number">02</div>
+        <div class="pillar-title">How Do I Use It?</div>
+        <p class="pillar-desc">Text it, call it, or fax it. It works inside WhatsApp, LINE, and Telegram. If you can send a message, you can use it. No training needed.</p>
+      </div>
+      <div class="pillar reveal">
+        <div class="pillar-number">03</div>
+        <div class="pillar-title">What Does It Handle?</div>
+        <p class="pillar-desc">Over 100 tasks across your business and personal life. Customers, orders, staff, health, money, travel, home, learning, goals, and more.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHANNELS BAR -->
+<div class="channels-bar reveal">
+  <span class="channels-label">Live on</span>
+  <div class="channels-list">
+    <div class="channel">
+      <span class="channel-icon">&#128172;</span>
+      <div>
+        <div class="channel-name">WhatsApp</div>
+        <div class="channel-region">Global &middot; Business &amp; Personal</div>
+      </div>
+    </div>
+    <div class="channel">
+      <span class="channel-icon">&#128994;</span>
+      <div>
+        <div class="channel-name">LINE</div>
+        <div class="channel-region">Southeast Asia</div>
+      </div>
+    </div>
+    <div class="channel">
+      <span class="channel-icon">&#9992;</span>
+      <div>
+        <div class="channel-name">Telegram</div>
+        <div class="channel-region">Global</div>
+      </div>
+    </div>
+    <div class="channel">
+      <span class="channel-icon">&#128222;</span>
+      <div>
+        <div class="channel-name">Voice</div>
+        <div class="channel-region">Call your agents</div>
+      </div>
+    </div>
+  </div>
+  <p class="channels-motto">No app. No login.<br>No new habit.</p>
+</div>
+
+<div class="wood-strip"></div>
+
+<!-- PRODUCTS -->
+<section class="products">
+  <div class="products-header reveal">
+    <h2 class="products-title">Our<br><span class="gold">Portfolio.</span></h2>
+    <p class="products-sub">Two products.<br>One mission.<br>Give people their time back.</p>
+  </div>
+
+  <div class="products-grid">
+    <!-- BusinessOS -->
+    <a href="https://businessos.deployagentsinc.agency" class="product-card business reveal">
+      <div class="product-bg-letter">B</div>
+      <div class="product-tag">For Small Businesses</div>
+      <div class="product-name">BusinessOS</div>
+      <div class="product-tagline">Your business runs. You rest.</div>
+      <p class="product-desc">A customer messages at midnight asking for a booking. Your AI replies, confirms the table, and logs it — without you touching your phone. BusinessOS handles customer messages, staff scheduling, supplier orders, stock levels, daily reports, and more. All through WhatsApp, LINE, or Telegram. You just check in when you want to.</p>
+      <div class="product-agents">
+        <span class="agent-tag">Customer Service</span>
+        <span class="agent-tag">Staff Scheduling</span>
+        <span class="agent-tag">Supplier Orders</span>
+        <span class="agent-tag">Inventory</span>
+        <span class="agent-tag">Daily Reports</span>
+        <span class="agent-tag">Reviews</span>
+      </div>
+      <span class="product-cta">Explore BusinessOS</span>
+
+    </a>
+
+    <!-- HumanOS -->
+    <a href="https://humanos.deployagentsinc.agency" class="product-card human reveal">
+      <div class="product-bg-letter">H</div>
+      <div class="product-tag">For People &amp; Families</div>
+      <div class="product-name">HumanOS</div>
+      <div class="product-tagline">Your life, sorted by morning.</div>
+      <p class="product-desc">HumanOS runs your personal life through WhatsApp, LINE, or Telegram. It tracks your health goals, monitors your spending, controls your smart home, manages your learning, keeps you on track with your goals, and it handles the digital tasks that eat away your day. One conversation. Everything handled.</p>
+      <div class="product-agents">
+        <span class="agent-tag">Health</span>
+        <span class="agent-tag">Money</span>
+        <span class="agent-tag">Smart Home</span>
+        <span class="agent-tag">Learning</span>
+        <span class="agent-tag">Goals</span>
+        <span class="agent-tag">Travel</span>
+      </div>
+      <span class="product-cta">Explore HumanOS</span>
+      <div class="product-price">
+        <div class="product-price-amount">$3 / $25</div>
+        <div class="product-price-label">per agent &middot; or full stack</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<div class="wood-strip"></div>
+
+<!-- MANIFESTO -->
+<section class="manifesto">
+  <div class="manifesto-year reveal">Deploy Agents Inc. &mdash; Est. 2026</div>
+  <h2 class="manifesto-headline reveal">
+    Built for<br>
+    real<br>
+    <span class="gold">people.</span>
+  </h2>
+  <p class="manifesto-body reveal">
+    The restaurant owner still answering customer messages at midnight.
+    The person who wants to get fit, save money, and learn something new — but can never stay on track.
+    The homeowner who wants their lights, temperature, and security handled without lifting a finger.
+    The small business owner who does everything themselves because staff costs too much.
+    <em>We launched Deploy Agents Inc. to fix that.</em>
+    BusinessOS and HumanOS are just the start.
+  </p>
+  <div class="manifesto-actions reveal">
+    <a href="https://businessos.deployagentsinc.agency" class="manifesto-btn primary">Get BusinessOS</a>
+    <a href="https://humanos.deployagentsinc.agency" class="manifesto-btn secondary">Get HumanOS</a>
+    <a href="mailto:hello@deployagentsinc.com" class="manifesto-btn secondary">Get in Touch</a>
+  </div>
+</section>
+
+<div class="wood-strip"></div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <span class="footer-logo">Deploy Agents Inc.</span>
+      <p class="footer-tagline">AI that works inside the apps<br>you already use every day.<br>WhatsApp. Telegram. LINE. Voice.</p>
+      <p class="footer-tagline" style="margin-top:16px;font-size:0.78rem;color:var(--steel-light);">GDPR &amp; PDPA compliant.<br>Data hosted in Singapore (AWS ap-southeast-1).<br>Privacy: <a href="mailto:privacy@deployagentsinc.com" style="color:var(--gold);">privacy@deployagentsinc.com</a></p>
+    </div>
+    <div class="footer-col">
+      <h4>Products</h4>
+      <ul>
+        <li><a href="https://businessos.deployagentsinc.agency">BusinessOS</a></li>
+        <li><a href="https://humanos.deployagentsinc.agency">HumanOS</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="/privacy">Privacy</a></li>
+        <li><a href="/terms">Terms</a></li>
+        <li><a href="mailto:hello@deployagentsinc.com">Contact Us</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">&copy; 2026 Deploy Agents Inc. All rights reserved.</span>
+    <span class="footer-motto">Run and Done</span>
+  </div>
+</footer>
+
+<script>
+  // Custom cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursor-ring');
+  let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+
+  document.addEventListener('mousemove', e => {
+    mouseX = e.clientX; mouseY = e.clientY;
+    cursor.style.transform = `translate(${mouseX - 4}px, ${mouseY - 4}px)`;
+  });
+
+  function animateRing() {
+    ringX += (mouseX - ringX - 16) * 0.12;
+    ringY += (mouseY - ringY - 16) * 0.12;
+    ring.style.transform = `translate(${ringX}px, ${ringY}px)`;
+    requestAnimationFrame(animateRing);
+  }
+  animateRing();
+
+  document.querySelectorAll('a, button').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      ring.style.width = '48px'; ring.style.height = '48px'; ring.style.opacity = '1';
+    });
+    el.addEventListener('mouseleave', () => {
+      ring.style.width = '32px'; ring.style.height = '32px'; ring.style.opacity = '0.6';
+    });
+  });
+
+  // Scroll reveal
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Nav scroll
+  window.addEventListener('scroll', () => {
+    document.getElementById('main-nav').style.borderBottomColor =
+      window.scrollY > 50 ? 'rgba(201,168,76,0.25)' : 'rgba(201,168,76,0.15)';
+  });
+</script>
+</body>
+</html>
